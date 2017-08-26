@@ -1,99 +1,99 @@
 #table{
-    background: rgba(247, 203, 76, 0.5);
-    border: 1px solid black;
-    width: 500px;
-    height: 500px;
-    float: left;
-    margin: 10px;
-  }
-  
-  div#app{
-   perspective: 1555px;
-  }
-  
-  div#app > div {
-   transition: transform 1s;
-   transform: rotateX(15deg) rotateY(-15deg) rotateX(3deg);
-   transform-origin: 15px 525px 15px;
-   display: inline-block;
-  }
-  
-  div#app > div:hover{
-   transform: none;
-  }
-  
-  #table tr:nth-child(odd) td:nth-child(odd){
-    background: rgb(255, 206, 158);
-  }
-  
-  #table tr:nth-child(even) td:nth-child(even){
-    background: rgb(255, 206, 158);
-  }
-  
-  #table tr:nth-child(even) td:nth-child(odd) {
-    background: rgb(209, 139, 71);
-  }
-  
-  #table tr:nth-child(odd) td:nth-child(even) {
-    background: rgb(209, 139, 71);
-  }
-  
-  #table td{
-    cursor: pointer;
-    border: 1px solid gray;
-    width: 12.5%;
-    height: 12.5%;
-    font-size: 40px;
-    text-align: center;
-  }
-  
-  #app #table .selected {
-    background: brown;
-  }
-  
-  #app #table .validMoves {
-    background: red;
-  }
-  
-  #app #table td {
-    -webkit-transition: background-color 375ms linear;
-    -moz-transition: background-color 375ms linear;
-    -o-transition: background-color 375ms linear;
-    -ms-transition: background-color 375ms linear;
-    transition: background-color 375ms linear;
-  }
-  
-  #down{
-    position: relative;
-    left: 10px;
-    top: -17px;
-    width: 500px;
-  }
-  
-  .down {
-    width: 12.5%;
-    font-size: 25px;
-    text-align: center;
-  }
-  
-  #right {
-    position: relative;
-    left: 10px;
-    top: 10px;
-    height: 500px;
-  }
-  
-  
-  .right {
-    height: 12.5%;
-    font-size: 25px;
-  }
-  
-  table{
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-  }
+  background: rgba(247, 203, 76, 0.5);
+  border: 1px solid black;
+  width: 250px;
+  height: 250px;
+  float: left;
+  margin: 5px;
+}
+
+div#app{
+ perspective: 1555px;
+}
+
+div#app > div {
+ transition: transform 1s;
+ transform: rotateX(15deg) rotateY(-15deg) rotateX(3deg);
+ transform-origin: 15px 525px 15px;
+ display: inline-block;
+}
+
+div#app > div:hover{
+ transform: none;
+}
+
+#table tr:nth-child(odd) td:nth-child(odd){
+  background: rgb(255, 206, 158);
+}
+
+#table tr:nth-child(even) td:nth-child(even){
+  background: rgb(255, 206, 158);
+}
+
+#table tr:nth-child(even) td:nth-child(odd) {
+  background: rgb(209, 139, 71);
+}
+
+#table tr:nth-child(odd) td:nth-child(even) {
+  background: rgb(209, 139, 71);
+}
+
+#table td{
+  cursor: pointer;
+  border: 1px solid gray;
+  width: 6.25%;
+  height: 6.25%;
+  font-size: 10px;
+  text-align: center;
+}
+
+#app #table .selected {
+  background: brown;
+}
+
+#app #table .validMoves {
+  background: red;
+}
+
+#app #table td {
+  -webkit-transition: background-color 375ms linear;
+  -moz-transition: background-color 375ms linear;
+  -o-transition: background-color 375ms linear;
+  -ms-transition: background-color 375ms linear;
+  transition: background-color 375ms linear;
+}
+
+#down{
+  position: relative;
+  left: 5px;
+  top: -17px;
+  width: 250px;
+}
+
+.down {
+  width: 6.25%;
+  font-size: 12px;
+  text-align: center;
+}
+
+#right {
+  position: relative;
+  left: 13px;
+  top: 8px;
+  height: 250px;
+}
+
+
+.right {
+  height: 6.25%;
+  font-size: 12px;
+}
+
+table{
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
