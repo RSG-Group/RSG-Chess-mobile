@@ -1,10 +1,12 @@
 #table{
   background: rgba(247, 203, 76, 0.5);
   border: 1px solid black;
-  width: 350px;
-  height: 350px;
   float: left;
   margin: 5px;
+}
+
+div#app > div {
+ display: inline-block;
 }
 
 div#app > div:hover{
@@ -30,9 +32,8 @@ div#app > div:hover{
 #table td{
   cursor: pointer;
   border: 1px solid gray;
-  width: 6.25%;
-  height: 6.25%;
-  font-size: 14px;
+  width: 12.5%;
+  height: 12.5%;
   text-align: center;
 }
 
@@ -50,6 +51,32 @@ div#app > div:hover{
   -o-transition: background-color 375ms linear;
   -ms-transition: background-color 375ms linear;
   transition: background-color 375ms linear;
+}
+
+#down{
+  position: relative;
+  left: 10px;
+  top: -17px;
+  width: 500px;
+}
+
+.down {
+  width: 12.5%;
+  font-size: 25px;
+  text-align: center;
+}
+
+#right {
+  position: relative;
+  left: 10px;
+  top: 10px;
+  height: 500px;
+}
+
+
+.right {
+  height: 12.5%;
+  font-size: 25px;
 }
 
 table{
