@@ -1,8 +1,20 @@
+body {
+  text-align: center;
+  background: rgba(0, 255, 153, 0.25)
+}
+
 #table{
   background: rgba(247, 203, 76, 0.5);
   border: 1px solid black;
   float: left;
   margin: 5px;
+
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 
 div#app > div {
@@ -51,39 +63,4 @@ div#app > div:hover{
   -o-transition: background-color 375ms linear;
   -ms-transition: background-color 375ms linear;
   transition: background-color 375ms linear;
-}
-
-#down{
-  position: relative;
-  left: 10px;
-  top: -17px;
-  width: 500px;
-}
-
-.down {
-  width: 12.5%;
-  font-size: 25px;
-  text-align: center;
-}
-
-#right {
-  position: relative;
-  left: 10px;
-  top: 10px;
-  height: 500px;
-}
-
-
-.right {
-  height: 12.5%;
-  font-size: 25px;
-}
-
-table{
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 }
