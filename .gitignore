@@ -1,0 +1,12 @@
+# Phone Gap
+.DS_Store
+/platforms
+/plugins
+resources/signin
+
+# Node
+npm-debug.log
+/node_modules
+
+# RSG-Chess-mobile
+/development
