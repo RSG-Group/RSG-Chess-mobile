@@ -7,7 +7,7 @@ body {
   background: rgba(247, 203, 76, 0.5);
   border: 1px solid black;
   float: left;
-  margin: 10px 3px 0px 3px;
+  margin-top: 5px;
 
   -webkit-touch-callout: none;
   -webkit-user-select: none;
