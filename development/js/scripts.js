@@ -100,7 +100,7 @@ class MainComponent extends React.Component {
     }
 
     this.setState({ promotionParams: null });
-    if(AdMob) AdMob.prepareInterstitial({ adId: admobid.interstitial, autoShow: false });
+    if(AdMob) AdMob.prepareInterstitial({ adId: 'ca-app-pub-3522556458609123/5974831399', autoShow: false });
     if(AdMob) AdMob.showInterstitial();
   }
 
