@@ -51,11 +51,13 @@ class MainComponent extends React.Component {
     this.state = {
       selected: null,
       promotionParams: null,
+      welcomeDialog: true,
       sizes: getSizes()
     };
   }
 
   componentDidMount(){
+    // onResize event used to optimize the table sizes
     window.onresize = () => {
       this.setState({ sizes: getSizes() });
     };
@@ -96,7 +98,10 @@ class MainComponent extends React.Component {
       const { x, y, color, pawn } = this.state.promotionParams;
       game.promotePawn(pawn, x, y, color, piece);
     }
+
     this.setState({ promotionParams: null });
+    if(AdMob) AdMob.prepareInterstitial({ adId: admobid.interstitial, autoShow: false });
+    if(AdMob) AdMob.showInterstitial();
   }
 
   __renderTable () {
@@ -129,8 +134,32 @@ class MainComponent extends React.Component {
             {this.__renderTable()}
           </tbody>
         </table>
-        {this.state.promotionParams && this.__renderPromotionDialog()}
+        { this.state.promotionParams && this.__renderPromotionDialog() }
+        { this.__renderWelcomeDialog() }
       </div>
+    );
+  }
+
+  __renderWelcomeDialog () {
+    return (
+      <Modal
+        show={this.state.welcomeDialog}
+        onHide={() => { this.setState({ welcomeDialog: false }) }}
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Welcome!</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          Welcome message
+        </Modal.Body>
+        <Modal.Footer>
+          <Button
+            onClick={() => {
+              this.setState({ welcomeDialog: false })
+            }}
+          >Let's start!</Button>
+        </Modal.Footer>
+      </Modal>
     );
   }
 
