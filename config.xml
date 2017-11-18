@@ -9,5 +9,7 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
-    <icon src="./www/res/icon.png" width="180" height="180" />
+    <icon height="180" src="./www/res/icon.png" width="180" />
+    <engine name="browser" spec="~5.0.1" />
+    <plugin name="cordova-plugin-admobpro" spec="~2.29.29" />
 </widget>

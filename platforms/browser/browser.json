@@ -1,11 +1,32 @@
 {
-    "prepare_queue": {
-        "installed": [],
-        "uninstalled": []
+  "prepare_queue": {
+    "installed": [],
+    "uninstalled": []
+  },
+  "config_munge": {
+    "files": {}
+  },
+  "installed_plugins": {
+    "cordova-plugin-extension": {
+      "PACKAGE_NAME": "com.rsg.chess"
     },
-    "config_munge": {
-        "files": {}
-    },
-    "installed_plugins": {},
-    "dependent_plugins": {}
+    "cordova-plugin-admobpro": {
+      "PACKAGE_NAME": "com.rsg.chess"
+    }
+  },
+  "dependent_plugins": {},
+  "modules": [
+    {
+      "file": "plugins/cordova-plugin-admobpro/www/AdMob.js",
+      "id": "cordova-plugin-admobpro.AdMob",
+      "pluginId": "cordova-plugin-admobpro",
+      "clobbers": [
+        "window.AdMob"
+      ]
+    }
+  ],
+  "plugin_metadata": {
+    "cordova-plugin-extension": "1.5.3",
+    "cordova-plugin-admobpro": "2.29.29"
+  }
 }
