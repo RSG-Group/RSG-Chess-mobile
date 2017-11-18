@@ -9,4 +9,5 @@
     </author>
     <content src="index.html" />
     <access origin="*" />
+    <icon height="180" src="./www/res/icon.png" width="180" />
 </widget>

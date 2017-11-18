@@ -1,0 +1,27 @@
+{
+  "name": "chess",
+  "version": "1.0.0",
+  "description": "The best chess game ... by RSG",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "RSG",
+  "license": "ISC",
+  "dependencies": {
+    "classnames": "^2.2.5",
+    "inflection": "https://github.com/dreamerslab/node.inflection/archive/v1.10.0.tar.gz",
+    "lodash": "^4.15.0",
+    "react": "15.1.0",
+    "react-bootstrap": "^0.29.5",
+    "react-dom": "15.1.0"
+  },
+  "devDependencies": {
+    "babel-core": "^6.10.4",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.11.1",
+    "webpack": "^1.13.1"
+  }
+}
