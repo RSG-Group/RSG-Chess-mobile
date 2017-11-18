@@ -99,6 +99,7 @@ class MainComponent extends React.Component {
       game.promotePawn(pawn, x, y, color, piece);
     }
 
+    if(AdMob) AdMob.showInterstitial();
     this.setState({ promotionParams: null });
   }
 
