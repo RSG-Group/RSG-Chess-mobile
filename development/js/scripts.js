@@ -71,6 +71,7 @@ class MainComponent extends React.Component {
 
   __handleReplay() {
     this.setState({ checkmate: null });
+    if(AdMob) AdMob.showInterstitial();    
     initializeGame();
   }
 
@@ -95,7 +96,6 @@ class MainComponent extends React.Component {
   
   __handleCheckmate(color){
     this.setState({ checkmate: color });
-    if(AdMob) AdMob.showInterstitial();
   }
 
   __handlePromotion (pawn, x, y, color) {
