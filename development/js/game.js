@@ -17,7 +17,7 @@ Game.prototype.piece = function (type, x, y, color) {
   this.board[y][x] = piece;
 };
 
-Game.prototype.moveSelected = function (selected, to, promotionCallback, simulate) {
+Game.prototype.moveSelected = function (selected, to, promotionCallback, checkmateCallback, simulate) {
   var x = to.x;
   var y = to.y;
 
@@ -71,6 +71,9 @@ Game.prototype.moveSelected = function (selected, to, promotionCallback, simulat
       this.board[selected.y][selected.x] = null;
       this.board[y][x].x = x;
       this.board[y][x].y = y;
+
+      const checkmateColor = selected.color === 'W' ? 'B' : 'W';
+      if(this.checkmate(checkmateColor)) checkmateCallback(checkmateColor);
     }
     selected = null;
     return true;
@@ -109,6 +112,20 @@ Game.prototype.simulateAndFilter = function (moves, piece) {
     if (!warning) validMoves.push(move);
   });
   return validMoves;
+}
+
+Game.prototype.checkmate = function(color){
+  for(let i = 0; i < 8; i++){
+		for(let j = 0; j < 8; j++){
+			if (
+        game.board[i][j] &&
+        game.board[i][j].color === color &&
+        game.board[i][j].getValidMoves(true).length
+      ) return false;
+		}
+  }
+  
+	return true;
 }
 
 Game.prototype.simpleMovePiece = function(piece, from, to){

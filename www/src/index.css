@@ -4,7 +4,7 @@ body {
 }
 
 #table{
-  background: rgba(247, 203, 76, 0.5);
+  background: rgb(209, 139, 71);
   border: 1px solid black;
   float: left;
   margin-top: 5px;
@@ -15,6 +15,10 @@ body {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+.rotated {
+  transform: rotateX(180deg);
 }
 
 div#app > div {
