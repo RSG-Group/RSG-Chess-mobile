@@ -73,7 +73,8 @@ Game.prototype.moveSelected = function (selected, to, promotionCallback, checkma
       this.board[y][x].y = y;
 
       const checkmateColor = selected.color === 'W' ? 'B' : 'W';
-      if(this.checkmate(checkmateColor)) checkmateCallback(checkmateColor);
+      const checkmateValue = this.checkmate(checkmateColor);
+      if(checkmateValue) checkmateCallback(checkmateValue);
     }
     selected = null;
     return true;
@@ -125,7 +126,8 @@ Game.prototype.checkmate = function(color){
 		}
   }
   
-	return true;
+  if (this.warning(color)) return color;
+	return 'D';
 }
 
 Game.prototype.simpleMovePiece = function(piece, from, to){

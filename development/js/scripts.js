@@ -219,22 +219,28 @@ class MainComponent extends React.Component {
   }
 
   __renderCheckmateDialog () {
+    const { checkmate } = this.state;
+
     return (
       <Modal
-        show={!!this.state.checkmate}
-        onHide={this.__handleReplay.bind(this)}
+        show={!!checkmate}
+        onHide={() => { this.setState({ checkmate: false }) }}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Checkmate!</Modal.Title>
+          <Modal.Title>{ checkmate === 'D' ? 'Stalemate!' : 'Checkmate!' }</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          The { this.state.checkmate === 'W' ? 'black' : 'white' } player won!
+          {
+            checkmate !== 'D' ?
+            `The ${ checkmate === 'W' ? 'black' : 'white'}  player won!` :
+            'Draw!'
+          }
         </Modal.Body>
         <Modal.Footer>
           <Button onClick={this.__handleReplay.bind(this)}>Replay</Button>
         </Modal.Footer>
       </Modal>
-    );
+    )
   }
 }
 
