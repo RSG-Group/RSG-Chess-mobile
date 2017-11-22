@@ -1,7 +1,7 @@
 import React            from 'react';
 import ReactDOM         from 'react-dom';
 import {
-  Modal, Button
+  Modal, Button, Glyphicon
 }                       from 'react-bootstrap';
 import _                from 'lodash';
 import classNames       from 'classnames';
@@ -143,11 +143,13 @@ class MainComponent extends React.Component {
   render() {
     return (
       <div>
+        <Button bsSize="small" className='menu-icon'><Glyphicon glyph="th" /></Button>
         <table id={"table"} style={{...this.state.sizes}}>
           <tbody>
             {this.__renderTable()}
           </tbody>
         </table>
+
         { this.state.promotionParams && this.__renderPromotionDialog() }
         { this.state.checkmate && this.__renderCheckmateDialog() }
         { this.__renderWelcomeDialog() }

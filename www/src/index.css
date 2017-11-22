@@ -14,7 +14,7 @@ body {
 #table{
   background: rgb(209, 139, 71);
   border: 1px solid black;
-  float: left;
+  float: right;
 
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -26,6 +26,14 @@ body {
 
 .rotated {
   transform: rotateX(180deg);
+}
+
+.menu-icon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  
+  margin: 3px;
 }
 
 div#app > div {
