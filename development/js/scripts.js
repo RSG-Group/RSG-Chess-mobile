@@ -80,7 +80,10 @@ class MainComponent extends React.Component {
       rotated: false
     });
     
-    if(AdMob) AdMob.showInterstitial();
+    if (AdMob) {
+      AdMob.hideBanner();
+      AdMob.showInterstitial();
+    }
     initializeGame();
   }
 
@@ -154,7 +157,10 @@ class MainComponent extends React.Component {
       <div>
         <span
           className="menu-icon"
-          onClick={() => { this.setState({ settingsDialog: true }) }}
+          onClick={() => {
+            this.setState({ settingsDialog: true })
+            if(AdMob) AdMob.showBanner(AdMob.AD_POSITION.BOTTOM_CENTER);
+          }}
         >
           <Glyphicon glyph="cog" />
         </span>
@@ -242,7 +248,10 @@ class MainComponent extends React.Component {
     return (
       <Modal
         show={settingsDialog}
-        onHide={() => { this.setState({ settingsDialog: false }) }}
+        onHide={() => {
+          this.setState({ settingsDialog: false });
+          if(AdMob) AdMob.hideBanner();
+        }}
       >
         <Modal.Header closeButton>
           <Modal.Title>Settings</Modal.Title>
@@ -275,7 +284,10 @@ class MainComponent extends React.Component {
           </ul>
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={() => { this.setState({ settingsDialog: false }) }}>Close</Button>
+          <Button onClick={() => {
+            this.setState({ settingsDialog: false });
+            if(AdMob) AdMob.hideBanner();
+          }}>Close</Button>
         </Modal.Footer>
       </Modal>
     );
