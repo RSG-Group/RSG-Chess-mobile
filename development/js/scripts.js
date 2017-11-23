@@ -80,12 +80,7 @@ class MainComponent extends React.Component {
       rotated: false
     });
     
-    if(AdMob){
-      // Show prepared ad
-      AdMob.showInterstitial();
-      // Prepare new ad
-      AdMob.prepareInterstitial({ adId: 'ca-app-pub-3522556458609123/5974831399', autoShow: false });
-    }
+    if(AdMob) AdMob.showInterstitial();
     initializeGame();
   }
 
@@ -259,8 +254,8 @@ class MainComponent extends React.Component {
                 bsSize="small"
                 onClick={() => { this.setState({ rotated: !this.state.rotated }) }}
               >
-                Rotate the black figures (or restore the rotation)
-              </Button> for real board experience.
+                Rotate the black figures
+              </Button> (or restore the rotation) - for real board experience.
             </li>
             <li>
               <Button
