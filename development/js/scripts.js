@@ -80,7 +80,12 @@ class MainComponent extends React.Component {
       rotated: false
     });
     
-    if(AdMob) AdMob.showInterstitial();    
+    if(AdMob){
+      // Show prepared ad
+      AdMob.showInterstitial();
+      // Prepare new ad
+      AdMob.prepareInterstitial({ adId: 'ca-app-pub-3522556458609123/5974831399', autoShow: false });
+    }
     initializeGame();
   }
 
