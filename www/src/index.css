@@ -14,7 +14,7 @@ body {
 #table{
   background: rgb(209, 139, 71);
   border: 1px solid black;
-  float: right;
+  float: left;
 
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -31,9 +31,11 @@ body {
 .menu-icon {
   position: absolute;
   top: 0;
-  left: 0;
+  right: 0;
   
   margin: 3px;
+  font-size: 21px;
+  cursor: pointer;
 }
 
 div#app > div {
