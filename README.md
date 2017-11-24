@@ -1,13 +1,15 @@
 # RSG-Chess-mobile
 Mobile version of RSG-Chess built with [PhoneGap](http://phonegap.com/)
 
+<a href='https://play.google.com/store/apps/details?id=com.rsg.chess&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img height='75' alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png'/></a>
+
 ## Screenshots
 http://imgur.com/a/RQi7E
 
 ![RSG-Chess-mobile screenshot](http://imgur.com/kBN6ky2.png)
 
 ## Installation
-* Download the `apk` (for Android) or `appx` (for Win10 phone) and install it on your device.
+* [Our app is now available on Google Play.](https://play.google.com/store/apps/details?id=com.rsg.chess)
 
 ## Development
 * Clone this repo
