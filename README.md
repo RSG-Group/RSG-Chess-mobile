@@ -6,7 +6,8 @@ Mobile version of RSG-Chess built with [PhoneGap](http://phonegap.com/)
 ## Screenshots
 http://imgur.com/a/RQi7E
 
-![RSG-Chess-mobile screenshot](http://imgur.com/kBN6ky2.png)
+<img src="https://i.imgur.com/f90eOrJ.png" alt="RSG Chess" width="250"/>
+<img src="https://i.imgur.com/VTBsoL4.png" alt="RSG Chess" width="350"/>
 
 ## Installation
 * [Our app is now available on Google Play.](https://play.google.com/store/apps/details?id=com.rsg.chess)
