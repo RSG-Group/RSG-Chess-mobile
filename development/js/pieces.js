@@ -1,6 +1,6 @@
 //
-// RSG
-// pieces.js
+// RSG Chess
+// Licensed under Apache 2.0 LICENSE
 
 export var PIECE_CHARS = {
   pawn: { W: "♙", B: "♟" },

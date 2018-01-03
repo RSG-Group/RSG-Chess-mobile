@@ -1,4 +1,5 @@
 import { Piece } from './pieces.js';
+import Chess_AI from './AI.js';
 
 function Game(promoCallback) {
   this.board = [];
@@ -17,7 +18,9 @@ Game.prototype.piece = function (type, x, y, color) {
   this.board[y][x] = piece;
 };
 
-Game.prototype.moveSelected = function (selected, to, promotionCallback, checkmateCallback, simulate) {
+Game.prototype.moveSelected = function (
+  selected, to, promotionCallback, checkmateCallback, playAgainstAI, simulate
+) {
   var x = to.x;
   var y = to.y;
 
@@ -77,6 +80,19 @@ Game.prototype.moveSelected = function (selected, to, promotionCallback, checkma
       if(checkmateValue) checkmateCallback(checkmateValue);
     }
     selected = null;
+    // Play AI
+    if (playAgainstAI) {
+      var bestMove = Chess_AI(this);
+      this.moveSelected(
+        this.board[bestMove.from.y][bestMove.from.x],
+        bestMove.to,
+        promotionCallback,
+        checkmateCallback,
+        false,
+        simulate
+      )
+    }
+    // end
     return true;
   }
 };
