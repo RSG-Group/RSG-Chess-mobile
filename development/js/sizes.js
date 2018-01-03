@@ -11,7 +11,7 @@ const getSizes = () => {
 		sizes.width = width / 1.08;
 		sizes.height = sizes.width;
 	}
-	sizes.fontSize = sizes.width / 14;
+	sizes.fontSize = sizes.width / 13;
 
 	return sizes;
 }

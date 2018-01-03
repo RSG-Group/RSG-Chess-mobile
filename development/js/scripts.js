@@ -5,7 +5,6 @@ import {
 }                       from 'react-bootstrap';
 import _                from 'lodash';
 import classNames       from 'classnames';
-import infl             from 'inflection';
 import Game             from './game';
 import { PIECE_CHARS }  from './pieces';
 import getSizes         from './sizes'; 
