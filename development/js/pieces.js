@@ -18,6 +18,11 @@ function Piece(x, y, charBase, color, game, type) {
   this.y = y;
   this.game = game;
   this.type = type;
+  if (type) {
+    var FENname = type === 'knight' ? 'n' : type.charAt(0);
+    if(this.color === 'W') FENname = FENname.toUpperCase();
+    this.FENname = FENname;
+  }
 }
 
 Piece.empty = function () {

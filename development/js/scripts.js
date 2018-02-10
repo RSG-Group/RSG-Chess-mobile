@@ -255,6 +255,7 @@ class MainComponent extends React.Component {
   
   __renderSettings () {
     const { settingsDialog } = this.state;
+    const A = this.A;
 
     return (
       <Modal
@@ -274,7 +275,7 @@ class MainComponent extends React.Component {
                 bsSize="small"
                 onClick={() => { this.setState({ rotated: !this.state.rotated }) }}
               >
-                Rotate the black figures (or restore the rotation)
+                rotate the black pieces / restore the rotation
               </Button> for real board experience.
             </li>
             <li>
@@ -285,11 +286,11 @@ class MainComponent extends React.Component {
               >New game /Click to select mode/</Button>
             </li>
             <li>
-              <a href="https://github.com/RSG-Group/Chess/blob/master/LICENSE" target="_blank">License</a>{`, `}
-              <a href="https://github.com/RSG-Group/Chess" target="_blank">Source code</a>; <a href="https://en.wikipedia.org/wiki/Rules_of_chess" target="_blank">Learn Chess</a>
+              <A href="https://github.com/RSG-Group/Chess/blob/master/LICENSE" target="_blank">License</A>{`, `}
+              <A href="https://github.com/RSG-Group/Chess" target="_blank">Source code</A>; <A href="https://en.wikipedia.org/wiki/Rules_of_chess" target="_blank">Learn Chess</A>
             </li>
             <li>
-              <a href="https://github.com/RSG-Group/Chess/issues" target="_blank">Report a problem</a>{` `}
+              <A href="https://github.com/RSG-Group/Chess/issues" target="_blank">Report a problem</A>{` `}
               or contact us on <i>rsg.group.here@gmail.com</i>
             </li>
           </ul>
@@ -308,10 +309,7 @@ class MainComponent extends React.Component {
     const { checkmate } = this.state;
 
     return (
-      <Modal
-        show={!!checkmate}
-        onHide={() => { this.setState({ checkmate: false }) }}
-      >
+      <Modal show={!!checkmate}>
         <Modal.Header closeButton>
           <Modal.Title>{ checkmate === 'D' ? 'Stalemate!' : 'Checkmate!' }</Modal.Title>
         </Modal.Header>
@@ -326,6 +324,14 @@ class MainComponent extends React.Component {
           <Button onClick={this.__handleReplay.bind(this)}>Replay</Button>
         </Modal.Footer>
       </Modal>
+    )
+  }
+
+  A (props) {
+    return (
+      <a href='#' onClick={() => { window.open(props.href, '_blank') }}>
+        {props.children}
+      </a>
     )
   }
 }

@@ -27,7 +27,10 @@ const Chess_AI = function (game){
         game.simpleMovePiece(piece, from, { x: ev.x, y: ev.y });
         // evulate the board and get the best move /boardValue > bestValue -> bestMove = {.../
         var boardValue = -evaluateBoard(board);
-        if(boardValue > bestValue) {
+        if (
+          boardValue > bestValue &&
+          board[ev.y][ev.x].color === 'B'
+        ) {
           bestValue = boardValue;
           bestMove = {
             from: {x: j, y: i},

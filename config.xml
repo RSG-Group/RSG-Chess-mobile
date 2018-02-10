@@ -12,4 +12,5 @@
     <icon height="180" src="./www/res/icon.png" width="180" />
     <engine name="browser" spec="~5.0.1" />
     <plugin name="cordova-plugin-admobpro" spec="~2.29.29" />
+    <plugin name="cordova-plugin-inappbrowser" spec="~2.0.2" />
 </widget>
