@@ -329,7 +329,7 @@ class MainComponent extends React.Component {
 
   A (props) {
     return (
-      <a href='#' onClick={() => { window.open(props.href, '_blank') }}>
+      <a href='#' onClick={() => { window.open(props.href, '_system') }}>
         {props.children}
       </a>
     )
