@@ -310,7 +310,7 @@ class MainComponent extends React.Component {
 
     return (
       <Modal show={!!checkmate}>
-        <Modal.Header closeButton>
+        <Modal.Header>
           <Modal.Title>{ checkmate === 'D' ? 'Stalemate!' : 'Checkmate!' }</Modal.Title>
         </Modal.Header>
         <Modal.Body>
