@@ -42,12 +42,13 @@ function Pawn(x, y, color, game) {
 
 Pawn.prototype = Piece.empty();
 Pawn.prototype.getValidMoves = function(simulate) {
+  var game = this.game;
   var moves = [];
   var y = this.y;
   var x = this.x;
-  var turn = this.game.turn;
+  var turn = game.turn;
   var length = turn.length;
-  var board = this.game.board;
+  var board = game.board;
   var last, turnTo, turnFrom, figX, passantLast, passantFig;
   var colorY = this.color === "W" ? y - 1 : y + 1;  
   var colorY2 = this.color === "W" ? y - 2 : y + 2;  
@@ -56,7 +57,7 @@ Pawn.prototype.getValidMoves = function(simulate) {
 
   if(colorY < 8 && colorY >= 0 && !board[colorY][x]){
     moves.push({x: x, y: colorY});
-    if((y == 1 || y == 6) && colorY2 < 8 && colorY2 >= 0 && !this.game.board[colorY2][x]){
+    if((y == 1 || y == 6) && colorY2 < 8 && colorY2 >= 0 && !game.board[colorY2][x]){
       moves.push({x: x, y: colorY2});
     }
   }
@@ -80,7 +81,7 @@ Pawn.prototype.getValidMoves = function(simulate) {
         x: figX,
         y: colorY,
         movePiece: {
-          piece: this.game.board[y][figX],
+          piece: game.board[y][figX],
           from: {
             x: figX,
             y: y
@@ -114,6 +115,7 @@ function Rook(x, y, color, game) {
 
 Rook.prototype = Piece.empty();
 Rook.prototype.getValidMoves = function(simulate) {
+  var game = this.game;
   var moves = [];
 
   [[-1, 0], [1, 0], [0, 1], [0, -1]].forEach(function (coef) {
@@ -123,7 +125,7 @@ Rook.prototype.getValidMoves = function(simulate) {
       y = this.y + coef[1] * index;
       if (0 > y || y > 7 || 0 > x || x > 7) break;
 
-      piece = this.game.board[y][x];
+      piece = game.board[y][x];
       if (piece && piece.color === this.color) break;
 
       moves.push({x: x, y: y});
@@ -153,6 +155,7 @@ function Knight(x, y, color, game) {
 
 Knight.prototype = Piece.empty();
 Knight.prototype.getValidMoves = function(simulate) {
+  var game = this.game;
   var moves = [];
   var task = false;
 
@@ -166,7 +169,7 @@ Knight.prototype.getValidMoves = function(simulate) {
     two = coordinates[i][1];
     
     if(this.x + one < 8 && this.x + one >= 0 && this.y + two < 8 && this.y + two >= 0){
-      boardPiece = this.game.board[this.y + two][this.x + one];
+      boardPiece = game.board[this.y + two][this.x + one];
       help = boardPiece ? boardPiece.color != this.color : true;
     }
     
@@ -197,6 +200,7 @@ function Bishop(x, y, color, game) {
 
 Bishop.prototype = Piece.empty();
 Bishop.prototype.getValidMoves = function(simulate) {
+  var game = this.game;
   var moves = [];
 
   [[-1, -1], [1, 1], [-1, 1], [1, -1]].forEach(function (coef) {
@@ -206,7 +210,7 @@ Bishop.prototype.getValidMoves = function(simulate) {
       y = this.y + coef[1] * index;
       if (0 > y || y > 7 || 0 > x || x > 7) break;
 
-      piece = this.game.board[y][x];
+      piece = game.board[y][x];
       if (piece && piece.color === this.color) break;
 
       moves.push({x: x, y: y});
@@ -236,6 +240,7 @@ function Queen(x, y, color, game) {
 
 Queen.prototype = Piece.empty();
 Queen.prototype.getValidMoves = function (simulate) {
+  var game = this.game;  
   var rookMoves = Rook.prototype.getValidMoves.call(this);
   var bishopMoves = Bishop.prototype.getValidMoves.call(this);
   var moves = rookMoves.concat(bishopMoves);
