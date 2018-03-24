@@ -271,7 +271,7 @@ class MainComponent extends React.Component {
         <Modal.Header closeButton>
           <Modal.Title>Settings</Modal.Title>
         </Modal.Header>
-        <Modal.Body>
+        <Modal.Body style={{ textAlign: 'left' }}>
           <ul>
             <li>
               <Button
