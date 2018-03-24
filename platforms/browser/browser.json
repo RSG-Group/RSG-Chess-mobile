@@ -12,6 +12,9 @@
         },
         "cordova-plugin-extension": {
             "PACKAGE_NAME": "com.rsg.chess"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.rsg.chess"
         }
     },
     "dependent_plugins": {},
@@ -23,10 +26,26 @@
             "clobbers": [
                 "window.AdMob"
             ]
+        },
+        {
+            "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+            "id": "cordova-plugin-inappbrowser.inappbrowser",
+            "pluginId": "cordova-plugin-inappbrowser",
+            "clobbers": [
+                "cordova.InAppBrowser.open",
+                "window.open"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-inappbrowser/src/browser/InAppBrowserProxy.js",
+            "id": "cordova-plugin-inappbrowser.InAppBrowserProxy",
+            "pluginId": "cordova-plugin-inappbrowser",
+            "runs": true
         }
     ],
     "plugin_metadata": {
         "cordova-plugin-admobpro": "2.29.29",
-        "cordova-plugin-extension": "1.5.3"
+        "cordova-plugin-extension": "1.5.3",
+        "cordova-plugin-inappbrowser": "2.0.2"
     }
 }
