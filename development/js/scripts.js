@@ -274,23 +274,28 @@ class MainComponent extends React.Component {
         <Modal.Body style={{ textAlign: 'left' }}>
           <ul>
             <li>
-              <Button
-                bsSize="small"
-                onClick={() => { this.setState({ rotated: !this.state.rotated }) }}
+              <Checkbox
+                checked={this.state.rotated}
+                className="no-selection"
+                onChange={() => {
+                  this.setState({ rotated: !this.state.rotated })
+                }}
               >
                 Rotate the black figures (or restore the rotation)
-              </Button> for real board experience.
+                for real board experience.
+              </Checkbox>
             </li>
             <li>
               <Button
                 bsSize="small"
                 style={{ marginTop: '3px' }}
                 onClick={this.__handleReplay}
-              >New game /Click to select mode/</Button>
+                >New game</Button> (Start a new game first and then select game mode)
             </li>
             <li>
               <Checkbox
                 checked={this.state.showValidMoves}
+                className="no-selection"
                 onChange={() => {
                   this.setState({showValidMoves: !this.state.showValidMoves})
                 }}

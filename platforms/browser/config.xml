@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.rsg.chess" version="1.1.0-alpha.2" versionCode="10101" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
-    <name>RSG-Chess</name>
+<widget id="com.rsg.chess" version="1.1.0-beta.1" versionCode="10110" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>RSG Chess</name>
     <description>
-        Mobile version of the RSG-Chess
+        Cool chess game for everyone
     </description>
     <author email="radicho123@gmail.com" href="http://github.com/radi-cho">
         Radi Cho

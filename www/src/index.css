@@ -15,13 +15,6 @@ body {
   background: rgb(209, 139, 71);
   border: 1px solid black;
   float: left;
-
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
 }
 
 .rotated {
@@ -33,8 +26,8 @@ body {
   top: 0;
   right: 0;
   
-  margin: 3px;
-  font-size: 21px;
+  margin: 1px;
+  font-size: 22px;
   cursor: pointer;
 }
 
@@ -72,6 +65,7 @@ div#app > div:hover{
 
 #app #table .selected {
   background: brown;
+  color: lightblue;
 }
 
 #app #table .validMoves {
@@ -79,9 +73,22 @@ div#app > div:hover{
 }
 
 #app #table td {
-  -webkit-transition: background-color 375ms linear;
-  -moz-transition: background-color 375ms linear;
-  -o-transition: background-color 375ms linear;
-  -ms-transition: background-color 375ms linear;
-  transition: background-color 375ms linear;
+  -webkit-transition: background-color 355ms linear, color 360ms ease-in;
+  -moz-transition: background-color 355ms linear, color 360ms ease-in;
+  -o-transition: background-color 355ms linear, color 360ms ease-in;
+  -ms-transition: background-color 355ms linear, color 360ms ease-in;
+  transition: background-color 355ms linear, color 360ms ease-in;
+}
+
+#table, .no-selection{
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+ul {
+  list-style-type: none;
 }

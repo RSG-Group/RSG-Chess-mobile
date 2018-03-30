@@ -5,13 +5,13 @@ const getSizes = () => {
 	const sizes = {};
 
 	if (width > height) {
-		sizes.height = height / 1.08;
+		sizes.height = height / 1.05;
 		sizes.width = sizes.height;
 	} else {
-		sizes.width = width / 1.08;
+		sizes.width = width / 1.05;
 		sizes.height = sizes.width;
 	}
-	sizes.fontSize = sizes.width / 13;
+	sizes.fontSize = sizes.width / 11.8;
 
 	return sizes;
 }
