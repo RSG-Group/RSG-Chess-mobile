@@ -24,5 +24,4 @@ __Ready - PhoneGap will start your project now__ (`localhost` with port _3000_ o
 _... And you can start coding_
 
 ## More info
-### This project is created by [Radi Cho](https://github.com/radi-cho), built with [PhoneGap](https://phonegap.com/#benefits), published by [RSG Group](https://github.com/RSG-Group) and licensed under [Apache 2.0 LICENSE](https://github.com/RSG-Group/Chess/blob/master/LICENSE)
-### Special thanks to [Samet Karaibryamov](https://github.com/samet-karaibryamov)
+### This project is created by [Radi Cho](https://github.com/radi-cho), built with [PhoneGap](https://phonegap.com/#benefits), published by [RSG Group](https://github.com/RSG-Group) and licensed under [Apache 2.0 LICENSE](https://github.com/RSG-Group/Chess/blob/master/LICENSE). Special thanks to [Samet Karaibryamov](https://github.com/samet-karaibryamov)
