@@ -92,3 +92,8 @@ div#app > div:hover{
 ul {
   list-style-type: none;
 }
+
+.modal-body .pfigs {
+  font-size: 40px;
+  padding: 5px 8px;
+}

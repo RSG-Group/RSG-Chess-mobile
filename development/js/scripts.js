@@ -9,8 +9,7 @@ import {
 } from 'react-bootstrap'
 import _ from 'lodash'
 import classNames from 'classnames'
-import Game from './game'
-import { PIECE_CHARS } from './pieces'
+import { Game, Piece } from 'rsg-chess'
 import getSizes from './sizes'
 
 let game
@@ -245,8 +244,13 @@ class MainComponent extends React.Component {
         <Modal.Body>
           {
             ['queen', 'rook', 'bishop', 'knight'].map((piece, i) => (
-              <Button bsSize="large" key={i} onClick={this.__handleGamePromotion.bind(this, piece)}>
-                {PIECE_CHARS[piece][this.state.promotionParams.color]}
+              <Button
+                onClick={this.__handleGamePromotion.bind(this, piece)}
+                className="pfigs"
+                bsSize="large"
+                key={i}
+              >
+                {Piece.PIECE_CHARS[piece][this.state.promotionParams.color]}
               </Button>
             ))
           }
