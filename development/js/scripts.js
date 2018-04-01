@@ -103,7 +103,7 @@ class MainComponent extends React.Component {
     var selected = this.state.selected
     if (selected) {
       game.moveSelected(
-        selected, {x: x, y: y}, this.__handlePromotion, this.__handleCheckmate, this.state.playAgainstAI
+        selected, {x: x, y: y}, this.__handlePromotion, this.__handleCheckmate, this.state.playAgainstAI, false
       )
       this.setState({ selected: null })
     } else {
