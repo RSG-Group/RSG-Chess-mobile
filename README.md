@@ -25,3 +25,5 @@ _... And you can start coding_
 
 ## More info
 ### This project is created by [Radi Cho](https://github.com/radi-cho), built with [PhoneGap](https://phonegap.com/#benefits), published by [RSG Group](https://github.com/RSG-Group) and licensed under [Apache 2.0 LICENSE](https://github.com/RSG-Group/Chess/blob/master/LICENSE). Special thanks to [Samet Karaibryamov](https://github.com/samet-karaibryamov)
+
+### Check out our website - http://rsg-chess.now.sh
