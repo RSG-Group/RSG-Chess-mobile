@@ -12,13 +12,7 @@ body {
 }
 
 #table{
-  background: rgb(209, 139, 71);
-  border: 1px solid black;
   float: left;
-}
-
-.rotated {
-  transform: rotateX(180deg);
 }
 
 .menu-icon {
@@ -32,55 +26,10 @@ body {
 }
 
 div#app > div {
- display: inline-block;
+  display: inline-block;
 }
 
-div#app > div:hover{
- transform: none;
-}
-
-#table tr:nth-child(odd) td:nth-child(odd){
-  background: rgb(255, 206, 158);
-}
-
-#table tr:nth-child(even) td:nth-child(even){
-  background: rgb(255, 206, 158);
-}
-
-#table tr:nth-child(even) td:nth-child(odd) {
-  background: rgb(209, 139, 71);
-}
-
-#table tr:nth-child(odd) td:nth-child(even) {
-  background: rgb(209, 139, 71);
-}
-
-#table td{
-  cursor: pointer;
-  border: 1px solid gray;
-  width: 12.5%;
-  height: 12.5%;
-  text-align: center;
-}
-
-#app #table .selected {
-  background: brown;
-  color: lightblue;
-}
-
-#app #table .validMoves {
-  background: red;
-}
-
-#app #table td {
-  -webkit-transition: background-color 355ms linear, color 360ms ease-in;
-  -moz-transition: background-color 355ms linear, color 360ms ease-in;
-  -o-transition: background-color 355ms linear, color 360ms ease-in;
-  -ms-transition: background-color 355ms linear, color 360ms ease-in;
-  transition: background-color 355ms linear, color 360ms ease-in;
-}
-
-#table, .no-selection{
+.no-selection{
   -webkit-touch-callout: none;
   -webkit-user-select: none;
   -khtml-user-select: none;

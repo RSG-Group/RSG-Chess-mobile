@@ -10,39 +10,12 @@ import {
 import _ from 'lodash'
 import classNames from 'classnames'
 import { Game, Piece } from 'rsg-chess'
+import Graphics from 'rsg-chess-graphics'
 import getSizes from './sizes'
 
 let game
 const initializeGame = () => {
-  // Game is set globally by window.game, because we want
-  // our algorithms to be fully accessible from your browser /DevTools/
-  game = new Game()
-
-  // Initialize the pawns:
-  for (var i = 0; i < 8; i++) {
-    game.piece('pawn', i, 6, 'W')
-    game.piece('pawn', i, 1, 'B')
-  }
-
-  // Initialize the black figs:
-  game.piece('rook', 0, 0, 'B')
-  game.piece('knight', 1, 0, 'B')
-  game.piece('bishop', 2, 0, 'B')
-  game.piece('queen', 3, 0, 'B')
-  game.piece('king', 4, 0, 'B')
-  game.piece('bishop', 5, 0, 'B')
-  game.piece('knight', 6, 0, 'B')
-  game.piece('rook', 7, 0, 'B')
-
-  // Initialize the white figs:
-  game.piece('rook', 0, 7, 'W')
-  game.piece('knight', 1, 7, 'W')
-  game.piece('bishop', 2, 7, 'W')
-  game.piece('queen', 3, 7, 'W')
-  game.piece('king', 4, 7, 'W')
-  game.piece('bishop', 5, 7, 'W')
-  game.piece('knight', 6, 7, 'W')
-  game.piece('rook', 7, 7, 'W')
+  game = Game.prototype.initializeGame()
 }
 
 initializeGame()
@@ -142,30 +115,9 @@ class MainComponent extends React.Component {
     this.setState({ promotionParams: null })
   }
 
-  __renderTable () {
+  render () {
     const { selected, rotated, showValidMoves } = this.state
     const validMoves = selected && selected.getValidMoves(true)
-    return game.board.map((rank, i) => (
-      <tr key={i}>
-        {
-          rank.map((piece, j) => (
-            <td key={j}
-              onClick={this.__handleClick.bind(this, j, i)}
-              className={classNames({
-                selected: selected && selected === piece,
-                validMoves: showValidMoves && selected && _.find(validMoves, { x: j, y: i }),
-                rotated: rotated && piece && piece.color === 'B'
-              })}
-            >
-              {piece && piece.char}
-            </td>
-          ))
-        }
-      </tr>
-    ))
-  }
-
-  render () {
     return (
       <div>
         <span
@@ -177,11 +129,16 @@ class MainComponent extends React.Component {
           <Glyphicon glyph="cog" />
         </span>
 
-        <table id={'table'} style={{...this.state.sizes}}>
-          <tbody>
-            {this.__renderTable()}
-          </tbody>
-        </table>
+        <Graphics
+          self={this}
+          board={game.board}
+          rotated={rotated}
+          selected={selected}
+          showValidMoves={showValidMoves}
+          onClick={this.__handleClick}
+          style={{...this.state.sizes}}
+          id="table"
+        />
 
         { this.state.promotionParams && this.__renderPromotionDialog() }
         { this.state.settingsDialog && this.__renderSettings() }
