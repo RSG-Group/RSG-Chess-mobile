@@ -5,13 +5,28 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {
-  Modal, Button, Glyphicon, Checkbox
+  Modal, Button, Glyphicon, Checkbox, FormGroup, ControlLabel, FormControl, PageHeader
 } from 'react-bootstrap'
 import _ from 'lodash'
 import classNames from 'classnames'
 import { Game, Piece } from 'rsg-chess'
 import Graphics from 'rsg-chess-graphics'
 import getSizes from './sizes'
+
+let palettes = [
+  {
+    id: 1,
+    name: 'RSG Chess standard',
+    background: 'rgb(240, 220, 180)',
+    props: {
+      whiteCells: 'rgb(255, 205, 160)',
+      blackCells: 'rgb(210, 140, 70)',
+      validBG: 'red',
+      selectedBG: 'brown',
+      selectedColor: 'lightblue'
+    }
+  }
+]
 
 let game
 const initializeGame = () => {
@@ -28,7 +43,8 @@ class MainComponent extends React.Component {
       '__handlePromotion',
       '__handleGamePromotion',
       '__handleCheckmate',
-      '__handleReplay'
+      '__handleReplay',
+      '__handleSetPalette'
     )
 
     this.state = {
@@ -40,15 +56,17 @@ class MainComponent extends React.Component {
       playAgainstAI: false,
       rotated: false,
       showValidMoves: true,
+      palette: palettes[0],
       sizes: getSizes()
-    };
+    }
   }
 
-  componentDidMount(){
+  componentDidMount () {
     // onResize event used to optimize the table sizes
     window.onresize = () => {
-      this.setState({ sizes: getSizes() });
-    };
+      this.setState({ sizes: getSizes() })
+    }
+    document.querySelector('body').style.background = this.state.palette.background
   }
 
   __handleReplay () {
@@ -63,8 +81,8 @@ class MainComponent extends React.Component {
     })
 
     if (AdMob) {
-      AdMob.hideBanner();
-      AdMob.showInterstitial();
+      AdMob.hideBanner()
+      AdMob.showInterstitial()
     }
 
     // Initialize new game
@@ -115,16 +133,23 @@ class MainComponent extends React.Component {
     this.setState({ promotionParams: null })
   }
 
+  __handleSetPalette (ev) {
+    const currentPalette = _.find(palettes, { id: Number(ev.target.value) })
+    document.querySelector('body').style.background = currentPalette.background
+    this.setState({
+      palette: currentPalette
+    })
+  }
+
   render () {
     const { selected, rotated, showValidMoves } = this.state
-    const validMoves = selected && selected.getValidMoves(true)
     return (
       <div>
         <span
           className="menu-icon"
           onClick={() => {
             this.setState({ settingsDialog: true })
-            if(AdMob) AdMob.showBanner(AdMob.AD_POSITION.BOTTOM_CENTER);
+            if (AdMob) AdMob.showBanner(AdMob.AD_POSITION.BOTTOM_CENTER)
           }}>
           <Glyphicon glyph="cog" />
         </span>
@@ -137,6 +162,7 @@ class MainComponent extends React.Component {
           showValidMoves={showValidMoves}
           onClick={this.__handleClick}
           style={{...this.state.sizes}}
+          {...this.state.palette.props}
           id="table"
         />
 
@@ -227,7 +253,7 @@ class MainComponent extends React.Component {
         show={settingsDialog}
         onHide={() => {
           this.setState({ settingsDialog: false })
-          if(AdMob) AdMob.hideBanner();  
+          if (AdMob) AdMob.hideBanner()
         }}>
         <Modal.Header closeButton>
           <Modal.Title>Settings</Modal.Title>
@@ -251,7 +277,7 @@ class MainComponent extends React.Component {
                 bsSize="small"
                 style={{ marginTop: '3px' }}
                 onClick={this.__handleReplay}
-                >New game</Button> (Start a new game first and then select game mode)
+              >New game</Button> (Start a new game first and then select game mode)
             </li>
             <li>
               <Checkbox
@@ -261,6 +287,21 @@ class MainComponent extends React.Component {
                   this.setState({showValidMoves: !this.state.showValidMoves})
                 }}
               >Show the valid moves on the board</Checkbox>
+            </li>
+            <li>
+              <FormGroup controlId="paletteSelect">
+                <ControlLabel>Select a color palette:</ControlLabel>
+                <FormControl onChange={this.__handleSetPalette} defaultValue={this.state.palette.id} componentClass="select">
+                  {
+                    palettes.map((ev, i) => (
+                      <option key={i} value={ev.id}>{ev.name}</option>
+                    ))
+                  }
+                </FormControl>
+              </FormGroup>
+              <b><a href="https://rsg-chess.now.sh/docs/mobile">
+                Check out all color palettes to select the best one for you on our website!
+              </a></b>
             </li>
             <li>
               <a href="https://github.com/RSG-Group/Chess/blob/master/LICENSE" target="_blank">License</a>{`, `}
@@ -275,7 +316,7 @@ class MainComponent extends React.Component {
         <Modal.Footer>
           <Button onClick={() => {
             this.setState({ settingsDialog: false })
-            if(AdMob) AdMob.hideBanner();
+            if (AdMob) AdMob.hideBanner()
           }}>Close</Button>
         </Modal.Footer>
       </Modal>
