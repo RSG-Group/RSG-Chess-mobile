@@ -9,9 +9,11 @@ import {
 } from 'react-bootstrap'
 import _ from 'lodash'
 import classNames from 'classnames'
-import { Game, Piece } from 'rsg-chess'
+import { Game, Pieces } from 'rsg-chess'
 import Graphics from 'rsg-chess-graphics'
 import getSizes from './sizes'
+
+console.log(Pieces);
 
 let palettes = [
   {
@@ -269,7 +271,7 @@ class MainComponent extends React.Component {
                 bsSize="large"
                 key={i}
               >
-                {Piece.PIECE_CHARS[piece][this.state.promotionParams.color]}
+                {Pieces.PIECE_CHARS[piece][this.state.promotionParams.color]}
               </Button>
             ))
           }
