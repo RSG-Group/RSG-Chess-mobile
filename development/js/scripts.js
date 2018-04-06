@@ -285,6 +285,7 @@ class MainComponent extends React.Component {
 
   __renderSettings () {
     const { settingsDialog } = this.state
+    const A = this.A;
 
     return (
       <Modal
@@ -337,16 +338,16 @@ class MainComponent extends React.Component {
                   }
                 </FormControl>
               </FormGroup>
-              <b><a href="https://rsg-chess.now.sh/docs/mobile/palettes" target="_blank">
+              <b><A href="https://rsg-chess.now.sh/docs/mobile/palettes" target="_blank">
                 Check out all color palettes to select the best one for you on our website!
-              </a></b>
+              </A></b>
             </li>
             <li>
-              <a href="https://github.com/RSG-Group/Chess/blob/master/LICENSE" target="_blank">License</a>{`, `}
-              <a href="https://github.com/RSG-Group/Chess" target="_blank">Source code</a>; <a href="https://en.wikipedia.org/wiki/Rules_of_chess" target="_blank">Learn Chess</a>
+              <A href="https://github.com/RSG-Group/Chess/blob/master/LICENSE" target="_blank">License</A>{`, `}
+              <A href="https://github.com/RSG-Group/Chess" target="_blank">Source code</A>; <A href="https://en.wikipedia.org/wiki/Rules_of_chess" target="_blank">Learn Chess</A>
             </li>
             <li>
-              <a href="https://github.com/RSG-Group/Chess/issues" target="_blank">Report a problem</a>{` `}
+              <A href="https://github.com/RSG-Group/Chess/issues" target="_blank">Report a problem</A>{` `}
               or contact us on <i>rsg.group.here@gmail.com</i>
             </li>
           </ul>
@@ -380,6 +381,14 @@ class MainComponent extends React.Component {
           <Button onClick={this.__handleReplay.bind(this)}>Replay</Button>
         </Modal.Footer>
       </Modal>
+    )
+  }
+
+  A (props) {
+    return (
+      <a href='#' onClick={() => { window.open(props.href, '_system') }}>
+        {props.children}
+      </a>
     )
   }
 }
