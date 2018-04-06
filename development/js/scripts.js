@@ -337,7 +337,7 @@ class MainComponent extends React.Component {
                   }
                 </FormControl>
               </FormGroup>
-              <b><a href="https://rsg-chess.now.sh/docs/mobile">
+              <b><a href="https://rsg-chess.now.sh/docs/mobile/palettes" target="_blank">
                 Check out all color palettes to select the best one for you on our website!
               </a></b>
             </li>
