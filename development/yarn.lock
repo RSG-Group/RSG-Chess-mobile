@@ -2243,17 +2243,11 @@ locate-path@^2.0.0:
     p-locate "^2.0.0"
     path-exists "^3.0.0"
 
-lodash-move@^1.1.1:
-  version "1.1.1"
-  resolved "https://registry.yarnpkg.com/lodash-move/-/lodash-move-1.1.1.tgz#59f76e0f1ac57e6d8683f531bec07c5b6ea4e348"
-  dependencies:
-    lodash "^4.6.1"
-
 lodash@^4.14.0, lodash@^4.17.4:
   version "4.17.4"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.4.tgz#78203a4d1c328ae1d86dca6460e369b57f4055ae"
 
-lodash@^4.2.0, lodash@^4.3.0, lodash@^4.6.1:
+lodash@^4.2.0, lodash@^4.3.0:
   version "4.17.5"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.5.tgz#99a92d65c0272debe8c96b6057bc8fbfa3bed511"
 
@@ -3043,9 +3037,9 @@ rsg-chess-graphics@^1.0.1:
     react-bootstrap "^0.31.5"
     react-dom "^16.2.0"
 
-rsg-chess@1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/rsg-chess/-/rsg-chess-1.0.0.tgz#7f212f970c627249332c0b12f0536475dd7ee862"
+rsg-chess@1.0.1:
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/rsg-chess/-/rsg-chess-1.0.1.tgz#7d07a11435061c10dd259e6608e6d434ee79b2f1"
   dependencies:
     lodash "^4.17.4"
 

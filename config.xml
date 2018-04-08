@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget
     id="com.rsg.chess"
-    version="2.0.0-beta.2"
-    versionCode='20011'
+    version="2.0.0-beta.3"
+    versionCode='20012'
     xmlns="http://www.w3.org/ns/widgets"
     xmlns:gap="http://phonegap.com/ns/1.0"
 >
