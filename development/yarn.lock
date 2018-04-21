@@ -3037,9 +3037,8 @@ rsg-chess-graphics@^1.0.1:
     react-bootstrap "^0.31.5"
     react-dom "^16.2.0"
 
-rsg-chess@1.0.1:
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/rsg-chess/-/rsg-chess-1.0.1.tgz#7d07a11435061c10dd259e6608e6d434ee79b2f1"
+"rsg-chess@file:../../RSG-Chess-API":
+  version "1.0.2"
   dependencies:
     lodash "^4.17.4"
 

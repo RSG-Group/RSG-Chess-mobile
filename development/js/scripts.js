@@ -2,6 +2,7 @@
 // RSG Chess
 // Licensed under Apache 2.0 LICENSE
 
+// import es6 scripts
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {
@@ -13,7 +14,8 @@ import { Game, Pieces } from 'rsg-chess'
 import Graphics from 'rsg-chess-graphics'
 import getSizes from './sizes'
 
-console.log(Pieces);
+// import a web worker for AI calculations.
+var worker = new Worker('src/worker.min.js')
 
 let palettes = [
   {
@@ -66,12 +68,26 @@ let palettes = [
   }
 ]
 
+// initialize game
 let game
 const initializeGame = () => {
   game = Game.prototype.initializeGame()
 }
 
 initializeGame()
+
+// set up test worker
+worker.addEventListener('message', function (e) {
+  if (e.data !== null) {
+    var moved = game.moveSelected(
+      game.board[e.data.from.y][e.data.from.x], e.data.to, () => {}, () => {}, false, false
+    )
+    if (!moved) return
+    worker.postMessage({game})
+  }
+})
+
+worker.postMessage({game})
 
 class MainComponent extends React.Component {
   constructor () {
@@ -285,7 +301,7 @@ class MainComponent extends React.Component {
 
   __renderSettings () {
     const { settingsDialog } = this.state
-    const A = this.A;
+    const A = this.A
 
     return (
       <Modal

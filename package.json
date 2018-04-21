@@ -1,0 +1,5 @@
+{
+  "dependencies": {
+    "nb-blob-worker": "^1.7.3"
+  }
+}
