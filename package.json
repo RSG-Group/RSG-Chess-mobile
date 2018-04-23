@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "nb-blob-worker": "^1.7.3"
+    "nb-blob-worker": "^1.7.3",
+    "rsg-chess": "^1.0.3"
   }
 }
