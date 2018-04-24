@@ -1,6 +1,6 @@
 {
   "name": "rsg-chess-mobile-dev",
-  "version": "2.0.0-beta.2",
+  "version": "2.0.0-beta.3",
   "description": "Cool mobile chess for everyone.",
   "main": "js/scripts.js",
   "scripts": {
@@ -14,7 +14,7 @@
     "react": "^16.2.0",
     "react-bootstrap": "^0.31.5",
     "react-dom": "^16.2.0",
-    "rsg-chess": "1.0.1",
+    "rsg-chess": "^1.0.3",
     "rsg-chess-graphics": "^1.0.1"
   },
   "devDependencies": {

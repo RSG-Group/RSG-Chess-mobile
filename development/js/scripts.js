@@ -2,6 +2,7 @@
 // RSG Chess
 // Licensed under Apache 2.0 LICENSE
 
+// import es6 scripts
 import React from 'react'
 import ReactDOM from 'react-dom'
 import {
@@ -13,7 +14,8 @@ import { Game, Pieces } from 'rsg-chess'
 import Graphics from 'rsg-chess-graphics'
 import getSizes from './sizes'
 
-console.log(Pieces);
+// import a web worker for AI calculations.
+var worker = new Worker('src/worker.min.js')
 
 let palettes = [
   {
@@ -66,6 +68,7 @@ let palettes = [
   }
 ]
 
+// initialize game
 let game
 const initializeGame = () => {
   game = Game.prototype.initializeGame()
@@ -76,8 +79,9 @@ initializeGame()
 class MainComponent extends React.Component {
   constructor () {
     super()
+    const self = this
     // bind the handle functions
-    _.bindAll(this,
+    _.bindAll(self,
       '__handlePromotion',
       '__handleGamePromotion',
       '__handleCheckmate',
@@ -85,18 +89,30 @@ class MainComponent extends React.Component {
       '__handleSetPalette'
     )
 
-    this.state = {
+    self.state = {
       selected: null,
       promotionParams: null,
       checkmate: null,
       welcomeDialog: true,
       settingsDialog: false,
-      playAgainstAI: false,
+      isAIThinking: false,
+      playAgainstAI: null,
       rotated: false,
       showValidMoves: true,
       palette: palettes[0],
       sizes: getSizes()
     }
+
+    // set up a web worker for AI
+    const promoteAI = (pawn, x, y, color) => {
+      game.promotePawn(pawn, x, y, color, 'queen')
+    }
+    worker.addEventListener('message', function (e) {
+      if (e.data !== null) {
+        game.moveSelected(game.board[e.data.from.y][e.data.from.x], e.data.to, promoteAI, this.__handleCheckmate, false)
+        self.setState({ isAIThinking: false })
+      }
+    })
   }
 
   componentDidMount () {
@@ -115,7 +131,8 @@ class MainComponent extends React.Component {
       welcomeDialog: true,
       checkmate: null,
       settingsDialog: false,
-      playAgainstAI: false
+      isAIThinking: false,
+      playAgainstAI: null
     })
 
     if (AdMob) {
@@ -128,14 +145,28 @@ class MainComponent extends React.Component {
   }
 
   __handleClick (x, y) {
-    var selected = this.state.selected
+    let { selected, playAgainstAI, isAIThinking } = this.state
+
+    if (isAIThinking) {
+      console.log('Android toast showing...')
+      return
+    }
+
     if (selected) {
-      game.moveSelected(
-        selected, {x: x, y: y}, this.__handlePromotion, this.__handleCheckmate, this.state.playAgainstAI, false
+      // move the selected piece
+      let moved = game.moveSelected(
+        selected, {x: x, y: y}, this.__handlePromotion, this.__handleCheckmate, false
       )
       this.setState({ selected: null })
+
+      // use the worker for generating AI movement
+      let last = game.turn.length - 1
+      if (moved && playAgainstAI && last >= 0 && game.turn[last].color === 'W') {
+        worker.postMessage({ game, playAgainstAI })
+        this.setState({ isAIThinking: true })
+      }
     } else {
-      var last = game.turn.length - 1
+      let last = game.turn.length - 1
       if (
         game.board[y][x] &&
         (last >= 0 ? game.board[y][x].color !== game.turn[last].color
@@ -285,7 +316,7 @@ class MainComponent extends React.Component {
 
   __renderSettings () {
     const { settingsDialog } = this.state
-    const A = this.A;
+    const A = this.A
 
     return (
       <Modal
