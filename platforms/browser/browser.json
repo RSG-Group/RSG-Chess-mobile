@@ -15,6 +15,9 @@
         },
         "cordova-plugin-inappbrowser": {
             "PACKAGE_NAME": "com.rsg.chess"
+        },
+        "cordova-plugin-x-toast": {
+            "PACKAGE_NAME": "com.rsg.chess"
         }
     },
     "dependent_plugins": {},
@@ -41,11 +44,20 @@
             "id": "cordova-plugin-inappbrowser.InAppBrowserProxy",
             "pluginId": "cordova-plugin-inappbrowser",
             "runs": true
+        },
+        {
+            "file": "plugins/cordova-plugin-x-toast/www/Toast.js",
+            "id": "cordova-plugin-x-toast.Toast",
+            "pluginId": "cordova-plugin-x-toast",
+            "clobbers": [
+                "window.plugins.toast"
+            ]
         }
     ],
     "plugin_metadata": {
         "cordova-plugin-admobpro": "2.29.29",
         "cordova-plugin-extension": "1.5.3",
-        "cordova-plugin-inappbrowser": "2.0.2"
+        "cordova-plugin-inappbrowser": "2.0.2",
+        "cordova-plugin-x-toast": "2.6.2"
     }
 }

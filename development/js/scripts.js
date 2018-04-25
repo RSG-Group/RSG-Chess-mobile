@@ -148,7 +148,9 @@ class MainComponent extends React.Component {
     let { selected, playAgainstAI, isAIThinking } = this.state
 
     if (isAIThinking) {
-      console.log('Android toast showing...')
+      if (window.plugins && window.plugins.toast) {
+        window.plugins.toast.show('Plase wait while our AI is thinking...', '1750ms', 'bottom')
+      }
       return
     }
 
