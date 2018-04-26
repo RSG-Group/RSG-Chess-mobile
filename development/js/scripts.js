@@ -79,17 +79,7 @@ initializeGame()
 class MainComponent extends React.Component {
   constructor () {
     super()
-    const self = this
-    // bind the handle functions
-    _.bindAll(self,
-      '__handlePromotion',
-      '__handleGamePromotion',
-      '__handleCheckmate',
-      '__handleReplay',
-      '__handleSetPalette'
-    )
-
-    self.state = {
+    this.state = {
       selected: null,
       promotionParams: null,
       checkmate: null,
@@ -107,10 +97,10 @@ class MainComponent extends React.Component {
     const promoteAI = (pawn, x, y, color) => {
       game.promotePawn(pawn, x, y, color, 'queen')
     }
-    worker.addEventListener('message', function (e) {
+    worker.addEventListener('message', (e) => {
       if (e.data !== null) {
         game.moveSelected(game.board[e.data.from.y][e.data.from.x], e.data.to, promoteAI, this.__handleCheckmate, false)
-        self.setState({ isAIThinking: false })
+        this.setState({ isAIThinking: false })
       }
     })
   }
@@ -123,7 +113,7 @@ class MainComponent extends React.Component {
     document.querySelector('body').style.background = this.state.palette.background
   }
 
-  __handleReplay () {
+  __handleReplay = () => {
     // Set state to null and false, to reset all params
     this.setState({
       selected: null,
@@ -157,7 +147,7 @@ class MainComponent extends React.Component {
     if (selected) {
       // move the selected piece
       let moved = game.moveSelected(
-        selected, {x: x, y: y}, this.__handlePromotion, this.__handleCheckmate, false
+        selected, {x: x, y: y}, this.__handlePromotion, this.__handleCheckmate, fals=> e
       )
       this.setState({ selected: null })
 
@@ -181,7 +171,7 @@ class MainComponent extends React.Component {
     }
   }
 
-  __handlePromotion (pawn, x, y, color) {
+  __handlePromotion = (pawn, x, y, color) => {
     this.setState({
       promotionParams: {
         x: x,
@@ -192,11 +182,11 @@ class MainComponent extends React.Component {
     })
   }
 
-  __handleCheckmate (color) {
+  __handleCheckmate = (color) => {
     this.setState({ checkmate: color })
   }
 
-  __handleGamePromotion (piece) {
+  __handleGamePromotion = (piece) => {
     if (piece) {
       const { x, y, color, pawn } = this.state.promotionParams
       game.promotePawn(pawn, x, y, color, piece)
@@ -204,7 +194,7 @@ class MainComponent extends React.Component {
     this.setState({ promotionParams: null })
   }
 
-  __handleSetPalette (ev) {
+  __handleSetPalette = (ev) => {
     const currentPalette = _.find(palettes, { id: Number(ev.target.value) })
     document.querySelector('body').style.background = currentPalette.background
     this.setState({
@@ -411,7 +401,7 @@ class MainComponent extends React.Component {
           }
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={this.__handleReplay.bind(this)}>Replay</Button>
+          <Button onClick={this.__handleReplay}>Replay</Button>
         </Modal.Footer>
       </Modal>
     )
