@@ -1,6 +1,6 @@
 {
   "name": "rsg-chess-mobile-dev",
-  "version": "2.0.0-beta.3",
+  "version": "2.0.0-beta.4",
   "description": "Cool mobile chess for everyone.",
   "main": "js/scripts.js",
   "scripts": {
