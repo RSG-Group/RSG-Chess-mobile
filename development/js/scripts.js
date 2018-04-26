@@ -149,7 +149,7 @@ class MainComponent extends React.Component {
 
     if (isAIThinking) {
       if (window.plugins && window.plugins.toast) {
-        window.plugins.toast.show('Plase wait while our AI is thinking...', '1750ms', 'bottom')
+        window.plugins.toast.show('Plase wait while our AI is thinking...', '1750', 'bottom')
       }
       return
     }
