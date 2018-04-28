@@ -12,7 +12,7 @@ import _ from 'lodash'
 import classNames from 'classnames'
 import { Game, Pieces } from 'rsg-chess'
 import Graphics from 'rsg-chess-graphics'
-import { colorPalettes as palettes } from './config'
+import { colorPalettes as palettes, strings } from './config'
 import getSizes from './sizes'
 
 // import a web worker for AI calculations.
@@ -40,7 +40,8 @@ class MainComponent extends React.Component {
       rotated: false,
       showValidMoves: true,
       palette: palettes[0],
-      sizes: getSizes()
+      sizes: getSizes(),
+      lang: 'en'
     }
 
     // set up a web worker for AI
@@ -56,11 +57,22 @@ class MainComponent extends React.Component {
   }
 
   componentDidMount () {
+    document.querySelector('body').style.background = this.state.palette.background
+
     // onResize event used to optimize the table sizes
     window.onresize = () => {
       this.setState({ sizes: getSizes() })
     }
-    document.querySelector('body').style.background = this.state.palette.background
+
+    window.onload = () => {
+      navigator.globalization.getPreferredLanguage((language) => {
+        if (language && typeof language === 'object') {
+          let lang = language.value.split(/\s*-\s*/g)[0]
+          // let locale = language.value.split(/\s*-\s*/g)[1]
+          this.setState({ lang })
+        }
+      })
+    }
   }
 
   __handleReplay = () => {
@@ -152,6 +164,12 @@ class MainComponent extends React.Component {
     })
   }
 
+  __handleSetPalette = (ev) => {
+    this.setState({
+      lang: ev.target.value
+    })
+  }
+
   render () {
     const { selected, rotated, showValidMoves } = this.state
     return (
@@ -186,13 +204,14 @@ class MainComponent extends React.Component {
   }
 
   __renderWelcomeDialog () {
+    const { lang } = this.state
     return (
       <Modal
         show={this.state.welcomeDialog}
         onHide={() => { this.setState({ welcomeDialog: false }) }}
       >
         <Modal.Header closeButton>
-          <Modal.Title>Welcome</Modal.Title>
+          <Modal.Title>{strings.welcomeTitle[lang]}</Modal.Title>
         </Modal.Header>
         <Modal.Body style={{ textAlign: 'left' }}>
           Select play mode: <br />
@@ -257,7 +276,7 @@ class MainComponent extends React.Component {
   }
 
   __renderSettings () {
-    const { settingsDialog } = this.state
+    const { settingsDialog, lang } = this.state
     const A = this.A
 
     return (
@@ -308,6 +327,21 @@ class MainComponent extends React.Component {
                     palettes.map((ev, i) => (
                       <option key={i} value={ev.id}>{ev.name}</option>
                     ))
+                  }
+                </FormControl>
+              </FormGroup>
+              <b><A href="https://rsg-chess.now.sh/docs/mobile/palettes" target="_blank">
+                Check out all color palettes to select the best one for you on our website!
+              </A></b>
+            </li>
+            <li>
+              <FormGroup controlId="languageSelect">
+                <ControlLabel>Select a language</ControlLabel>
+                <FormControl onChange={this.__handleSetPalette} defaultValue={this.state.lang} componentClass="select">
+                  {
+                    Object.keys(strings.languages[lang]).map((ev, i) => {
+                      return <option key={i} value={ev}>{strings.languages[lang][ev]}</option>
+                    })
                   }
                 </FormControl>
               </FormGroup>

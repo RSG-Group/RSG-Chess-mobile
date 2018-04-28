@@ -14,4 +14,5 @@
     <plugin name="cordova-plugin-admobpro" spec="~2.29.29" />
     <plugin name="cordova-plugin-inappbrowser" spec="~2.0.2" />
     <plugin name="cordova-plugin-x-toast" spec="~2.6.2" />
+    <plugin name="cordova-plugin-globalization" spec="^1.11.0" />
 </widget>

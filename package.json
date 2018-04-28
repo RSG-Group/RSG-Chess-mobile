@@ -1,11 +1,13 @@
 {
   "dependencies": {
+    "cordova-plugin-globalization": "^1.11.0",
     "nb-blob-worker": "^1.7.3",
     "rsg-chess": "^1.0.3"
   },
   "cordova": {
     "plugins": {
-      "cordova-plugin-x-toast": {}
+      "cordova-plugin-x-toast": {},
+      "cordova-plugin-globalization": {}
     }
   }
 }

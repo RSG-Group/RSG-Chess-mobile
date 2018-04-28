@@ -18,6 +18,9 @@
         },
         "cordova-plugin-x-toast": {
             "PACKAGE_NAME": "com.rsg.chess"
+        },
+        "cordova-plugin-globalization": {
+            "PACKAGE_NAME": "com.rsg.chess"
         }
     },
     "dependent_plugins": {},
@@ -52,12 +55,41 @@
             "clobbers": [
                 "window.plugins.toast"
             ]
+        },
+        {
+            "file": "plugins/cordova-plugin-globalization/www/GlobalizationError.js",
+            "id": "cordova-plugin-globalization.GlobalizationError",
+            "pluginId": "cordova-plugin-globalization",
+            "clobbers": [
+                "window.GlobalizationError"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-globalization/www/globalization.js",
+            "id": "cordova-plugin-globalization.globalization",
+            "pluginId": "cordova-plugin-globalization",
+            "clobbers": [
+                "navigator.globalization"
+            ]
+        },
+        {
+            "file": "plugins/cordova-plugin-globalization/www/browser/moment.js",
+            "id": "cordova-plugin-globalization.moment",
+            "pluginId": "cordova-plugin-globalization",
+            "runs": true
+        },
+        {
+            "file": "plugins/cordova-plugin-globalization/src/browser/GlobalizationProxy.js",
+            "id": "cordova-plugin-globalization.GlobalizationProxy",
+            "pluginId": "cordova-plugin-globalization",
+            "runs": true
         }
     ],
     "plugin_metadata": {
         "cordova-plugin-admobpro": "2.29.29",
         "cordova-plugin-extension": "1.5.3",
         "cordova-plugin-inappbrowser": "2.0.2",
-        "cordova-plugin-x-toast": "2.6.2"
+        "cordova-plugin-x-toast": "2.6.2",
+        "cordova-plugin-globalization": "1.11.0"
     }
 }

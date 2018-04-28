@@ -48,3 +48,28 @@ export const colorPalettes = [
     }
   }
 ]
+
+export const strings = {
+  welcomeTitle: {
+    en: 'Welcome',
+    bg: 'Добре дошли',
+    ru: 'Добро пожаловать!'
+  },
+  languages: {
+    en: {
+      en: 'English',
+      bg: 'Bulgarian',
+      ru: 'Russian'
+    },
+    bg: {
+      en: 'Английски',
+      bg: 'Български',
+      ru: 'Руски'
+    },
+    ru: {
+      en: 'Aнглийский',
+      bg: 'Болгарский',
+      ru: 'Русский'
+    }
+  }
+}
