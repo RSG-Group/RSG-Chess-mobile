@@ -55,6 +55,66 @@ export const strings = {
     bg: 'Добре дошли',
     ru: 'Добро пожаловать!'
   },
+  selectMode: {
+    en: 'Select game mode:',
+    bg: 'Изберете начин за игра:',
+    ru: 'Выберите игровой режим:'
+  },
+  playAgainstAI: {
+    en: 'Play versus AI computer',
+    bg: 'Игра срещу AI',
+    ru: 'Игра против AI'
+  },
+  easy: {
+    en: 'Easy',
+    bg: 'Лесно',
+    ru: 'Легко'
+  },
+  medium: {
+    en: 'Medium',
+    bg: 'Средно',
+    ru: 'Средний'
+  },
+  hard: {
+    en: 'Hard',
+    bg: 'Трудно',
+    ru: 'Жесткий'
+  },
+  or: {
+    en: 'or',
+    bg: 'или',
+    ru: 'или'
+  },
+  singleplayer: {
+    en: 'start singleplayer',
+    bg: 'започнете singleplayer',
+    ru: 'пуск singleplayer'
+  },
+  placeOnTheSurface: {
+    en: 'Place your device horizontally on the surface and',
+    bg: 'Поставете устройството си на плоска повърхност и',
+    ru: 'Поместите устройство горизонтально на поверхность и'
+  },
+  clickToRotate: {
+    en: 'click here to rotate',
+    bg: 'цъкнете тук за да завъртите',
+    ru: 'нажмите здесь, чтобы повернуть'
+  },
+  back: {
+    en: 'back',
+    bg: 'обратно',
+    ru: 'обратно'
+  },
+  realBoardExperience: {
+    en: 'the black figures - for real board experience',
+    bg: 'черните фигури - за преживяване, като на истинска шах дъска',
+    ru: 'черные фигуры - за преживяване, като на истинска шах дъска'
+  },
+  letStart: {
+    en: 'Let\'s start singleplayer!',
+    bg: 'Нека започнем със singleplayer',
+    ru: 'Давайте начнем singleplayer!'
+  },
   languages: {
     en: {
       en: 'English',

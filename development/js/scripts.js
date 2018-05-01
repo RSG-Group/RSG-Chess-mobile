@@ -164,7 +164,7 @@ class MainComponent extends React.Component {
     })
   }
 
-  __handleSetPalette = (ev) => {
+  __handleSetLanguage = (ev) => {
     this.setState({
       lang: ev.target.value
     })
@@ -214,26 +214,26 @@ class MainComponent extends React.Component {
           <Modal.Title>{strings.welcomeTitle[lang]}</Modal.Title>
         </Modal.Header>
         <Modal.Body style={{ textAlign: 'left' }}>
-          Select play mode: <br />
-          Play VS computer{` `}
+          {strings.selectMode[lang]} <br />
+          {`${strings.playAgainstAI[lang]} `}
           <Button bsSize='small' onClick={() => {
             this.setState({ playAgainstAI: { depth: 2 }, welcomeDialog: false })
-          }}>Easy</Button>{` `}
+          }}>{strings.easy[lang]}</Button>{` `}
           <Button bsSize='small' onClick={() => {
             this.setState({ playAgainstAI: { depth: 4 }, welcomeDialog: false })
-          }}>Medium</Button>{` `}
-          <Button bsSize='small' disabled>Hard</Button>{` `}
+          }}>{strings.medium[lang]}</Button>{` `}
+          <Button bsSize='small' disabled>{strings.hard[lang]}</Button>{` `}
           <br/><br/>
-          or <Button
+          {strings.or[lang]} <Button
             bsSize='small'
             onClick={() => {
               this.setState({ welcomeDialog: false })
             }}
-          >start singleplayer</Button>
+          >{strings.singleplayer[lang]}</Button>
           <ul>
-            <li>Place your device horizontally on the surface and {` `}
+            <li>{strings.placeOnTheSurface[lang]} {` `}
               <b style={{cursor: 'pointer'}} onClick={() => { this.setState({rotated: !this.state.rotated}) }}>
-              click here to rotate {this.state.rotated && 'back'} the black figures for real board experience
+                {strings.clickToRotate[lang]} {this.state.rotated && `${strings.back[lang]}`} {strings.realBoardExperience[lang]}
               </b></li>
           </ul>
         </Modal.Body>
@@ -242,7 +242,7 @@ class MainComponent extends React.Component {
             onClick={() => {
               this.setState({ welcomeDialog: false })
             }}
-          >Let's start singleplayer!</Button>
+          >{strings.letStart[lang]}</Button>
         </Modal.Footer>
       </Modal>
     )
@@ -337,7 +337,7 @@ class MainComponent extends React.Component {
             <li>
               <FormGroup controlId="languageSelect">
                 <ControlLabel>Select a language</ControlLabel>
-                <FormControl onChange={this.__handleSetPalette} defaultValue={this.state.lang} componentClass="select">
+                <FormControl onChange={this.__handleSetLanguage} defaultValue={this.state.lang} componentClass="select">
                   {
                     Object.keys(strings.languages[lang]).map((ev, i) => {
                       return <option key={i} value={ev}>{strings.languages[lang][ev]}</option>
