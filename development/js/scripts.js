@@ -287,7 +287,7 @@ class MainComponent extends React.Component {
           if (AdMob) AdMob.hideBanner()
         }}>
         <Modal.Header closeButton>
-          <Modal.Title>Settings</Modal.Title>
+          <Modal.Title>{strings.settings[lang]}</Modal.Title>
         </Modal.Header>
         <Modal.Body style={{ textAlign: 'left' }}>
           <ul>
@@ -299,8 +299,7 @@ class MainComponent extends React.Component {
                   this.setState({ rotated: !this.state.rotated })
                 }}
               >
-                Rotate the black figures (or restore the rotation)
-                for real board experience.
+                {strings.rotateBlackPiecesSetting[lang]}
               </Checkbox>
             </li>
             <li>
@@ -308,7 +307,7 @@ class MainComponent extends React.Component {
                 bsSize="small"
                 style={{ marginTop: '3px' }}
                 onClick={this.__handleReplay}
-              >New game</Button> (Start a new game first and then select game mode)
+              >{strings.newGame[lang]}</Button> {strings.startGameAndSelectMode[lang]}
             </li>
             <li>
               <Checkbox
@@ -317,11 +316,11 @@ class MainComponent extends React.Component {
                 onChange={() => {
                   this.setState({showValidMoves: !this.state.showValidMoves})
                 }}
-              >Show the valid moves on the board</Checkbox>
+              >{strings.showValidMoves[lang]}</Checkbox>
             </li>
             <li>
               <FormGroup controlId="paletteSelect">
-                <ControlLabel>Select a color palette:</ControlLabel>
+                <ControlLabel>{strings.selectPalette[lang]}</ControlLabel>
                 <FormControl onChange={this.__handleSetPalette} defaultValue={this.state.palette.id} componentClass="select">
                   {
                     palettes.map((ev, i) => (
@@ -331,12 +330,12 @@ class MainComponent extends React.Component {
                 </FormControl>
               </FormGroup>
               <b><A href="https://rsg-chess.now.sh/docs/mobile/palettes" target="_blank">
-                Check out all color palettes to select the best one for you on our website!
+                {strings.checkOutPalettes[lang]}
               </A></b>
             </li>
             <li>
               <FormGroup controlId="languageSelect">
-                <ControlLabel>Select a language</ControlLabel>
+                <ControlLabel>{strings.selectLang[lang]}</ControlLabel>
                 <FormControl onChange={this.__handleSetLanguage} defaultValue={this.state.lang} componentClass="select">
                   {
                     Object.keys(strings.languages[lang]).map((ev, i) => {
@@ -345,17 +344,18 @@ class MainComponent extends React.Component {
                   }
                 </FormControl>
               </FormGroup>
-              <b><A href="https://rsg-chess.now.sh/docs/mobile/palettes" target="_blank">
+              {/* <b><A href="https://rsg-chess.now.sh/docs/mobile/palettes" target="_blank">
                 Check out all color palettes to select the best one for you on our website!
-              </A></b>
+              </A></b> */}
             </li>
             <li>
-              <A href="https://github.com/RSG-Group/Chess/blob/master/LICENSE" target="_blank">License</A>{`, `}
-              <A href="https://github.com/RSG-Group/Chess" target="_blank">Source code</A>; <A href="https://en.wikipedia.org/wiki/Rules_of_chess" target="_blank">Learn Chess</A>
+              <A href="https://github.com/RSG-Group/Chess/blob/master/LICENSE" target="_blank">{strings.license[lang]}</A>{`, `}
+              <A href="https://github.com/RSG-Group/Chess" target="_blank">{strings.sourceCode[lang]}</A>;
+              <A href="https://en.wikipedia.org/wiki/Rules_of_chess" target="_blank">{strings.learnToPlay[lang]}</A>
             </li>
             <li>
-              <A href="https://github.com/RSG-Group/Chess/issues" target="_blank">Report a problem</A>{` `}
-              or contact us on <i>rsg.group.here@gmail.com</i>
+              <A href="https://github.com/RSG-Group/Chess/issues" target="_blank">{strings.reportProblem[lang]}</A>{` `}
+              {strings.contactUs[lang]}<i>rsg.group.here@gmail.com</i>
             </li>
           </ul>
         </Modal.Body>

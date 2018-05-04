@@ -115,6 +115,71 @@ export const strings = {
     bg: 'Нека започнем със singleplayer',
     ru: 'Давайте начнем singleplayer!'
   },
+  settings: {
+    en: 'Settings',
+    bg: 'Настройки',
+    ru: 'Настройки'
+  },
+  newGame: {
+    en: 'New Game',
+    bg: 'Нова игра',
+    ru: 'Новая игра'
+  },
+  startGameAndSelectMode: {
+    en: '(Start a new game first and then select game mode)',
+    bg: '(Започнете нова игра, а после изберете начин за игра от "welcome меню"-то)',
+    ru: '(Сначала запустите новую игру, затем выберите игровой режим)'
+  },
+  showValidMoves: {
+    en: 'Show the valid moves on the board',
+    bg: 'Показване на валидните ходове върху дъската',
+    ru: 'Показать действительные ходы на доске'
+  },
+  selectPalette: {
+    en: 'Choose a color palette:',
+    bg: 'Изберете цветова палитра:',
+    ru: 'Выберите цветовую палитру:'
+  },
+  checkOutPalettes: {
+    en: 'Check out all color palettes to select the best one for you on our website!',
+    bg: 'Разгледайте всички цветови палитри от RSG Chess на нашия уебсайт!',
+    ru: 'Посмотрите все цветовые палитры, чтобы выбрать лучший для вас на нашем сайте!'
+  },
+  selectLang: {
+    en: 'Select a language: ',
+    bg: 'Изберете език: ',
+    ru: 'Выберите язык: '
+  },
+  rotateBlackPiecesSetting: {
+    en: 'Rotate the black figures (or restore the rotation) for real board experience.',
+    bg: 'Завъртете черните фигури (или ги върнете обратно) - за "преживяване като на истинска шах дъска"!',
+    ru: 'Поверните черные фигуры (или восстановите вращение).'
+  },
+  sourceCode: {
+    en: 'Source code',
+    ru: 'Source код',
+    bg: 'Source код'
+  },
+  license: {
+    en: 'License',
+    bg: 'Лиценз',
+    ru: 'Лицензия'
+  },
+  contactUs: {
+    en: 'or contact us: ',
+    bg: 'или се свържете с нас: ',
+    ru: 'или свяжитесь с нами: '
+  },
+  reportProblem: {
+    en: 'Report a problem ',
+    bg: 'Съобщете за проблем ',
+    ru: 'Сообщить о проблеме '
+  },
+  learnToPlay: {
+    en: 'Learn how to play chess here',
+    bg: 'Научете как да играете шах',
+    ru: 'Узнайте, как играть в шахматы здесь'
+  },
   languages: {
     en: {
       en: 'English',
