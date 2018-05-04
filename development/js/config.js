@@ -180,6 +180,11 @@ export const strings = {
     bg: 'Научете как да играете шах',
     ru: 'Узнайте, как играть в шахматы здесь'
   },
+  promotePawn: {
+    en: 'Select a piece to promote to: ',
+    bg: 'Изберете фигура, в която да превърнете пешката',
+    ru: 'Выберите форму, чтобы превратить пешку'
+  },
   languages: {
     en: {
       en: 'English',

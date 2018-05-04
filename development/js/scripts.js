@@ -109,7 +109,7 @@ class MainComponent extends React.Component {
     if (selected) {
       // move the selected piece
       let moved = game.moveSelected(
-        selected, {x: x, y: y}, this.__handlePromotion, this.__handleCheckmate, fals=> e
+        selected, {x: x, y: y}, this.__handlePromotion, this.__handleCheckmate, false
       )
       this.setState({ selected: null })
 
@@ -252,7 +252,7 @@ class MainComponent extends React.Component {
     return (
       <Modal show={!!this.state.promotionParams} onHide={this.__handleGamePromotion.bind(this, false)}>
         <Modal.Header closeButton>
-          <Modal.Title>Select a piece to promote to</Modal.Title>
+          <Modal.Title>{strings.promotePawn[this.state.lang]}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {
