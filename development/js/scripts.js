@@ -66,6 +66,9 @@ class MainComponent extends React.Component {
 
     window.onload = () => {
       navigator.globalization.getPreferredLanguage((language) => {
+        alert(language)
+        alert(typeof language)
+        alert(language.value)
         if (language && typeof language === 'object') {
           let lang = language.value.split(/\s*-\s*/g)[0]
           // let locale = language.value.split(/\s*-\s*/g)[1]
@@ -75,6 +78,8 @@ class MainComponent extends React.Component {
             this.setState({ lang })
           }
         }
+      }, () => {
+        alert('An error with cordova globalization API!')
       })
     }
   }
