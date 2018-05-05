@@ -1,3 +1,6 @@
+// RSG Chess mobile
+// by RSG Group
+
 export const colorPalettes = [
   {
     id: 1,
@@ -233,3 +236,6 @@ export const strings = {
     }
   }
 }
+
+// The app is translated and written by Radi Cho
+// RSG Chess - by RSG Group

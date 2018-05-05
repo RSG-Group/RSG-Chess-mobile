@@ -7,3 +7,6 @@ self.addEventListener('message', function (e) {
     self.postMessage(bestMove)
   }
 })
+
+// This project is written by Radi Cho and published by RSG Group
+// RSG Chess
