@@ -64,7 +64,7 @@ class MainComponent extends React.Component {
       this.setState({ sizes: getSizes() })
     }
 
-    window.onload = () => {
+    const detectLanguage = () => {
       navigator.globalization.getPreferredLanguage((language) => {
         if (language && typeof language === 'object') {
           let lang = language.value.split(/\s*-\s*/g)[0]
@@ -77,6 +77,9 @@ class MainComponent extends React.Component {
         }
       })
     }
+
+    // Run the language detection after installing all the APIs
+    document.addEventListener('deviceready', detectLanguage, false)
   }
 
   __handleReplay = () => {
