@@ -185,6 +185,36 @@ export const strings = {
     bg: 'Изберете фигура, в която да превърнете пешката',
     ru: 'Выберите форму, чтобы превратить пешку'
   },
+  close: {
+    en: 'Close',
+    bg: 'Затвори',
+    ru: 'Закрыть'
+  },
+  checkmate: {
+    en: 'Checkmate!',
+    bg: 'Шах и мат!',
+    ru: 'Шах и мат!'
+  },
+  stalemate: {
+    en: 'Stalemate',
+    bg: 'Пат',
+    ru: 'Пат'
+  },
+  draw: {
+    en: 'Draw',
+    bg: 'Равенство',
+    ru: 'Безвыходное положение'
+  },
+  whiteWon: {
+    en: 'The white player won!',
+    bg: 'Белият играч победи!',
+    ru: 'Победил белый игрок!'
+  },
+  blackWon: {
+    en: 'The black player won!',
+    bg: 'Черният играч победи!',
+    ru: 'Победил черный игрок!'
+  },
   languages: {
     en: {
       en: 'English',

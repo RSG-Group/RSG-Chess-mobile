@@ -353,8 +353,8 @@ class MainComponent extends React.Component {
               </A></b> */}
             </li>
             <li>
-              <A href="https://github.com/RSG-Group/Chess/blob/master/LICENSE" target="_blank">{strings.license[lang]}</A>{`, `}
-              <A href="https://github.com/RSG-Group/Chess" target="_blank">{strings.sourceCode[lang]}</A>;
+              <A href="https://github.com/RSG-Group/Chess/blob/master/LICENSE" target="_blank">{strings.license[lang]}</A>{', '}
+              <A href="https://github.com/RSG-Group/Chess" target="_blank">{strings.sourceCode[lang]}</A>{'; '}
               <A href="https://en.wikipedia.org/wiki/Rules_of_chess" target="_blank">{strings.learnToPlay[lang]}</A>
             </li>
             <li>
@@ -367,29 +367,29 @@ class MainComponent extends React.Component {
           <Button onClick={() => {
             this.setState({ settingsDialog: false })
             if (AdMob) AdMob.hideBanner()
-          }}>Close</Button>
+          }}>{strings.close[lang]}</Button>
         </Modal.Footer>
       </Modal>
     )
   }
 
   __renderCheckmateDialog () {
-    const { checkmate } = this.state
+    const { checkmate, lang } = this.state
 
     return (
       <Modal show={!!checkmate}>
         <Modal.Header>
-          <Modal.Title>{ checkmate === 'D' ? 'Stalemate!' : 'Checkmate!' }</Modal.Title>
+          <Modal.Title>{ checkmate === 'D' ? strings.stalemate[lang] : strings.checkmate[lang] }</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           {
             checkmate !== 'D'
-              ? `The ${checkmate === 'W' ? 'black' : 'white'}  player won!`
-              : 'Draw!'
+              ? (checkmate === 'W' ? strings.blackWon[lang] : strings.whiteWon[lang])
+              : strings.draw[lang]
           }
         </Modal.Body>
         <Modal.Footer>
-          <Button onClick={this.__handleReplay}>Replay</Button>
+          <Button onClick={this.__handleReplay}>{strings.newGame[lang]}</Button>
         </Modal.Footer>
       </Modal>
     )
