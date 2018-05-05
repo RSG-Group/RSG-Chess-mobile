@@ -69,7 +69,11 @@ class MainComponent extends React.Component {
         if (language && typeof language === 'object') {
           let lang = language.value.split(/\s*-\s*/g)[0]
           // let locale = language.value.split(/\s*-\s*/g)[1]
-          this.setState({ lang })
+
+          // check if the prefered language is supported
+          if (_.includes(Object.keys(strings.languages), lang)) {
+            this.setState({ lang })
+          }
         }
       })
     }
