@@ -243,6 +243,9 @@ class MainComponent extends React.Component {
                 {strings.clickToRotate[lang]} {this.state.rotated && `${strings.back[lang]}`} {strings.realBoardExperience[lang]}
               </b></li>
           </ul>
+          <a href="#" onClick={() => { this.setState({settingsDialog: true, welcomeDialog: false}) }}>
+            To change the language go to the settings
+          </a>
         </Modal.Body>
         <Modal.Footer>
           <Button
