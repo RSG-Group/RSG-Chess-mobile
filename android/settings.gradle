@@ -1,0 +1,3 @@
+rootProject.name = 'RSG_Chess_mobile_native'
+
+include ':app'

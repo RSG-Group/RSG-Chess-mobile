@@ -1,0 +1,15 @@
+# RENAME THIS FILE TO `gradle.properties` and add path to keystore, alias and password
+# THE ORIGINAL FILE ISN'T PUBLISHED BECAUSE IT CONTAINS SECRET PASSWORDS AND ALIAS
+
+# IDE (e.g. Android Studio) users:
+# Gradle settings configured through the IDE *will override*
+# any settings specified in this file.
+
+# For more details on how to configure your build environment visit
+# http://www.gradle.org/docs/current/userguide/build_environment.html
+
+android.useDeprecatedNdk=true
+MYAPP_RELEASE_STORE_FILE=***PATH-TO-RSG-Chess.keystore
+MYAPP_RELEASE_KEY_ALIAS=***
+MYAPP_RELEASE_STORE_PASSWORD=***
+MYAPP_RELEASE_KEY_PASSWORD=***
