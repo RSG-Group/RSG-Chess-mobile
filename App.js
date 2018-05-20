@@ -50,9 +50,11 @@ export default class App extends Component<Props> {
           boardWidth={sizes.width}
           boardHeight={sizes.height}
           pieceSize={sizes.fontSize}
+          showValidMoves={true}
+          selected={game.board[1][1]}
           self={this}
           onPress={(x, y) => {
-            alert(`${x}, ${y}`);
+            alert(`x: ${x}, y: ${y};`);
           }}
         />
       </View>
