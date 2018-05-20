@@ -1,36 +1,60 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
+import React, { Component } from "react";
+import { Platform, StyleSheet, Text, View, Dimensions } from "react-native";
+import { find } from "lodash";
 
-import React, { Component } from 'react';
-import {
-  Platform,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
-
-import { Game } from 'rsg-chess';
+import { Game } from "rsg-chess";
+import ChessBoard from "rsg-chess-rn-graphics";
 
 type Props = {};
+const game = Game.prototype.initializeGame();
+
 export default class App extends Component<Props> {
+  constructor() {
+    super();
+    this.state = {
+      width: Dimensions.get("window").width,
+      height: Dimensions.get("window").height
+    };
+
+    Dimensions.addEventListener("change", () => {
+      this.setState({
+        width: Dimensions.get("window").width,
+        height: Dimensions.get("window").height
+      });
+    });
+  }
+
+  getSizes() {
+    var { height, width } = this.state;
+    const sizes = {};
+
+    if (width > height) {
+      sizes.height = Math.floor(height / 8.55 / 2) * 2;
+      sizes.width = sizes.height;
+    } else {
+      sizes.width = Math.floor(width / 8.55 / 2) * 2;
+      sizes.height = sizes.width;
+    }
+    sizes.fontSize = Math.floor(sizes.width / 1.32);
+
+    return sizes;
+  }
+
   render() {
-    // set up game configuration for some testing
-    const game = Game.prototype.initializeGame();
+    const sizes = this.getSizes();
 
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome! This is RSG Chess Native.
-        </Text>
-        <Text style={styles.instructions}>
-          The future of RSG Chess, built by React Native... {`\n`}
-          Let's ensure our API is working with React Native, too. If you see standard FEN string everything is working fine.
-          If not - send feedback on `rsg.group.here@gmail.com` {`\n\n`}
-          {game.FEN}
-        </Text>
+      <View onLayout={this._onLayout} style={styles.container}>
+        <ChessBoard
+          board={game.board}
+          boardWidth={sizes.width}
+          boardHeight={sizes.height}
+          pieceSize={sizes.fontSize}
+          self={this}
+          onPress={(x, y) => {
+            alert(`${x}, ${y}`);
+          }}
+        />
       </View>
     );
   }
@@ -39,18 +63,9 @@ export default class App extends Component<Props> {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    padding: 17.5,
-    alignItems: 'center'
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
+    justifyContent: "center",
+    alignItems: "center"
+  }
 });
+
+App.defaultProps = {};
