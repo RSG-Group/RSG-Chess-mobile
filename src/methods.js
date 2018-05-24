@@ -14,7 +14,7 @@ export const getSizes = state => {
   return sizes;
 };
 
-export const stringifyBoard = boardObject => {
+export const uncycleBoard = boardObject => {
   const board = [];
 
   for (let i = 0; i < boardObject.length; i++) {
@@ -36,5 +36,18 @@ export const stringifyBoard = boardObject => {
     board.push(row);
   }
 
-  return JSON.stringify(board);
+  return board;
+};
+
+export const combineParams = (game, playAgainstAI) => {
+  const board = uncycleBoard(game.board);
+  const combine = {
+    board: board,
+    turn: JSON.stringify(game.turn),
+    threefold: JSON.stringify(game.threefold),
+    FEN: game.FEN,
+    playAgainstAI: playAgainstAI
+  };
+
+  return JSON.stringify(combine);
 };
