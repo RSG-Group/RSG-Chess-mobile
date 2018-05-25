@@ -10,13 +10,15 @@ import ChessBoard from "rsg-chess-rn-graphics";
 import { Thread } from "react-native-threads";
 import { find } from "lodash";
 // import local scripts
-import { getSizes, stringifyBoard, combineParams } from "./src/methods";
+import { getSizes, stringifyBoard } from "./src/methods";
 
 type Props = {};
 const game = Game.prototype.initializeGame();
 
 // start a new react native JS process
 const thread = new Thread("./index.thread.js");
+// send a message, strings only
+thread.postMessage(stringifyBoard(game.board));
 
 export default class App extends Component<Props> {
   constructor() {
@@ -26,7 +28,7 @@ export default class App extends Component<Props> {
       height: Dimensions.get("window").height,
       selected: null,
       isAIThinking: false,
-      playAgainstAI: { depth: 4 }
+      playAgainstAI: { depth: 2 }
     };
 
     Dimensions.addEventListener("change", () => {
@@ -36,29 +38,22 @@ export default class App extends Component<Props> {
       });
     });
 
-    const promoteAI = (pawn, x, y, color) => {
-      game.promotePawn(pawn, x, y, color, "queen");
-    };
-
-    thread.onmessage = message => {
+    thread.onmessage = (message) => {
       var bestMove = JSON.parse(message);
-      game.moveSelected(
-        game.board[bestMove.from.y][bestMove.from.x],
-        bestMove.to,
-        promoteAI,
-        () => {}
-      );
-      this.setState({ isAIThinking: false });
+      game.moveSelected(game.board[bestMove.from.y][bestMove.from.x], bestMove.to, () => {}, () => {})
+      this.setState({})
     };
   }
 
   handlePress(x, y) {
-    let { selected, playAgainstAI, isAIThinking } = this.state;
+    let { selected /* playAgainstAI, isAIThinking */ } = this.state;
 
-    if (isAIThinking) {
-      alert("Plase wait while our AI is thinking...", "1750", "bottom");
-      return;
-    }
+    // if (isAIThinking) {
+    //   if (window.plugins && window.plugins.toast) {
+    //     window.plugins.toast.show('Plase wait while our AI is thinking...', '1750', 'bottom')
+    //   }
+    //   return
+    // }
 
     if (selected) {
       // move the selected piece
@@ -73,16 +68,11 @@ export default class App extends Component<Props> {
 
       // use the worker for generating AI movement
 
-      let last = game.turn.length - 1;
-      if (
-        moved &&
-        playAgainstAI &&
-        last >= 0 &&
-        game.turn[last].color === "W"
-      ) {
-        thread.postMessage(combineParams(game, this.state.playAgainstAI));
-        this.setState({ isAIThinking: true });
-      }
+      // let last = game.turn.length - 1
+      // if (moved && playAgainstAI && last >= 0 && game.turn[last].color === 'W') {
+      //   worker.postMessage({ game, playAgainstAI })
+      //   this.setState({ isAIThinking: true })
+      // }
     } else {
       let last = game.turn.length - 1;
       if (
