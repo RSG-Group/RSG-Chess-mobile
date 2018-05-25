@@ -1,24 +1,12 @@
-// // RSG Chess, by RSG Group
-
-// import React and RN APIs
 import React, { Component } from "react";
 import { Platform, StyleSheet, Text, View, Dimensions } from "react-native";
-// Import methods from RSG Chess
+import { find } from "lodash";
+
 import { Game } from "rsg-chess";
 import ChessBoard from "rsg-chess-rn-graphics";
-// import third party libraries, packages and modules
-import { Thread } from "react-native-threads";
-import { find } from "lodash";
-// import local scripts
-import { getSizes, stringifyBoard } from "./src/methods";
 
 type Props = {};
 const game = Game.prototype.initializeGame();
-
-// start a new react native JS process
-const thread = new Thread("./index.thread.js");
-// send a message, strings only
-thread.postMessage(stringifyBoard(game.board));
 
 export default class App extends Component<Props> {
   constructor() {
@@ -26,9 +14,7 @@ export default class App extends Component<Props> {
     this.state = {
       width: Dimensions.get("window").width,
       height: Dimensions.get("window").height,
-      selected: null,
-      isAIThinking: false,
-      playAgainstAI: { depth: 2 }
+      selected: null
     };
 
     Dimensions.addEventListener("change", () => {
@@ -37,16 +23,26 @@ export default class App extends Component<Props> {
         height: Dimensions.get("window").height
       });
     });
+  }
 
-    thread.onmessage = (message) => {
-      var bestMove = JSON.parse(message);
-      game.moveSelected(game.board[bestMove.from.y][bestMove.from.x], bestMove.to, () => {}, () => {})
-      this.setState({})
-    };
+  getSizes() {
+    var { height, width } = this.state;
+    const sizes = {};
+
+    if (width > height) {
+      sizes.height = Math.floor(height / 8.55 / 2) * 2;
+      sizes.width = sizes.height;
+    } else {
+      sizes.width = Math.floor(width / 8.55 / 2) * 2;
+      sizes.height = sizes.width;
+    }
+    sizes.fontSize = Math.floor(sizes.width / 1.32);
+
+    return sizes;
   }
 
   handlePress(x, y) {
-    let { selected /* playAgainstAI, isAIThinking */ } = this.state;
+    let { selected, /* playAgainstAI, isAIThinking */ } = this.state
 
     // if (isAIThinking) {
     //   if (window.plugins && window.plugins.toast) {
@@ -58,13 +54,9 @@ export default class App extends Component<Props> {
     if (selected) {
       // move the selected piece
       let moved = game.moveSelected(
-        selected,
-        { x: x, y: y },
-        this.__handlePromotion,
-        this.__handleCheckmate,
-        false
-      );
-      this.setState({ selected: null });
+        selected, {x: x, y: y}, this.__handlePromotion, this.__handleCheckmate, false
+      )
+      this.setState({ selected: null })
 
       // use the worker for generating AI movement
 
@@ -74,22 +66,21 @@ export default class App extends Component<Props> {
       //   this.setState({ isAIThinking: true })
       // }
     } else {
-      let last = game.turn.length - 1;
+      let last = game.turn.length - 1
       if (
         game.board[y][x] &&
-        (last >= 0
-          ? game.board[y][x].color !== game.turn[last].color
-          : game.board[y][x].color === "W")
+        (last >= 0 ? game.board[y][x].color !== game.turn[last].color
+          : game.board[y][x].color === 'W')
       ) {
-        this.setState({ selected: game.board[y][x] });
+        this.setState({ selected: game.board[y][x] })
       } else {
-        game.board[y][x] && alert("Invalid Move!");
+        game.board[y][x] && alert('Invalid Move!')
       }
     }
   }
 
   render() {
-    const sizes = getSizes(this.state);
+    const sizes = this.getSizes();
     const { selected } = this.state;
 
     return (

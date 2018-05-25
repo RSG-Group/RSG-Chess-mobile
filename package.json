@@ -10,7 +10,6 @@
     "lodash": "^4.17.10",
     "react": "16.3.1",
     "react-native": "0.55.4",
-    "react-native-threads": "^0.0.12",
     "rsg-chess": "1.0.4",
     "rsg-chess-rn-graphics": "0.0.2"
   },

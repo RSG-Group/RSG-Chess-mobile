@@ -1,5 +1,3 @@
 rootProject.name = 'RSG_Chess_mobile_native'
-include ':react-native-threads'
-project(':react-native-threads').projectDir = new File(rootProject.projectDir, '../node_modules/react-native-threads/android')
 
 include ':app'
