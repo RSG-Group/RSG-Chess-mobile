@@ -19,6 +19,13 @@ import { html, combineParams } from "./src/AI";
 type Props = {};
 const game = Game.prototype.initializeGame();
 
+// Set up Firebase
+firebase.admob.initialize("ca-app-pub-3940256099942544~3347511713");
+const Banner = firebase.admob.Banner;
+const AdRequest = firebase.admob.AdRequest;
+const request = new AdRequest();
+request.addKeyword("foobar");
+
 export default class App extends Component<Props> {
   constructor() {
     super();
@@ -123,7 +130,7 @@ export default class App extends Component<Props> {
       );
 
       this.setState({ isAIThinking: false });
-      firebase.analytics().logEvent(`AI_move_piece`)
+      firebase.analytics().logEvent(`AI_move_piece`);
     }
   };
 
@@ -152,6 +159,13 @@ export default class App extends Component<Props> {
           }}
           javaScriptEnabled={true}
           onMessage={this.handleMessage}
+        />
+        <Banner
+          size={"LARGE_BANNER"}
+          request={request.build()}
+          onAdLoaded={() => {
+            console.log("Advert loaded");
+          }}
         />
       </View>
     );
