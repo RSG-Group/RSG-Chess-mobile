@@ -55,3 +55,8 @@ gradle.properties
 
 # Bundle artifact
 *.jsbundle
+
+# Remove the iOS files for now
+ios
+iOS
+*/ios/*
