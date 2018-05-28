@@ -9,6 +9,7 @@ import {
   ToastAndroid
 } from "react-native";
 import { find } from "lodash";
+import firebase from "react-native-firebase";
 
 import { Game } from "rsg-chess";
 import ChessBoard from "rsg-chess-rn-graphics";
@@ -120,7 +121,9 @@ export default class App extends Component<Props> {
         this.__handleCheckmate,
         false
       );
+
       this.setState({ isAIThinking: false });
+      firebase.analytics().logEvent(`AI_move_piece`)
     }
   };
 

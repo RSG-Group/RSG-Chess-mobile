@@ -39,8 +39,6 @@ yarn-error.log
 # BUCK
 buck-out/
 \.buckd/
-*.keystore
-gradle.properties
 
 # fastlane
 #
@@ -60,3 +58,8 @@ gradle.properties
 ios
 iOS
 */ios/*
+
+# Ignore the Firebase configuration, the Google API keys and the signing keystores
+*.keystore
+gradle.properties
+google-services.json
