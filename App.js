@@ -6,6 +6,7 @@ import {
   View,
   Dimensions,
   WebView,
+  StatusBar,
   ToastAndroid
 } from "react-native";
 import { find } from "lodash";
@@ -46,8 +47,7 @@ export default class App extends Component<Props> {
     });
   }
 
-  getSizes() {
-    var { height, width } = this.state;
+  getSizes(width, height) {
     const sizes = {};
 
     if (width > height) {
@@ -136,11 +136,14 @@ export default class App extends Component<Props> {
   };
 
   render() {
-    const sizes = this.getSizes();
-    const { selected, showAds } = this.state;
+    const { selected, showAds, width, height } = this.state;
+    let sizes = this.getSizes(width, height);
+
+    console.log(123);
 
     return (
       <View style={styles.container}>
+        <StatusBar hidden={true} />
         <View>
           <ChessBoard
             self={this}
