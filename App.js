@@ -20,7 +20,7 @@ type Props = {};
 const game = Game.prototype.initializeGame();
 
 // Set up Firebase
-firebase.admob.initialize("ca-app-pub-3940256099942544~3347511713");
+firebase.admob().initialize("ca-app-pub-3940256099942544~3347511713");
 const Banner = firebase.admob.Banner;
 const AdRequest = firebase.admob.AdRequest;
 const request = new AdRequest();
@@ -34,7 +34,8 @@ export default class App extends Component<Props> {
       height: Dimensions.get("window").height,
       selected: null,
       playAgainstAI: { depth: 3 },
-      isAIThinking: false
+      isAIThinking: false,
+      showAds: true
     };
 
     Dimensions.addEventListener("change", () => {
@@ -136,10 +137,10 @@ export default class App extends Component<Props> {
 
   render() {
     const sizes = this.getSizes();
-    const { selected } = this.state;
+    const { selected, showAds } = this.state;
 
     return (
-      <View onLayout={this._onLayout} style={styles.container}>
+      <View style={styles.container}>
         <View>
           <ChessBoard
             self={this}
@@ -154,19 +155,22 @@ export default class App extends Component<Props> {
         </View>
         <WebView
           ref={el => (this.webView = el)}
-          source={{
-            html: html
-          }}
+          source={{ html: html }}
           javaScriptEnabled={true}
           onMessage={this.handleMessage}
         />
-        <Banner
-          size={"LARGE_BANNER"}
-          request={request.build()}
-          onAdLoaded={() => {
-            console.log("Advert loaded");
-          }}
-        />
+        {showAds && (
+          <View style={{ height: 100 }}>
+            <Banner
+              size={"SMART_BANNER"}
+              request={request.build()}
+              unitId={"ca-app-pub-3522556458609123/4507746605"}
+              onAdLoaded={() => {
+                console.log("Advert loaded");
+              }}
+            />
+          </View>
+        )}
       </View>
     );
   }
