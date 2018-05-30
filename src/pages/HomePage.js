@@ -21,13 +21,6 @@ import { html, combineParams } from "../scripts/AI";
 type Props = {};
 const game = Game.prototype.initializeGame();
 
-// Set up Firebase
-firebase.admob().initialize("ca-app-pub-3940256099942544~3347511713");
-const Banner = firebase.admob.Banner;
-const AdRequest = firebase.admob.AdRequest;
-const request = new AdRequest();
-request.addKeyword("foobar");
-
 export default class HomePage extends Component<Props> {
   static navigationOptions = {
     title: "Play RSG Chess",
@@ -51,6 +44,11 @@ export default class HomePage extends Component<Props> {
         height: Dimensions.get("window").height
       });
     });
+
+    this.Banner = firebase.admob.Banner;
+    const AdRequest = firebase.admob.AdRequest;
+    this.request = new AdRequest();
+    this.request.addKeyword("foobar");
   }
 
   getSizes(width, height) {
@@ -143,9 +141,8 @@ export default class HomePage extends Component<Props> {
 
   render() {
     const { selected, showAds, width, height } = this.state;
-    let sizes = this.getSizes(width, height);
-
-    console.log(123);
+    const { Banner, request, getSizes } = this;
+    let sizes = getSizes(width, height);
 
     return (
       <View style={styles.container}>
