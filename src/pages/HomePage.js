@@ -33,7 +33,7 @@ export default class HomePage extends Component<Props> {
       width: Dimensions.get("window").width,
       height: Dimensions.get("window").height,
       selected: null,
-      playAgainstAI: { depth: 3 },
+      playAgainstAI: { depth: 4 },
       isAIThinking: false,
       showAds: true
     };
