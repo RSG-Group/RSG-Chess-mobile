@@ -102,9 +102,10 @@ android {
     defaultConfig {
         applicationId "com.rsg.chess"
         minSdkVersion 16
-        targetSdkVersion 22
+        targetSdkVersion 27
+        // next time use versionCode - 20018, because of the seperate APKs:
         versionCode 20016
-        versionName "2.0.0-beta.5"
+        versionName "2.0.0-beta.6"
 //        ndk {
 //            abiFilters "armeabi-v7a", "x86"
 //        }
@@ -143,11 +144,11 @@ android {
         variant.outputs.all { output ->
             // For each separate APK per architecture, set a unique version code as described here:
             // http://tools.android.com/tech-docs/new-build-system/user-guide/apk-splits
-            def versionCodes = ["armeabi-v7a": 1, "x86": 2]
+            def versionCodes = ["armeabi-v7a": 0, "x86": 1]
             def abi = output.getFilter(OutputFile.ABI)
             if (abi != null) {  // null for the universal-debug, universal-release variants
                 output.versionCodeOverride =
-                    versionCodes.get(abi) * 1048576 + defaultConfig.versionCode
+                    versionCodes.get(abi) + defaultConfig.versionCode
             }
         }
     }
