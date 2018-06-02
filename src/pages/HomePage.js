@@ -113,7 +113,11 @@ export default class HomePage extends Component<Props> {
       ) {
         this.setState({ selected: game.board[y][x] });
       } else {
-        game.board[y][x] && alert("Invalid Move!");
+        game.board[y][x] && ToastAndroid.show(
+          "Invalid move...",
+          ToastAndroid.SHORT,
+          ToastAndroid.BOTTOM
+        );
       }
     }
   }
