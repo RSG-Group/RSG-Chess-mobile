@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import find from "lodash/find";
 import firebase from "react-native-firebase";
+// import Modal from "react-native-modal";
 
 import Game from "rsg-chess/src/game";
 import ChessBoard from "rsg-chess-rn-graphics";
@@ -35,7 +36,7 @@ export default class HomePage extends Component<Props> {
       selected: null,
       playAgainstAI: { depth: 3 },
       isAIThinking: false,
-      showAds: true
+      checkmate: null
     };
 
     Dimensions.addEventListener("change", () => {
@@ -44,11 +45,6 @@ export default class HomePage extends Component<Props> {
         height: Dimensions.get("window").height
       });
     });
-
-    this.Banner = firebase.admob.Banner;
-    const AdRequest = firebase.admob.AdRequest;
-    this.request = new AdRequest();
-    this.request.addKeyword("foobar");
   }
 
   getSizes(width, height) {
@@ -84,7 +80,7 @@ export default class HomePage extends Component<Props> {
         selected,
         { x: x, y: y },
         this.__handlePromotion,
-        this.__handleCheckmate,
+        this.handleCheckmate,
         false
       );
       this.setState({ selected: null });
@@ -113,14 +109,20 @@ export default class HomePage extends Component<Props> {
       ) {
         this.setState({ selected: game.board[y][x] });
       } else {
-        game.board[y][x] && ToastAndroid.show(
-          "Invalid move...",
-          ToastAndroid.SHORT,
-          ToastAndroid.BOTTOM
-        );
+        game.board[y][x] &&
+          ToastAndroid.show(
+            "Invalid move...",
+            ToastAndroid.SHORT,
+            ToastAndroid.BOTTOM
+          );
       }
     }
   }
+
+  handleCheckmate = color => {
+    this.setState({ checkmate: color });
+    firebase.analytics().logEvent(`checkmate_event`);
+  };
 
   handleMessage = msg => {
     msg = JSON.parse(msg.nativeEvent.data);
@@ -134,12 +136,11 @@ export default class HomePage extends Component<Props> {
         game.board[msg.from.y][msg.from.x],
         msg.to,
         promoteAI,
-        this.__handleCheckmate,
+        this.handleCheckmate,
         false
       );
 
       this.setState({ isAIThinking: false });
-      firebase.analytics().logEvent(`AI_move_piece`);
     }
   };
 
@@ -169,18 +170,6 @@ export default class HomePage extends Component<Props> {
           javaScriptEnabled={true}
           onMessage={this.handleMessage}
         />
-        {showAds && (
-          <View style={{ height: 100 }}>
-            <Banner
-              size={"SMART_BANNER"}
-              request={request.build()}
-              unitId={"ca-app-pub-3522556458609123/4507746605"}
-              onAdLoaded={() => {
-                console.log("Advert loaded");
-              }}
-            />
-          </View>
-        )}
       </View>
     );
   }
