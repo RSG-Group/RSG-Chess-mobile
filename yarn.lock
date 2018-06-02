@@ -4844,13 +4844,13 @@ rimraf@~2.2.6:
   version "2.2.8"
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.2.8.tgz#e439be2aaee327321952730f99a8929e4fc50582"
 
-rsg-chess-rn-graphics@0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/rsg-chess-rn-graphics/-/rsg-chess-rn-graphics-0.0.2.tgz#6e0da42027fafbdc96b3d751709ccab9acc895cd"
+rsg-chess-rn-graphics@1.1.0-alpha.1:
+  version "1.1.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/rsg-chess-rn-graphics/-/rsg-chess-rn-graphics-1.1.0-alpha.1.tgz#ba0c16d3079033f49e9c64e991d8c095e1830277"
 
-rsg-chess@1.0.4:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/rsg-chess/-/rsg-chess-1.0.4.tgz#337a1f8b23457ff4623205a2366dff3ca3bee2ba"
+rsg-chess@1.1.0-alpha.1:
+  version "1.1.0-alpha.1"
+  resolved "https://registry.yarnpkg.com/rsg-chess/-/rsg-chess-1.1.0-alpha.1.tgz#9b36898f101b97d9c17e0415faedd8959651bea0"
   dependencies:
     lodash "^4.17.4"
 

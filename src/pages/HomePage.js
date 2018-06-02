@@ -10,10 +10,10 @@ import {
   ToastAndroid,
   Button
 } from "react-native";
-import { find } from "lodash";
+import find from "lodash/find";
 import firebase from "react-native-firebase";
 
-import { Game } from "rsg-chess";
+import Game from "rsg-chess/src/game";
 import ChessBoard from "rsg-chess-rn-graphics";
 
 import { html, combineParams } from "../scripts/AI";
@@ -33,7 +33,7 @@ export default class HomePage extends Component<Props> {
       width: Dimensions.get("window").width,
       height: Dimensions.get("window").height,
       selected: null,
-      playAgainstAI: { depth: 4 },
+      playAgainstAI: { depth: 3 },
       isAIThinking: false,
       showAds: true
     };
