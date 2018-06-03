@@ -8,16 +8,18 @@ import {
   WebView,
   StatusBar,
   ToastAndroid,
-  Button
+  Button,
+  TouchableOpacity
 } from "react-native";
 import find from "lodash/find";
 import firebase from "react-native-firebase";
-// import Modal from "react-native-modal";
+import Modal from "react-native-modal";
 
 import Game from "rsg-chess/src/game";
 import ChessBoard from "rsg-chess-rn-graphics";
 
 import { html, combineParams } from "../scripts/AI";
+import { renderCheckmateModal } from "../components/CheckMateModal";
 
 type Props = {};
 const game = Game.prototype.initializeGame();
@@ -34,7 +36,8 @@ export default class HomePage extends Component<Props> {
       width: Dimensions.get("window").width,
       height: Dimensions.get("window").height,
       selected: null,
-      playAgainstAI: { depth: 3 },
+      // playAgainstAI: { depth: 3 },
+      playAgainstAI: null,
       isAIThinking: false,
       checkmate: null
     };
@@ -47,7 +50,7 @@ export default class HomePage extends Component<Props> {
     });
   }
 
-  getSizes(width, height) {
+  getSizes = (width, height) => {
     const sizes = {};
 
     if (width > height) {
@@ -60,9 +63,9 @@ export default class HomePage extends Component<Props> {
     sizes.fontSize = Math.floor(sizes.width / 1.32);
 
     return sizes;
-  }
+  };
 
-  handlePress(x, y) {
+  handlePress = (x, y) => {
     let { selected, playAgainstAI, isAIThinking } = this.state;
 
     if (isAIThinking) {
@@ -117,7 +120,7 @@ export default class HomePage extends Component<Props> {
           );
       }
     }
-  }
+  };
 
   handleCheckmate = color => {
     this.setState({ checkmate: color });
@@ -145,7 +148,7 @@ export default class HomePage extends Component<Props> {
   };
 
   render() {
-    const { selected, showAds, width, height } = this.state;
+    const { selected, showAds, width, height, checkmate } = this.state;
     const { Banner, request, getSizes } = this;
     let sizes = getSizes(width, height);
 
@@ -170,6 +173,10 @@ export default class HomePage extends Component<Props> {
           javaScriptEnabled={true}
           onMessage={this.handleMessage}
         />
+        {checkmate &&
+          renderCheckmateModal(checkmate, () => {
+            this.setState({ checkmate: null });
+          })}
       </View>
     );
   }
