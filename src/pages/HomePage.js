@@ -22,7 +22,7 @@ import { html, combineParams } from "../scripts/AI";
 import { renderCheckmateModal } from "../components/CheckMateModal";
 
 type Props = {};
-const game = Game.prototype.initializeGame();
+let game = Game.prototype.initializeGame();
 
 export default class HomePage extends Component<Props> {
   static navigationOptions = {
@@ -63,6 +63,22 @@ export default class HomePage extends Component<Props> {
     sizes.fontSize = Math.floor(sizes.width / 1.32);
 
     return sizes;
+  };
+
+  handleReplay = () => {
+    // Set state to null and false, to reset all params
+    this.setState({
+      selected: null,
+      // promotionParams: null,
+      // welcomeDialog: true,
+      checkmate: null,
+      // settingsDialog: false,
+      isAIThinking: false,
+      playAgainstAI: null
+    });
+
+    // Initialize new game
+    game = Game.prototype.initializeGame();
   };
 
   handlePress = (x, y) => {
@@ -148,8 +164,8 @@ export default class HomePage extends Component<Props> {
   };
 
   render() {
+    const { Banner, request, getSizes, handleReplay } = this;
     const { selected, showAds, width, height, checkmate } = this.state;
-    const { Banner, request, getSizes } = this;
     let sizes = getSizes(width, height);
 
     return (
@@ -174,7 +190,7 @@ export default class HomePage extends Component<Props> {
           onMessage={this.handleMessage}
         />
         {checkmate &&
-          renderCheckmateModal(checkmate, () => {
+          renderCheckmateModal(checkmate, handleReplay, () => {
             this.setState({ checkmate: null });
           })}
       </View>
