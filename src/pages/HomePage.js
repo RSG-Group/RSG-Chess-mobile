@@ -15,7 +15,7 @@ import find from "lodash/find";
 import firebase from "react-native-firebase";
 import Modal from "react-native-modal";
 
-import Game from "rsg-chess/src/game";
+import { Game, Pieces } from "rsg-chess";
 import ChessBoard from "rsg-chess-rn-graphics";
 
 import { html, combineParams } from "../scripts/AI";
@@ -27,7 +27,13 @@ let game = Game.prototype.initializeGame();
 export default class HomePage extends Component<Props> {
   static navigationOptions = {
     title: "Play RSG Chess",
-    header: null
+    header: null,
+    drawerLabel: "Play",
+    drawerIcon: ({ tintColor }) => (
+      <Text style={{ fontSize: 33 }}>
+        {Pieces.PIECE_CHARS["rook"]["B"]}
+      </Text>
+    )
   };
 
   constructor() {

@@ -1,4 +1,4 @@
-import { StackNavigator } from "react-navigation";
+import { createDrawerNavigator } from "react-navigation";
 import HomePage from "./src/pages/HomePage";
 import Settings from "./src/pages/Settings";
 import firebase from "react-native-firebase";
@@ -7,9 +7,13 @@ import firebase from "react-native-firebase";
 firebase.perf().setPerformanceCollectionEnabled(true);
 firebase.admob().initialize("ca-app-pub-3940256099942544~3347511713");
 
-const App = StackNavigator({
-  Home: { screen: HomePage },
-  Settings: { screen: Settings }
+const App = createDrawerNavigator({
+  Home: {
+    screen: HomePage
+  },
+  Settings: {
+    screen: Settings
+  }
 });
 
 export default App;
