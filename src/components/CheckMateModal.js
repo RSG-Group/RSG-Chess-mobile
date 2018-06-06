@@ -8,7 +8,7 @@ import {
   StyleSheet
 } from "react-native";
 import Modal from "react-native-modal";
-import { strings } from "../scripts/config";
+import { strings } from "../config";
 
 export const renderCheckmateModal = (checkmate, exitCallback, hideCallback) => {
   return (
