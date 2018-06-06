@@ -10,7 +10,7 @@ import {
 import Modal from "react-native-modal";
 import { strings } from "../config";
 
-export const renderCheckmateModal = (checkmate, exitCallback, hideCallback) => {
+export const renderCheckmateModal = (checkmate, lang, exitCallback, hideCallback) => {
   return (
     <Modal
       isVisible={!!checkmate}
@@ -29,18 +29,18 @@ export const renderCheckmateModal = (checkmate, exitCallback, hideCallback) => {
         <Text style={styles.text}>
           {checkmate !== "D"
             ? checkmate === "W"
-              ? strings.blackWon["bg"]
-              : strings.whiteWon["bg"]
-            : strings.draw["bg"]}
+              ? strings.blackWon[lang]
+              : strings.whiteWon[lang]
+            : strings.draw[lang]}
         </Text>
         <Text>{`\n`}</Text>
         <View style={styles.buttonContainer}>
           <View style={{ flex: 1 }}>
-            <Button title="Replay" onPress={exitCallback} />
+            <Button title={strings.newGame[lang]} onPress={exitCallback} />
           </View>
           <Text>{`   `}</Text>
           <View style={{ flex: 1 }}>
-            <Button title="Hide this" onPress={hideCallback} />
+            <Button title={strings.hideThis[lang]} onPress={hideCallback} />
           </View>
         </View>
       </View>

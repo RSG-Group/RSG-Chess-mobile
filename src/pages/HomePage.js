@@ -30,9 +30,7 @@ export default class HomePage extends Component<Props> {
     header: null,
     drawerLabel: "Play",
     drawerIcon: ({ tintColor }) => (
-      <Text style={{ fontSize: 33 }}>
-        {Pieces.PIECE_CHARS["rook"]["B"]}
-      </Text>
+      <Text style={{ fontSize: 33 }}>{Pieces.PIECE_CHARS["rook"]["B"]}</Text>
     )
   };
 
@@ -45,7 +43,7 @@ export default class HomePage extends Component<Props> {
       // playAgainstAI: { depth: 3 },
       playAgainstAI: null,
       isAIThinking: false,
-      checkmate: null
+      checkmate: "D"
     };
 
     Dimensions.addEventListener("change", () => {
@@ -77,7 +75,7 @@ export default class HomePage extends Component<Props> {
       selected: null,
       // promotionParams: null,
       // welcomeDialog: true,
-      checkmate: null,
+      checkmate: true,
       // settingsDialog: false,
       isAIThinking: false,
       playAgainstAI: null
@@ -172,6 +170,7 @@ export default class HomePage extends Component<Props> {
   render() {
     const { Banner, request, getSizes, handleReplay } = this;
     const { selected, showAds, width, height, checkmate } = this.state;
+    const { lang } = this.props;
     let sizes = getSizes(width, height);
 
     return (
@@ -196,7 +195,7 @@ export default class HomePage extends Component<Props> {
           onMessage={this.handleMessage}
         />
         {checkmate &&
-          renderCheckmateModal(checkmate, handleReplay, () => {
+          renderCheckmateModal(checkmate, lang, handleReplay, () => {
             this.setState({ checkmate: null });
           })}
       </View>

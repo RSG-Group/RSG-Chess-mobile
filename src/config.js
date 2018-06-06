@@ -193,6 +193,11 @@ export const colorPalettes = [
       bg: 'Затвори',
       ru: 'Закрыть'
     },
+    hideThis: {
+      en: 'Hide this',
+      bg: 'Скрий това',
+      ru: 'Скрыть это'
+    },
     checkmate: {
       en: 'Checkmate!',
       bg: 'Шах и мат!',
