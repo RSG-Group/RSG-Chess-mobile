@@ -10,7 +10,7 @@ import {
 import Modal from "react-native-modal";
 import { strings } from "../config";
 
-export const renderCheckmateModal = (checkmate, lang, exitCallback, hideCallback) => {
+const renderCheckmateModal = (checkmate, lang, exitCallback, hideCallback) => {
   return (
     <Modal
       isVisible={!!checkmate}
@@ -64,3 +64,5 @@ const styles = StyleSheet.create({
     fontSize: 22
   }
 });
+
+export default renderCheckmateModal;
