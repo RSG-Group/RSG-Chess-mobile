@@ -42,7 +42,7 @@ export default class Play extends React.Component<Props> {
             selected={selected}
             showValidMoves={showValidMoves}
             pieceSize={sizes.fontSize}
-            onPress={handlePress.bind(self)}
+            onPress={handlePress}
           />
         </View>
         {checkmate &&

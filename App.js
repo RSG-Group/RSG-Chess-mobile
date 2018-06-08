@@ -18,6 +18,7 @@ import { createDrawerNavigator } from "react-navigation";
 import { Game } from "rsg-chess";
 import { html, combineParams } from "./src/scripts/AI";
 import { strings } from "./src/config";
+import NavigationContext from "./src/components/NavigationContext";
 
 import Play from "./src/pages/Play";
 import Settings from "./src/pages/Settings";
@@ -52,6 +53,35 @@ export default class App extends Component<Props> {
         width: Dimensions.get("window").width,
         height: Dimensions.get("window").height
       });
+    });
+
+    this.NavigationComponent = createDrawerNavigator({
+      Play: {
+        screen: () => (
+          <NavigationContext.Consumer>
+            {data => (
+              <Play
+                handleReplay={data.handleReplay}
+                checkmate={data.checkmate}
+                lang={data.lang}
+                game={data.game}
+                width={data.width}
+                height={data.height}
+                selected={data.selected}
+                showValidMoves={data.showValidMoves}
+                handlePress={data.handlePress}
+                self={data.self}
+              />
+            )}
+          </NavigationContext.Consumer>
+        )
+      },
+      Settings: {
+        screen: Settings
+      },
+      About: {
+        screen: About
+      }
     });
   }
 
@@ -154,41 +184,31 @@ export default class App extends Component<Props> {
   };
 
   render() {
-    const { handleReplay, handlePress } = this;
+    const { handleReplay, handlePress, NavigationComponent } = this;
     const { selected, showAds, checkmate, width, height } = this.state;
     const { lang } = this.props;
 
     // <View style={styles.container}>
     // </View>
 
-    const NavigationComponent = createDrawerNavigator({
-      Settings: {
-        screen: Settings
-      },
-      Play: {
-        screen: () => (
-          <Play
-            handleReplay={handleReplay}
-            checkmate={checkmate}
-            lang={language}
-            game={game}
-            width={width}
-            height={height}
-            selected={selected}
-            showValidMoves={true}
-            handlePress={handlePress}
-            self={this}
-          />
-        )
-      },
-      About: {
-        screen: About
-      }
-    });
-
     return (
       <React.Fragment>
-        <NavigationComponent />
+        <NavigationContext.Provider
+          value={{
+            handleReplay: handleReplay,
+            checkmate: checkmate,
+            lang: language,
+            game: game,
+            width: width,
+            height: height,
+            selected: selected,
+            showValidMoves: true,
+            handlePress: handlePress,
+            self: this
+          }}
+        >
+          <NavigationComponent />
+        </NavigationContext.Provider>
         <View>
           <WebView
             ref={el => (this.webView = el)}
