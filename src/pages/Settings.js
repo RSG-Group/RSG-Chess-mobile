@@ -4,8 +4,7 @@ import firebase from "react-native-firebase";
 
 export default class HomePage extends Component<Props> {
   static navigationOptions = {
-    title: "RSG Chess Settings",
-    drawerIcon: ({ tintColor }) => <Text style={{ fontSize: 25 }}>⚙</Text>
+    title: "Settings"
   };
 
   constructor() {

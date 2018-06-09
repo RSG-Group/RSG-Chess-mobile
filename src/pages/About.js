@@ -3,8 +3,7 @@ import { Platform, View, Text } from "react-native";
 
 export default class HomePage extends Component<Props> {
   static navigationOptions = {
-    title: "About",
-    drawerIcon: () => <Text style={{ fontSize: 30 }}>?</Text>
+    title: "About"
   };
 
   render() {

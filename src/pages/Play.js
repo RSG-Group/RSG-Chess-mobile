@@ -7,12 +7,9 @@ import renderCheckmateModal from "../components/CheckMateModal";
 
 export default class Play extends React.Component<Props> {
   static navigationOptions = {
-    title: "Play RSG Chess",
+    title: "Play",
     header: null,
-    drawerLabel: "Play",
-    drawerIcon: ({ tintColor }) => (
-      <Text style={{ fontSize: 33 }}>{Pieces.PIECE_CHARS["rook"]["B"]}</Text>
-    )
+    drawerLabel: "Play"
   };
 
   render() {
