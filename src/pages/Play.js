@@ -4,6 +4,7 @@ import { Pieces } from "rsg-chess";
 import ChessBoard from "rsg-chess-rn-graphics";
 import getSizes from "../scripts/getSizes";
 import renderCheckmateModal from "../components/CheckMateModal";
+import NavigationContext from "../components/NavigationContext";
 
 export default class Play extends React.Component<Props> {
   static navigationOptions = {
@@ -13,39 +14,46 @@ export default class Play extends React.Component<Props> {
   };
 
   render() {
-    const {
-      handleReplay,
-      checkmate,
-      lang,
-      width,
-      height,
-      self,
-      game,
-      selected,
-      showValidMoves,
-      handlePress
-    } = this.props;
-    let sizes = getSizes(width, height);
-
     return (
       <View style={styles.container}>
         <StatusBar hidden={true} />
-        <View>
-          <ChessBoard
-            self={self}
-            board={game.board}
-            boardWidth={sizes.width}
-            boardHeight={sizes.height}
-            selected={selected}
-            showValidMoves={showValidMoves}
-            pieceSize={sizes.fontSize}
-            onPress={handlePress}
-          />
-        </View>
-        {checkmate &&
-          renderCheckmateModal(checkmate, lang, handleReplay, () => {
-            self.setState({ checkmate: null });
-          })}
+        <NavigationContext.Consumer>
+          {data => {
+            const {
+              width,
+              height,
+              self,
+              game,
+              selected,
+              showValidMoves,
+              handlePress,
+              checkmate,
+              lang,
+              handleReplay
+            } = data;
+            let sizes = getSizes(data.width, data.height);
+            return (
+              <React.Fragment>
+                <View>
+                  <ChessBoard
+                    self={self}
+                    board={game.board}
+                    boardWidth={sizes.width}
+                    boardHeight={sizes.height}
+                    selected={selected}
+                    showValidMoves={showValidMoves}
+                    pieceSize={sizes.fontSize}
+                    onPress={handlePress}
+                  />
+                </View>
+                {checkmate &&
+                  renderCheckmateModal(checkmate, lang, handleReplay, () => {
+                    self.setState({ checkmate: null });
+                  })}
+              </React.Fragment>
+            );
+          }}
+        </NavigationContext.Consumer>
       </View>
     );
   }

@@ -1,15 +1,10 @@
 import React, { Component } from "react";
 import {
-  Platform,
-  StyleSheet,
-  Text,
   View,
   Dimensions,
   WebView,
   ToastAndroid,
-  Button,
-  NativeModules,
-  TouchableOpacity
+  NativeModules
 } from "react-native";
 import firebase from "react-native-firebase";
 import includes from "lodash/includes";
@@ -42,8 +37,8 @@ export default class App extends Component<Props> {
       width: Dimensions.get("window").width,
       height: Dimensions.get("window").height,
       selected: null,
-      playAgainstAI: { depth: 4 },
-      // playAgainstAI: null,
+      // playAgainstAI: { depth: 4 },
+      playAgainstAI: null,
       isAIThinking: false,
       checkmate: null
     };
@@ -57,24 +52,7 @@ export default class App extends Component<Props> {
 
     this.NavigationComponent = createDrawerNavigator({
       Play: {
-        screen: () => (
-          <NavigationContext.Consumer>
-            {data => (
-              <Play
-                handleReplay={data.handleReplay}
-                checkmate={data.checkmate}
-                lang={data.lang}
-                game={data.game}
-                width={data.width}
-                height={data.height}
-                selected={data.selected}
-                showValidMoves={data.showValidMoves}
-                handlePress={data.handlePress}
-                self={data.self}
-              />
-            )}
-          </NavigationContext.Consumer>
-        )
+        screen: Play
       },
       Settings: {
         screen: Settings
@@ -148,7 +126,7 @@ export default class App extends Component<Props> {
       selected: null,
       // promotionParams: null,
       // welcomeDialog: true,
-      checkmate: true,
+      checkmate: null,
       // settingsDialog: false,
       isAIThinking: false,
       playAgainstAI: null
