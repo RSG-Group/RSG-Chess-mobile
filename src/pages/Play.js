@@ -3,7 +3,7 @@ import { View, StatusBar, StyleSheet } from "react-native";
 import { Pieces } from "rsg-chess";
 import ChessBoard from "rsg-chess-rn-graphics";
 import getSizes from "../scripts/getSizes";
-import renderCheckmateModal from "../components/CheckMateModal";
+import renderCheckmateModal from "../components/CheckmateModal";
 import NavigationContext from "../components/NavigationContext";
 
 export default class Play extends React.Component<Props> {
