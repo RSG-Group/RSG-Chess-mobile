@@ -137,8 +137,10 @@ export default class App extends Component<Props> {
   };
 
   handleCheckmate = color => {
-    this.setState({ checkmate: color });
-    firebase.analytics().logEvent(`checkmate_event`);
+    setTimeout(() => {
+      this.setState({ checkmate: color });
+      firebase.analytics().logEvent(`checkmate_event`);
+    }, 5000);
   };
 
   handleMessage = msg => {

@@ -3,6 +3,7 @@ package com.rsg.chess;
 import android.app.Application;
 
 import com.facebook.react.ReactApplication;
+import com.azendoo.reactnativesnackbar.SnackbarPackage;
 import io.invertase.firebase.RNFirebasePackage;
 import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage;
 import io.invertase.firebase.admob.RNFirebaseAdMobPackage;
@@ -27,6 +28,7 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
         new MainReactPackage(),
+        new SnackbarPackage(),
         new RNFirebasePackage(),
         new RNFirebaseAnalyticsPackage(),
         new RNFirebaseAdMobPackage(),

@@ -12,6 +12,7 @@
     "react-native": "0.55.4",
     "react-native-firebase": "^4.2.0",
     "react-native-modal": "^6.1.0",
+    "react-native-snackbar": "^0.4.7",
     "react-navigation": "^2.1.0",
     "rsg-chess": "1.1.0-alpha.1",
     "rsg-chess-rn-graphics": "1.1.0-alpha.1"
