@@ -1,15 +1,16 @@
 import React from "react";
 import NavigationContext from "./NavigationContext";
 import Snackbar from "react-native-snackbar";
+import { strings } from "../config";
 
 class CallSnackBar extends React.Component {
   componentDidUpdate(prevProps) {
     if (this.props.checkmate !== prevProps.checkmate && this.props.checkmate) {
       Snackbar.show({
-        title: "Your game ended...",
+        title: strings.gameOver[this.props.lang],
         duration: Snackbar.LENGTH_INDEFINITE,
         action: {
-          title: "TAKE A LOOK",
+          title: strings.takeLook[this.props.lang],
           color: "green",
           onPress: () => {
             this.props.navigate("Play");
@@ -30,6 +31,7 @@ const CheckmateSnackBar = (props) => (
       <CallSnackBar
         navigate={props.navigate}
         checkmate={data.checkmate}
+        lang={data.lang}
       />
     )}
   </NavigationContext.Consumer>

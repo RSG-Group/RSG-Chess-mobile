@@ -168,6 +168,11 @@ export const strings = {
     bg: "Играта свърши",
     ru: "Игра окончена"
   },
+  takeLook: {
+    en: "TAKE A LOOK",
+    bg: "ПОКАЖИ",
+    ru: "ПОКАЖИТЕ МЭ"
+  },
   sourceCode: {
     en: "Source code",
     ru: "Source код",
