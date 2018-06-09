@@ -1,4 +1,5 @@
 import React from "react";
+import NavigationContext from "./NavigationContext";
 import Snackbar from "react-native-snackbar";
 
 class CallSnackBar extends React.Component {
@@ -23,4 +24,15 @@ class CallSnackBar extends React.Component {
   }
 }
 
-export default CallSnackBar;
+const CheckmateSnackBar = (props) => (
+  <NavigationContext.Consumer>
+    {data => (
+      <CallSnackBar
+        navigate={props.navigate}
+        checkmate={data.checkmate}
+      />
+    )}
+  </NavigationContext.Consumer>
+);
+
+export default CheckmateSnackBar;

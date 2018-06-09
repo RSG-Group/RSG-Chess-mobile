@@ -1,8 +1,7 @@
 import React, { Component } from "react";
 import { Platform, View, Text } from "react-native";
 import firebase from "react-native-firebase";
-import NavigationContext from "../components/NavigationContext";
-import SnackBar from "../components/SnackBar";
+import CheckmateSnackBar from "../components/CheckmateSnackBar";
 
 export default class HomePage extends Component<Props> {
   static navigationOptions = {
@@ -39,14 +38,7 @@ export default class HomePage extends Component<Props> {
             onAdLoaded={() => {}}
           />
         </View>
-        <NavigationContext.Consumer>
-          {data => (
-            <SnackBar
-              navigate={this.props.navigation.navigate}
-              checkmate={data.checkmate}
-            />
-          )}
-        </NavigationContext.Consumer>
+        <CheckmateSnackBar navigate={this.props.navigation.navigate} />
       </View>
     );
   }
