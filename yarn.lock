@@ -4448,6 +4448,10 @@ react-native-animatable@^1.2.4:
   dependencies:
     prop-types "^15.5.10"
 
+react-native-dialogs@^0.0.21:
+  version "0.0.21"
+  resolved "https://registry.yarnpkg.com/react-native-dialogs/-/react-native-dialogs-0.0.21.tgz#57ea0d0cfcebbbe035e79282e0febca9ef1e6a2c"
+
 react-native-dismiss-keyboard@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/react-native-dismiss-keyboard/-/react-native-dismiss-keyboard-1.0.0.tgz#32886242b3f2317e121f3aeb9b0a585e2b879b49"
@@ -4490,6 +4494,13 @@ react-native-safe-area-view@^0.8.0:
   resolved "https://registry.yarnpkg.com/react-native-safe-area-view/-/react-native-safe-area-view-0.8.0.tgz#22d78cb8e8658d04a10cd53c1546e0bc86cb7aea"
   dependencies:
     hoist-non-react-statics "^2.3.1"
+
+"react-native-settings-components@https://github.com/radi-cho/react-native-settings-components":
+  version "1.0.0-alpha.1"
+  resolved "https://github.com/radi-cho/react-native-settings-components#d70c98af763c2dced5d9cb2fd4617d41bfd06b91"
+  dependencies:
+    prop-types "^15.6.0"
+    react-native-dialogs "^0.0.21"
 
 react-native-snackbar@^0.4.7:
   version "0.4.7"
