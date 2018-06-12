@@ -8,7 +8,8 @@ import {
   SettingsEditText,
   SettingsCategoryHeader,
   SettingsSwitch,
-  SettingsPicker
+  SettingsPicker,
+  SettingsTextLabel
 } from "react-native-settings-components";
 
 export default class HomePage extends Component<Props> {
@@ -24,9 +25,7 @@ export default class HomePage extends Component<Props> {
     this.request.addKeyword("foobar");
 
     this.state = {
-      username: "",
-      allowPushNotifications: false,
-      gender: ""
+      palette: "default"
     };
   }
 
@@ -44,32 +43,28 @@ export default class HomePage extends Component<Props> {
         <ScrollView
           contentContainerStyle={{
             flex: 1,
-            width: Dimensions.get("window").width
+            width: Dimensions.get("window").width - 20
           }}
         >
           <SettingsCategoryHeader title={"Personalize"} />
-          {/* <Text>
-            Note that these settings are session only. If you restart the app
-            they won't be saved.
-          </Text> */}
-          <SettingsDividerLong android={true} />
+          <SettingsTextLabel title="Note that these settings are session-only. If you restart the app they won't be saved!" />
+          <SettingsDividerShort android={true} />
           <SettingsPicker
             title="Color palettes"
             dialogDescription="Choose one of our color palettes."
             possibleValues={[
-              { label: "...", value: "" },
-              { label: "male", value: "male" },
-              { label: "female", value: "female" },
-              { label: "other", value: "other" }
+              { label: "default", value: "default" },
+              { label: "blue", value: "blue" },
+              { label: "pink", value: "pink" }
             ]}
             negativeButtonTitle={"Cancel"}
             positiveButtonTitle={"Okay"}
             onSaveValue={value => {
               this.setState({
-                gender: value
+                palette: value
               });
             }}
-            value={this.state.gender}
+            value={this.state.palette}
           />
         </ScrollView>
         <View style={{ height: 52 }}>
