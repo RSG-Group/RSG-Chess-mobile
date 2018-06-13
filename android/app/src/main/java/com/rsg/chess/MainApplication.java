@@ -8,6 +8,7 @@ import io.invertase.firebase.RNFirebasePackage;
 import io.invertase.firebase.analytics.RNFirebaseAnalyticsPackage;
 import io.invertase.firebase.admob.RNFirebaseAdMobPackage;
 import io.invertase.firebase.perf.RNFirebasePerformancePackage;
+import io.invertase.firebase.fabric.crashlytics.RNFirebaseCrashlyticsPackage;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
@@ -32,7 +33,8 @@ public class MainApplication extends Application implements ReactApplication {
         new RNFirebasePackage(),
         new RNFirebaseAnalyticsPackage(),
         new RNFirebaseAdMobPackage(),
-        new RNFirebasePerformancePackage()
+        new RNFirebasePerformancePackage(),
+        new RNFirebaseCrashlyticsPackage()
       );
     }
 

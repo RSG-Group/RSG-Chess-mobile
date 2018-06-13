@@ -116,6 +116,7 @@ export default class HomePage extends Component<Props> {
 
           <SettingsCategoryHeader title={"Game options"} />
           <SettingsTextLabel title="These settings are session-only. If you restart the app they won't be saved!" />
+          <SettingsDividerShort containerStyle={{ height: 2 }} />
 
           <SettingsSwitch
             title={"Rotate the pieces."}
@@ -129,7 +130,6 @@ export default class HomePage extends Component<Props> {
 
           <SettingsDividerLong />
           <SettingsCategoryHeader title={"Fast actions"} />
-          <SettingsDividerShort containerStyle={{ height: 2 }} />
 
           <View
             style={{
@@ -139,7 +139,7 @@ export default class HomePage extends Component<Props> {
               paddingBottom: 4
             }}
           >
-            <Button title="New Game" />
+            <Button onPress={() => {}} title="New Game" />
           </View>
           <View style={{ flexDirection: "row" }}>
             <View
@@ -151,7 +151,7 @@ export default class HomePage extends Component<Props> {
                 width: "50%"
               }}
             >
-              <Button title="About RSG Chess" />
+              <Button onPress={() => {}} title="About RSG Chess" />
             </View>
             <View
               style={{
@@ -162,7 +162,7 @@ export default class HomePage extends Component<Props> {
                 width: "50%"
               }}
             >
-              <Button title="How to play?" />
+              <Button onPress={() => {}} title="How to play?" />
             </View>
           </View>
         </ScrollView>

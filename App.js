@@ -4,7 +4,8 @@ import {
   Dimensions,
   WebView,
   ToastAndroid,
-  NativeModules
+  NativeModules,
+  AsyncStorage
 } from "react-native";
 import firebase from "react-native-firebase";
 import includes from "lodash/includes";
@@ -29,6 +30,12 @@ firebase.admob().initialize("ca-app-pub-3940256099942544~3347511713");
 let language = NativeModules.I18nManager.localeIdentifier.split(`_`)[0];
 const supportedLangs = Object.keys(strings.languages);
 if (!includes(supportedLangs, language)) language = "en";
+
+try {
+  AsyncStorage.setItem("@RSGChess:lang", language);
+} catch (error) {
+  firebase.crashlytics().recordError(0, error.toString());
+}
 
 export default class App extends Component<Props> {
   constructor() {

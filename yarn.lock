@@ -4497,7 +4497,7 @@ react-native-safe-area-view@^0.8.0:
 
 "react-native-settings-components@https://github.com/radi-cho/react-native-settings-components":
   version "1.0.0-alpha.1"
-  resolved "https://github.com/radi-cho/react-native-settings-components#ea527646c0a69d21268742b0cefce7c802dd41e6"
+  resolved "https://github.com/radi-cho/react-native-settings-components#56eaffd1e96c1d4f8240a2f34484a8678aebc38f"
   dependencies:
     prop-types "^15.6.0"
     react-native-dialogs "^0.0.21"
