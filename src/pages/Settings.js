@@ -53,13 +53,15 @@ export default class HomePage extends Component<Props> {
         <ScrollView
           contentContainerStyle={{
             flex: 1,
-            width: Dimensions.get("window").width
+            width: Dimensions.get("window").width,
+            backgroundColor: "white"
           }}
         >
-          <View style={{height: 5}} />
+          <View style={{ height: 5 }} />
           <SettingsCategoryHeader title={"Personalize"} />
           <SettingsTextLabel title="Set your preferences which will be kept even after you restart the app." />
           <SettingsDividerShort containerStyle={{ height: 2 }} />
+
           <SettingsPicker
             title="Language"
             dialogDescription="Choose one of our color palettes."
@@ -77,7 +79,9 @@ export default class HomePage extends Component<Props> {
             }}
             value={this.state.lang}
           />
+
           <SettingsDividerShort />
+
           <SettingsPicker
             title="Color palettes"
             dialogDescription="Choose one of our color palettes."
@@ -95,6 +99,7 @@ export default class HomePage extends Component<Props> {
             }}
             value={this.state.palette}
           />
+
           <SettingsDividerShort />
 
           <SettingsSwitch
@@ -106,10 +111,12 @@ export default class HomePage extends Component<Props> {
             }}
             value={this.state.showValidMoves}
           />
+
           <SettingsDividerLong />
+
           <SettingsCategoryHeader title={"Game options"} />
           <SettingsTextLabel title="These settings are session-only. If you restart the app they won't be saved!" />
-          <SettingsDividerShort containerStyle={{ height: 2 }} />
+
           <SettingsSwitch
             title={"Rotate the pieces."}
             onSaveValue={value => {
@@ -119,9 +126,11 @@ export default class HomePage extends Component<Props> {
             }}
             value={this.state.rotate}
           />
+
           <SettingsDividerLong />
           <SettingsCategoryHeader title={"Fast actions"} />
           <SettingsDividerShort containerStyle={{ height: 2 }} />
+
           <View
             style={{
               padding: 16,
@@ -132,15 +141,29 @@ export default class HomePage extends Component<Props> {
           >
             <Button title="New Game" />
           </View>
-          <View
-            style={{
-              padding: 16,
-              paddingLeft: 16,
-              paddingTop: 8,
-              paddingBottom: 4
-            }}
-          >
-            <Button title="About RSG Chess" />
+          <View style={{ flexDirection: "row" }}>
+            <View
+              style={{
+                padding: 16,
+                paddingLeft: 16,
+                paddingTop: 8,
+                paddingBottom: 4,
+                width: "50%"
+              }}
+            >
+              <Button title="About RSG Chess" />
+            </View>
+            <View
+              style={{
+                padding: 16,
+                paddingLeft: 16,
+                paddingTop: 8,
+                paddingBottom: 4,
+                width: "50%"
+              }}
+            >
+              <Button title="How to play?" />
+            </View>
           </View>
         </ScrollView>
         <View style={{ height: 52 }}>
