@@ -31,12 +31,6 @@ let language = NativeModules.I18nManager.localeIdentifier.split(`_`)[0];
 const supportedLangs = Object.keys(strings.languages);
 if (!includes(supportedLangs, language)) language = "en";
 
-try {
-  AsyncStorage.setItem("@RSGChess:lang", language);
-} catch (error) {
-  firebase.crashlytics().recordError(0, error.toString());
-}
-
 export default class App extends Component<Props> {
   constructor() {
     super();
@@ -47,7 +41,8 @@ export default class App extends Component<Props> {
       // playAgainstAI: { depth: 4 },
       playAgainstAI: null,
       isAIThinking: false,
-      checkmate: null
+      checkmate: null,
+      lang: language
     };
 
     Dimensions.addEventListener("change", () => {
@@ -69,6 +64,26 @@ export default class App extends Component<Props> {
       }
     });
   }
+
+  updateLang = value => {
+    AsyncStorage.setItem("@RSGChess:lang", value).then(ev => {
+      this.setState({ lang: value });
+    });
+  };
+
+  componentDidMount = () => {
+    try {
+      AsyncStorage.getItem("@RSGChess:lang").then(value => {
+        if (value) {
+          alert("lang: " + value);
+          this.setState({ lang: value });
+        }
+      });
+    } catch (error) {
+      firebase.crashlytics().recordError(0, error.toString());
+      alert(error);
+    }
+  };
 
   handlePress = (x, y) => {
     let { selected, playAgainstAI, isAIThinking } = this.state;
@@ -144,10 +159,8 @@ export default class App extends Component<Props> {
   };
 
   handleCheckmate = color => {
-    setTimeout(() => {
-      this.setState({ checkmate: color });
-      firebase.analytics().logEvent(`checkmate_event`);
-    }, 5000);
+    this.setState({ checkmate: color });
+    firebase.analytics().logEvent(`checkmate_event`);
   };
 
   handleMessage = msg => {
@@ -171,9 +184,8 @@ export default class App extends Component<Props> {
   };
 
   render() {
-    const { handleReplay, handlePress, NavigationComponent } = this;
-    const { selected, showAds, checkmate, width, height } = this.state;
-    const { lang } = this.props;
+    const { handleReplay, handlePress, NavigationComponent, updateLang } = this;
+    const { selected, showAds, checkmate, width, height, lang } = this.state;
 
     // <View style={styles.container}>
     // </View>
@@ -184,14 +196,15 @@ export default class App extends Component<Props> {
           value={{
             handleReplay: handleReplay,
             checkmate: checkmate,
-            lang: language,
+            lang: lang,
             game: game,
             width: width,
             height: height,
             selected: selected,
             showValidMoves: true,
             handlePress: handlePress,
-            self: this
+            self: this,
+            updateLang: updateLang
           }}
         >
           <NavigationComponent />

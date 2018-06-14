@@ -18,6 +18,7 @@ import {
   SettingsPicker,
   SettingsTextLabel
 } from "react-native-settings-components";
+import NavigationContext from "../components/NavigationContext";
 
 export default class HomePage extends Component<Props> {
   static navigationOptions = {
@@ -50,131 +51,138 @@ export default class HomePage extends Component<Props> {
           alignItems: "flex-start"
         }}
       >
-        <ScrollView
-          contentContainerStyle={{
-            flex: 1,
-            width: Dimensions.get("window").width,
-            backgroundColor: "white"
+        <NavigationContext.Consumer>
+          {data => {
+            const { lang, updateLang } = data;
+            return (
+              <React.Fragment>
+                <ScrollView
+                  contentContainerStyle={{
+                    flex: 1,
+                    width: Dimensions.get("window").width,
+                    backgroundColor: "white"
+                  }}
+                >
+                  <View style={{ height: 5 }} />
+                  <SettingsCategoryHeader title={"Personalize"} />
+                  <SettingsTextLabel title="Set your preferences which will be kept even after you restart the app." />
+                  <SettingsDividerShort containerStyle={{ height: 2 }} />
+
+                  <SettingsPicker
+                    title="Language"
+                    dialogDescription="Choose one of our color palettes."
+                    possibleValues={[
+                      { label: "English", value: "en" },
+                      { label: "Български", value: "bg" },
+                      { label: "Руский", value: "ru" }
+                    ]}
+                    negativeButtonTitle={"Cancel"}
+                    positiveButtonTitle={"Okay"}
+                    onSaveValue={value => {
+                      updateLang(value);
+                    }}
+                    value={lang}
+                  />
+
+                  <SettingsDividerShort />
+
+                  <SettingsPicker
+                    title="Color palettes"
+                    dialogDescription="Choose one of our color palettes."
+                    possibleValues={[
+                      { label: "default", value: "default" },
+                      { label: "blue", value: "blue" },
+                      { label: "pink", value: "pink" }
+                    ]}
+                    negativeButtonTitle={"Cancel"}
+                    positiveButtonTitle={"Okay"}
+                    onSaveValue={value => {
+                      this.setState({
+                        palette: value
+                      });
+                    }}
+                    value={this.state.palette}
+                  />
+
+                  <SettingsDividerShort />
+
+                  <SettingsSwitch
+                    title={"Show valid moves on the board."}
+                    onSaveValue={value => {
+                      this.setState({
+                        showValidMoves: value
+                      });
+                    }}
+                    value={this.state.showValidMoves}
+                  />
+
+                  <SettingsDividerLong />
+
+                  <SettingsCategoryHeader title={"Game options"} />
+                  <SettingsTextLabel title="These settings are session-only. If you restart the app they won't be saved!" />
+                  <SettingsDividerShort containerStyle={{ height: 2 }} />
+
+                  <SettingsSwitch
+                    title={"Rotate the pieces."}
+                    onSaveValue={value => {
+                      this.setState({
+                        rotate: value
+                      });
+                    }}
+                    value={this.state.rotate}
+                  />
+
+                  <SettingsDividerLong />
+                  <SettingsCategoryHeader title={"Fast actions"} />
+
+                  <View
+                    style={{
+                      padding: 16,
+                      paddingLeft: 16,
+                      paddingTop: 8,
+                      paddingBottom: 4
+                    }}
+                  >
+                    <Button onPress={() => {}} title="New Game" />
+                  </View>
+                  <View style={{ flexDirection: "row" }}>
+                    <View
+                      style={{
+                        padding: 16,
+                        paddingLeft: 16,
+                        paddingTop: 8,
+                        paddingBottom: 4,
+                        width: "50%"
+                      }}
+                    >
+                      <Button onPress={() => {}} title="About RSG Chess" />
+                    </View>
+                    <View
+                      style={{
+                        padding: 16,
+                        paddingLeft: 16,
+                        paddingTop: 8,
+                        paddingBottom: 4,
+                        width: "50%"
+                      }}
+                    >
+                      <Button onPress={() => {}} title="How to play?" />
+                    </View>
+                  </View>
+                </ScrollView>
+                <View style={{ height: 52 }}>
+                  <Banner
+                    size={"SMART_BANNER"}
+                    request={request.build()}
+                    unitId={"ca-app-pub-3522556458609123/4507746605"}
+                    onAdLoaded={() => {}}
+                  />
+                </View>
+                <CheckmateSnackBar navigate={this.props.navigation.navigate} />
+              </React.Fragment>
+            );
           }}
-        >
-          <View style={{ height: 5 }} />
-          <SettingsCategoryHeader title={"Personalize"} />
-          <SettingsTextLabel title="Set your preferences which will be kept even after you restart the app." />
-          <SettingsDividerShort containerStyle={{ height: 2 }} />
-
-          <SettingsPicker
-            title="Language"
-            dialogDescription="Choose one of our color palettes."
-            possibleValues={[
-              { label: "English", value: "en" },
-              { label: "Български", value: "bg" },
-              { label: "Руский", value: "ru" }
-            ]}
-            negativeButtonTitle={"Cancel"}
-            positiveButtonTitle={"Okay"}
-            onSaveValue={value => {
-              this.setState({
-                lang: value
-              });
-            }}
-            value={this.state.lang}
-          />
-
-          <SettingsDividerShort />
-
-          <SettingsPicker
-            title="Color palettes"
-            dialogDescription="Choose one of our color palettes."
-            possibleValues={[
-              { label: "default", value: "default" },
-              { label: "blue", value: "blue" },
-              { label: "pink", value: "pink" }
-            ]}
-            negativeButtonTitle={"Cancel"}
-            positiveButtonTitle={"Okay"}
-            onSaveValue={value => {
-              this.setState({
-                palette: value
-              });
-            }}
-            value={this.state.palette}
-          />
-
-          <SettingsDividerShort />
-
-          <SettingsSwitch
-            title={"Show valid moves on the board."}
-            onSaveValue={value => {
-              this.setState({
-                showValidMoves: value
-              });
-            }}
-            value={this.state.showValidMoves}
-          />
-
-          <SettingsDividerLong />
-
-          <SettingsCategoryHeader title={"Game options"} />
-          <SettingsTextLabel title="These settings are session-only. If you restart the app they won't be saved!" />
-          <SettingsDividerShort containerStyle={{ height: 2 }} />
-
-          <SettingsSwitch
-            title={"Rotate the pieces."}
-            onSaveValue={value => {
-              this.setState({
-                rotate: value
-              });
-            }}
-            value={this.state.rotate}
-          />
-
-          <SettingsDividerLong />
-          <SettingsCategoryHeader title={"Fast actions"} />
-
-          <View
-            style={{
-              padding: 16,
-              paddingLeft: 16,
-              paddingTop: 8,
-              paddingBottom: 4
-            }}
-          >
-            <Button onPress={() => {}} title="New Game" />
-          </View>
-          <View style={{ flexDirection: "row" }}>
-            <View
-              style={{
-                padding: 16,
-                paddingLeft: 16,
-                paddingTop: 8,
-                paddingBottom: 4,
-                width: "50%"
-              }}
-            >
-              <Button onPress={() => {}} title="About RSG Chess" />
-            </View>
-            <View
-              style={{
-                padding: 16,
-                paddingLeft: 16,
-                paddingTop: 8,
-                paddingBottom: 4,
-                width: "50%"
-              }}
-            >
-              <Button onPress={() => {}} title="How to play?" />
-            </View>
-          </View>
-        </ScrollView>
-        <View style={{ height: 52 }}>
-          <Banner
-            size={"SMART_BANNER"}
-            request={request.build()}
-            unitId={"ca-app-pub-3522556458609123/4507746605"}
-            onAdLoaded={() => {}}
-          />
-        </View>
-        <CheckmateSnackBar navigate={this.props.navigation.navigate} />
+        </NavigationContext.Consumer>
       </View>
     );
   }
