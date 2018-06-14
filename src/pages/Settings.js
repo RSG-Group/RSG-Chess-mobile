@@ -38,6 +38,10 @@ export default class HomePage extends Component<Props> {
     };
   }
 
+  componentDidMount () {
+    firebase.analytics().logEvent(`open_settings`);
+  }
+
   render() {
     const { Banner, request } = this;
 

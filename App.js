@@ -27,10 +27,10 @@ let game = Game.prototype.initializeGame();
 firebase.perf().setPerformanceCollectionEnabled(true);
 
 // Set up AdMob
-firebase.admob().initialize("ca-app-pub-3940256099942544~3347511713");
+firebase.admob().initialize("ca-app-pub-3522556458609123~4498098193");
 let interstitial = firebase
   .admob()
-  .interstitial("ca-app-pub-3940256099942544/1033173712");
+  .interstitial("ca-app-pub-3522556458609123/5974831399");
 let AdRequest = firebase.admob.AdRequest;
 // request.addKeyword('foo').addKeyword('bar');
 interstitial.loadAd(new AdRequest().build());
@@ -78,7 +78,10 @@ export default class App extends Component<Props> {
 
   updateLang = value => {
     AsyncStorage.setItem("@RSGChess:lang", value).then(ev => {
-      this.setState({ lang: value });
+      if (value) {
+        if (includes(supportedLangs, value)) this.setState({ lang: value });
+        firebase.analytics().logEvent(`update_language`);
+      }
     });
   };
 
@@ -86,7 +89,8 @@ export default class App extends Component<Props> {
     try {
       AsyncStorage.getItem("@RSGChess:lang").then(value => {
         if (value) {
-          this.setState({ lang: value });
+          firebase.analytics().logEvent(`get_language`);
+          if (includes(supportedLangs, value)) this.setState({ lang: value });
         }
       });
     } catch (error) {
@@ -154,6 +158,7 @@ export default class App extends Component<Props> {
   handleReplay = () => {
     interstitial.show();
     interstitial.loadAd(new AdRequest().build());
+    firebase.analytics().logEvent(`handle_replay`);
 
     // Set state to null and false, to reset all params
     this.setState({
