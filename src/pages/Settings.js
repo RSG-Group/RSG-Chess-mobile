@@ -30,13 +30,11 @@ export default class HomePage extends Component<Props> {
     this.Banner = firebase.admob.Banner;
     const AdRequest = firebase.admob.AdRequest;
     this.request = new AdRequest();
-    this.request.addKeyword("foobar");
 
     this.state = {
       palette: "default",
       showValidMoves: true,
       rotate: false,
-      lang: "en"
     };
   }
 

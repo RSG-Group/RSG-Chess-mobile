@@ -25,7 +25,18 @@ let game = Game.prototype.initializeGame();
 
 // Set up Firebase
 firebase.perf().setPerformanceCollectionEnabled(true);
+
+// Set up AdMob
 firebase.admob().initialize("ca-app-pub-3940256099942544~3347511713");
+let interstitial = firebase
+  .admob()
+  .interstitial("ca-app-pub-3940256099942544/1033173712");
+let AdRequest = firebase.admob.AdRequest;
+// request.addKeyword('foo').addKeyword('bar');
+interstitial.loadAd(new AdRequest().build());
+interstitial.on("onAdClosed", () => {
+  interstitial.loadAd(new AdRequest().build());
+});
 
 let language = NativeModules.I18nManager.localeIdentifier.split(`_`)[0];
 const supportedLangs = Object.keys(strings.languages);
@@ -75,13 +86,11 @@ export default class App extends Component<Props> {
     try {
       AsyncStorage.getItem("@RSGChess:lang").then(value => {
         if (value) {
-          alert("lang: " + value);
           this.setState({ lang: value });
         }
       });
     } catch (error) {
       firebase.crashlytics().recordError(0, error.toString());
-      alert(error);
     }
   };
 
@@ -143,6 +152,9 @@ export default class App extends Component<Props> {
   };
 
   handleReplay = () => {
+    interstitial.show();
+    interstitial.loadAd(new AdRequest().build());
+
     // Set state to null and false, to reset all params
     this.setState({
       selected: null,
