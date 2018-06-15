@@ -34,11 +34,11 @@ export default class HomePage extends Component<Props> {
     this.state = {
       palette: "default",
       showValidMoves: true,
-      rotate: false,
+      rotate: false
     };
   }
 
-  componentDidMount () {
+  componentDidMount() {
     firebase.analytics().logEvent(`open_settings`);
   }
 
@@ -55,7 +55,7 @@ export default class HomePage extends Component<Props> {
       >
         <NavigationContext.Consumer>
           {data => {
-            const { lang, updateLang } = data;
+            const { lang, updateLang, handleReplay } = data;
             return (
               <React.Fragment>
                 <ScrollView
@@ -145,7 +145,13 @@ export default class HomePage extends Component<Props> {
                       paddingBottom: 4
                     }}
                   >
-                    <Button onPress={() => {}} title="New Game" />
+                    <Button
+                      onPress={() => {
+                        handleReplay();
+                        this.props.navigation.navigate("Play");
+                      }}
+                      title="New Game"
+                    />
                   </View>
                   <View style={{ flexDirection: "row" }}>
                     <View
