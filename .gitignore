@@ -63,3 +63,4 @@ iOS
 *.keystore
 gradle.properties
 google-services.json
+fabric.properties

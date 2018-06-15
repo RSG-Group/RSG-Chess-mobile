@@ -138,6 +138,9 @@ export default class HomePage extends Component<Props> {
                     title="Rotate the pieces for better experience, especially if you're two players on the device"
                   />
 
+                  <SettingsDividerLong />
+                  <SettingsCategoryHeader title={"Fast actions"} />
+
                   <View
                     style={{
                       padding: 16,
