@@ -66,8 +66,9 @@ export default class HomePage extends Component<Props> {
             return (
               <React.Fragment>
                 <ScrollView
+                  style={{ flex: 1 }}
                   contentContainerStyle={{
-                    flex: 1,
+                    // flex: 1,
                     width: Dimensions.get("window").width,
                     backgroundColor: "white"
                   }}
@@ -126,7 +127,7 @@ export default class HomePage extends Component<Props> {
                   <SettingsDividerShort containerStyle={{ height: 2 }} />
 
                   <SettingsSwitch
-                    title={"Rotate the pieces."}
+                    title={"Rotate the black pieces."}
                     onSaveValue={value => {
                       this.setState({
                         rotate: value
@@ -135,8 +136,11 @@ export default class HomePage extends Component<Props> {
                     value={this.state.rotate}
                   />
 
-                  <SettingsDividerLong />
-                  <SettingsCategoryHeader title={"Fast actions"} />
+                  <SettingsTextLabel
+                    containerStyle={{ width: "75%", marginTop: -10 }}
+                    titleStyle={{ paddingTop: 0, fontSize: 12 }}
+                    title="Rotate the pieces for better experience, especially if you're two players on the device"
+                  />
 
                   <View
                     style={{
