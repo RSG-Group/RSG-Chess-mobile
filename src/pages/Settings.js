@@ -56,7 +56,13 @@ export default class HomePage extends Component<Props> {
       >
         <NavigationContext.Consumer>
           {data => {
-            const { lang, updateLang, updatePalette, handleReplay, palette } = data;
+            const {
+              lang,
+              updateLang,
+              updatePalette,
+              handleReplay,
+              palette
+            } = data;
             return (
               <React.Fragment>
                 <ScrollView
@@ -158,7 +164,12 @@ export default class HomePage extends Component<Props> {
                         width: "50%"
                       }}
                     >
-                      <Button onPress={() => {}} title="About RSG Chess" />
+                      <Button
+                        onPress={() => {
+                          this.props.navigation.navigate("About");
+                        }}
+                        title="About RSG Chess"
+                      />
                     </View>
                     <View
                       style={{
@@ -169,7 +180,14 @@ export default class HomePage extends Component<Props> {
                         width: "50%"
                       }}
                     >
-                      <Button onPress={() => {}} title="How to play?" />
+                      <Button
+                        onPress={() => {
+                          // firebase
+                          //   .analytics()
+                          //   .logEvent(`toggle_how-to-play_action`);
+                        }}
+                        title="How to play?"
+                      />
                     </View>
                   </View>
                 </ScrollView>
