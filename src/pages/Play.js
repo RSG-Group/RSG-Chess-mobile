@@ -36,7 +36,8 @@ export default class Play extends React.Component<Props> {
               checkmate,
               lang,
               handleReplay,
-              palette
+              palette,
+              rotated
             } = data;
             // To be clear:
             /// colorPalettes - array of all palettes
@@ -68,6 +69,7 @@ export default class Play extends React.Component<Props> {
                     whiteCells={whiteCells}
                     blackCells={blackCells}
                     selectedColor={selectedColor}
+                    rotated={rotated}
                   />
                 </View>
                 {checkmate &&

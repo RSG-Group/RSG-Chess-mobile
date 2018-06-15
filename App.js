@@ -56,7 +56,8 @@ export default class App extends Component<Props> {
       isAIThinking: false,
       checkmate: null,
       lang: language,
-      palette: "default"
+      palette: "default",
+      rotated: false
     };
 
     Dimensions.addEventListener("change", () => {
@@ -78,6 +79,12 @@ export default class App extends Component<Props> {
       }
     });
   }
+
+  setRotation = value => {
+    this.setState({
+      rotated: value
+    });
+  };
 
   updateLang = value => {
     AsyncStorage.setItem("@RSGChess:lang", value).then(ev => {
@@ -237,7 +244,8 @@ export default class App extends Component<Props> {
       handlePress,
       NavigationComponent,
       updateLang,
-      updatePalette
+      updatePalette,
+      setRotation
     } = this;
 
     const {
@@ -247,7 +255,8 @@ export default class App extends Component<Props> {
       width,
       height,
       lang,
-      palette
+      palette,
+      rotated
     } = this.state;
 
     // <View style={styles.container}>
@@ -257,19 +266,21 @@ export default class App extends Component<Props> {
       <React.Fragment>
         <NavigationContext.Provider
           value={{
-            handleReplay: handleReplay,
-            checkmate: checkmate,
             lang: lang,
             palette: palette,
-            updatePalette: updatePalette,
-            game: game,
             width: width,
             height: height,
-            selected: selected,
-            showValidMoves: true,
-            handlePress: handlePress,
             self: this,
-            updateLang: updateLang
+            game: game,
+            selected: selected,
+            checkmate: checkmate,
+            rotated: rotated,
+            showValidMoves: true,
+            handleReplay: handleReplay,
+            updatePalette: updatePalette,
+            handlePress: handlePress,
+            updateLang: updateLang,
+            setRotation: setRotation
           }}
         >
           <NavigationComponent />

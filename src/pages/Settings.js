@@ -33,9 +33,7 @@ export default class HomePage extends Component<Props> {
     this.request = new AdRequest();
 
     this.state = {
-      palette: "default",
-      showValidMoves: true,
-      rotate: false
+      showValidMoves: true
     };
   }
 
@@ -61,7 +59,9 @@ export default class HomePage extends Component<Props> {
               updateLang,
               updatePalette,
               handleReplay,
-              palette
+              palette,
+              setRotation,
+              rotated
             } = data;
             return (
               <React.Fragment>
@@ -128,12 +128,8 @@ export default class HomePage extends Component<Props> {
 
                   <SettingsSwitch
                     title={"Rotate the black pieces."}
-                    onSaveValue={value => {
-                      this.setState({
-                        rotate: value
-                      });
-                    }}
-                    value={this.state.rotate}
+                    onSaveValue={setRotation}
+                    value={rotated}
                   />
 
                   <SettingsTextLabel
