@@ -8,11 +8,19 @@ export default class HomePage extends Component<Props> {
     title: "About"
   };
 
-  componentDidMount () {
+  constructor() {
+    super();
+    this.Banner = firebase.admob.Banner;
+    const AdRequest = firebase.admob.AdRequest;
+    this.request = new AdRequest();
+  }
+
+  componentDidMount() {
     firebase.analytics().logEvent(`open_about_page`);
   }
 
   render() {
+    const { Banner, request } = this;
     return (
       <View
         style={{
@@ -21,7 +29,17 @@ export default class HomePage extends Component<Props> {
           alignItems: "center"
         }}
       >
-        <Text>About</Text>
+        <View style={{ flex: 1 }}>
+          <Text>About</Text>
+        </View>
+        <View style={{ height: 52 }}>
+          <Banner
+            size={"SMART_BANNER"}
+            request={request.build()}
+            unitId={"ca-app-pub-3522556458609123/4507746605"}
+            onAdLoaded={() => {}}
+          />
+        </View>
         <CheckmateSnackBar navigate={this.props.navigation.navigate} />
       </View>
     );

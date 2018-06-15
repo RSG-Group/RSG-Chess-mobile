@@ -14,7 +14,7 @@ export default class Play extends React.Component<Props> {
     drawerLabel: "Play"
   };
 
-  componentDidMount () {
+  componentDidMount() {
     firebase.analytics().logEvent(`open_play_page`);
   }
 
