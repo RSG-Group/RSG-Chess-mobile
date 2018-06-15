@@ -16,7 +16,7 @@
     "react-native-snackbar": "^0.4.7",
     "react-navigation": "^2.1.0",
     "rsg-chess": "1.1.0-alpha.1",
-    "rsg-chess-rn-graphics": "1.1.0-alpha.1"
+    "rsg-chess-rn-graphics": "^1.1.0-alpha.3"
   },
   "devDependencies": {
     "babel-jest": "22.4.3",

@@ -13,7 +13,7 @@ import { createDrawerNavigator } from "react-navigation";
 
 import { Game } from "rsg-chess";
 import { html, combineParams } from "./src/scripts/AI";
-import { strings } from "./src/config";
+import { strings, colorPalettes } from "./src/config";
 import NavigationContext from "./src/components/NavigationContext";
 
 import Play from "./src/pages/Play";
@@ -42,6 +42,8 @@ let language = NativeModules.I18nManager.localeIdentifier.split(`_`)[0];
 const supportedLangs = Object.keys(strings.languages);
 if (!includes(supportedLangs, language)) language = "en";
 
+const supportedPalettes = Object.keys(colorPalettes);
+
 export default class App extends Component<Props> {
   constructor() {
     super();
@@ -53,7 +55,8 @@ export default class App extends Component<Props> {
       playAgainstAI: null,
       isAIThinking: false,
       checkmate: null,
-      lang: language
+      lang: language,
+      palette: "default"
     };
 
     Dimensions.addEventListener("change", () => {
@@ -78,10 +81,16 @@ export default class App extends Component<Props> {
 
   updateLang = value => {
     AsyncStorage.setItem("@RSGChess:lang", value).then(ev => {
-      if (value) {
-        if (includes(supportedLangs, value)) this.setState({ lang: value });
-        firebase.analytics().logEvent(`update_language`);
-      }
+      if (includes(supportedLangs, value)) this.setState({ lang: value });
+      firebase.analytics().logEvent(`update_language`);
+    });
+  };
+
+  updatePalette = value => {
+    AsyncStorage.setItem("@RSGChess:palette", value).then(ev => {
+      if (includes(supportedPalettes, value)) this.setState({ palette: value });
+      firebase.analytics().logEvent(`update_palette`);
+      firebase.analytics().logEvent(`set_${value}_palette`);
     });
   };
 
@@ -89,12 +98,34 @@ export default class App extends Component<Props> {
     try {
       AsyncStorage.getItem("@RSGChess:lang").then(value => {
         if (value) {
-          firebase.analytics().logEvent(`get_language`);
           if (includes(supportedLangs, value)) this.setState({ lang: value });
         }
       });
     } catch (error) {
-      firebase.crashlytics().recordError(0, error.toString());
+      firebase.analytics().logEvent(`language_error`);
+      firebase
+        .crashlytics()
+        .recordError(
+          0,
+          `Getting error: ${error.toString()}, when trying to get the lang from the storage.`
+        );
+    }
+
+    try {
+      AsyncStorage.getItem("@RSGChess:palette").then(value => {
+        if (value) {
+          if (includes(supportedPalettes, value))
+            this.setState({ palette: value });
+        }
+      });
+    } catch (error) {
+      firebase.analytics().logEvent(`palette_error`);
+      firebase
+        .crashlytics()
+        .recordError(
+          0,
+          `Getting error: ${error.toString()}, when trying to get the current pallete from the storage.`
+        );
     }
   };
 
@@ -201,8 +232,23 @@ export default class App extends Component<Props> {
   };
 
   render() {
-    const { handleReplay, handlePress, NavigationComponent, updateLang } = this;
-    const { selected, showAds, checkmate, width, height, lang } = this.state;
+    const {
+      handleReplay,
+      handlePress,
+      NavigationComponent,
+      updateLang,
+      updatePalette
+    } = this;
+
+    const {
+      selected,
+      showAds,
+      checkmate,
+      width,
+      height,
+      lang,
+      palette
+    } = this.state;
 
     // <View style={styles.container}>
     // </View>
@@ -214,6 +260,8 @@ export default class App extends Component<Props> {
             handleReplay: handleReplay,
             checkmate: checkmate,
             lang: lang,
+            palette: palette,
+            updatePalette: updatePalette,
             game: game,
             width: width,
             height: height,

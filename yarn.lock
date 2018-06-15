@@ -4872,9 +4872,9 @@ rimraf@~2.2.6:
   version "2.2.8"
   resolved "https://registry.yarnpkg.com/rimraf/-/rimraf-2.2.8.tgz#e439be2aaee327321952730f99a8929e4fc50582"
 
-rsg-chess-rn-graphics@1.1.0-alpha.1:
-  version "1.1.0-alpha.1"
-  resolved "https://registry.yarnpkg.com/rsg-chess-rn-graphics/-/rsg-chess-rn-graphics-1.1.0-alpha.1.tgz#ba0c16d3079033f49e9c64e991d8c095e1830277"
+rsg-chess-rn-graphics@^1.1.0-alpha.3:
+  version "1.1.0-alpha.3"
+  resolved "https://registry.yarnpkg.com/rsg-chess-rn-graphics/-/rsg-chess-rn-graphics-1.1.0-alpha.3.tgz#730eba74d89541e8e31a105c7bc7e3f7504696ee"
 
 rsg-chess@1.1.0-alpha.1:
   version "1.1.0-alpha.1"

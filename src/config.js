@@ -1,9 +1,8 @@
 // RSG Chess mobile
 // by RSG Group
 
-export const colorPalettes = [
-  {
-    id: 1,
+export const colorPalettes = {
+  default: {
     name: "RSG Chess standard",
     background: "rgb(240, 220, 180)",
     props: {
@@ -14,8 +13,7 @@ export const colorPalettes = [
       selectedColor: "lightblue"
     }
   },
-  {
-    id: 2,
+  blue: {
     name: "Light blue ocean",
     background: "rgb(220, 255, 245)",
     props: {
@@ -26,8 +24,7 @@ export const colorPalettes = [
       selectedColor: "lightgreen"
     }
   },
-  {
-    id: 3,
+  green: {
     name: "Chess.com green",
     background: "rgb(235, 255, 205)",
     props: {
@@ -38,8 +35,7 @@ export const colorPalettes = [
       selectedColor: "rgb(255, 255, 155)"
     }
   },
-  {
-    id: 4,
+  sweet: {
     name: "Sweety",
     background: "rgb(255, 245, 225)",
     props: {
@@ -50,7 +46,17 @@ export const colorPalettes = [
       selectedColor: "rgb(135, 255, 235)"
     }
   }
-];
+};
+
+export const possiblePalettes = () => {
+  const palettesArray = [];
+  let key;
+  for (key in colorPalettes) {
+    palettesArray.push({ label: colorPalettes[key].name, value: key });
+  }
+
+  return palettesArray;
+};
 
 export const strings = {
   welcomeTitle: {

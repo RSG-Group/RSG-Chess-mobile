@@ -19,6 +19,7 @@ import {
   SettingsTextLabel
 } from "react-native-settings-components";
 import NavigationContext from "../components/NavigationContext";
+import { possiblePalettes } from "../config";
 
 export default class HomePage extends Component<Props> {
   static navigationOptions = {
@@ -55,7 +56,7 @@ export default class HomePage extends Component<Props> {
       >
         <NavigationContext.Consumer>
           {data => {
-            const { lang, updateLang, handleReplay } = data;
+            const { lang, updateLang, updatePalette, handleReplay, palette } = data;
             return (
               <React.Fragment>
                 <ScrollView
@@ -72,7 +73,7 @@ export default class HomePage extends Component<Props> {
 
                   <SettingsPicker
                     title="Language"
-                    dialogDescription="Choose one of our color palettes."
+                    dialogDescription="Choose which language do you prefer.."
                     possibleValues={[
                       { label: "English", value: "en" },
                       { label: "Български", value: "bg" },
@@ -91,19 +92,13 @@ export default class HomePage extends Component<Props> {
                   <SettingsPicker
                     title="Color palettes"
                     dialogDescription="Choose one of our color palettes."
-                    possibleValues={[
-                      { label: "default", value: "default" },
-                      { label: "blue", value: "blue" },
-                      { label: "pink", value: "pink" }
-                    ]}
+                    possibleValues={possiblePalettes()}
                     negativeButtonTitle={"Cancel"}
                     positiveButtonTitle={"Okay"}
                     onSaveValue={value => {
-                      this.setState({
-                        palette: value
-                      });
+                      updatePalette(value);
                     }}
-                    value={this.state.palette}
+                    value={palette}
                   />
 
                   <SettingsDividerShort />

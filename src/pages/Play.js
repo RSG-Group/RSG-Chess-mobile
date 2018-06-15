@@ -6,6 +6,7 @@ import firebase from "react-native-firebase";
 import getSizes from "../scripts/getSizes";
 import renderCheckmateModal from "../components/CheckmateModal";
 import NavigationContext from "../components/NavigationContext";
+import { colorPalettes } from "../config";
 
 export default class Play extends React.Component<Props> {
   static navigationOptions = {
@@ -34,8 +35,21 @@ export default class Play extends React.Component<Props> {
               handlePress,
               checkmate,
               lang,
-              handleReplay
+              handleReplay,
+              palette
             } = data;
+            // To be clear:
+            /// colorPalettes - array of all palettes
+            // // palette - the id/name of the palette which will be dispalyed
+            // // currentPaltte - object with params which will be used to configure the board
+            const currentPalette = colorPalettes[palette];
+            const {
+              validBG,
+              selectedBG,
+              whiteCells,
+              blackCells,
+              selectedColor
+            } = currentPalette.props;
             let sizes = getSizes(data.width, data.height);
             return (
               <React.Fragment>
@@ -49,6 +63,11 @@ export default class Play extends React.Component<Props> {
                     showValidMoves={showValidMoves}
                     pieceSize={sizes.fontSize}
                     onPress={handlePress}
+                    validBG={validBG}
+                    selectedBG={selectedBG}
+                    whiteCells={whiteCells}
+                    blackCells={blackCells}
+                    selectedColor={selectedColor}
                   />
                 </View>
                 {checkmate &&

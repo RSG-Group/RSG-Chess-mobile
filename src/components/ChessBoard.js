@@ -9,7 +9,11 @@ const Board = ({
   fontSize,
   selected,
   showValidMoves,
-  handlePress
+  handlePress,
+  selectedBG,
+  whiteCells,
+  blackCells,
+  selectedColor
 }) => (
   <View>
     <ChessBoard
@@ -21,6 +25,11 @@ const Board = ({
       showValidMoves={showValidMoves}
       pieceSize={fontSize}
       onPress={handlePress}
+      validBG={validBG}
+      selectedBG={selectedBG}
+      whiteCells={whiteCells}
+      blackCells={blackCells}
+      selectedColor={selectedColor}
     />
   </View>
 );
