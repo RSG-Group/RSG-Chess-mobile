@@ -4,6 +4,9 @@ import android.app.Application;
 
 import com.crashlytics.android.Crashlytics;
 import com.facebook.react.ReactApplication;
+import org.devio.rn.splashscreen.SplashScreenReactPackage;
+import com.azendoo.reactnativesnackbar.SnackbarPackage;
+import io.invertase.firebase.RNFirebasePackage;
 import com.azendoo.reactnativesnackbar.SnackbarPackage;
 import io.fabric.sdk.android.Fabric;
 import io.invertase.firebase.RNFirebasePackage;
@@ -31,8 +34,9 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
         new MainReactPackage(),
-        new SnackbarPackage(),
+        new SplashScreenReactPackage(),
         new RNFirebasePackage(),
+        new SnackbarPackage(),
         new RNFirebaseAnalyticsPackage(),
         new RNFirebaseAdMobPackage(),
         new RNFirebasePerformancePackage(),

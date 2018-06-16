@@ -176,6 +176,7 @@ dependencies {
 
     // Another native modules
     implementation project(':react-native-snackbar')
+    implementation project(':react-native-splash-screen')
 }
 
 // Run this once to be able to run the application with BUCK

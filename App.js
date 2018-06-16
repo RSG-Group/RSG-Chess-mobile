@@ -19,6 +19,7 @@ import NavigationContext from "./src/components/NavigationContext";
 import Play from "./src/pages/Play";
 import Settings from "./src/pages/Settings";
 import About from "./src/pages/About";
+import SplashScreen from "react-native-splash-screen";
 
 type Props = {};
 let game = Game.prototype.initializeGame();
@@ -102,6 +103,10 @@ export default class App extends Component<Props> {
   };
 
   componentDidMount = () => {
+    // Make sure the splash screen is gone
+    SplashScreen.hide();
+
+    // Get the settings from the storage
     try {
       AsyncStorage.getItem("@RSGChess:lang").then(value => {
         if (value) {
