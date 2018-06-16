@@ -58,7 +58,8 @@ export default class App extends Component<Props> {
       checkmate: null,
       lang: language,
       palette: "default",
-      rotated: false
+      rotated: false,
+      showValidMoves: true
     };
 
     Dimensions.addEventListener("change", () => {
@@ -87,19 +88,28 @@ export default class App extends Component<Props> {
     });
   };
 
-  updateLang = value => {
-    AsyncStorage.setItem("@RSGChess:lang", value).then(ev => {
-      if (includes(supportedLangs, value)) this.setState({ lang: value });
-      firebase.analytics().logEvent(`update_language`);
+  updateValidMovesConfig = value => {
+    AsyncStorage.setItem("@RSGChess:showValidMoves", JSON.stringify(value)).then(ev => {
+      this.setState({ showValidMoves: value });
+      firebase.analytics().logEvent(`update_validMoves_configuration`);
     });
   };
 
+  updateLang = value => {
+    if (includes(supportedLangs, value))
+      AsyncStorage.setItem("@RSGChess:lang", value).then(ev => {
+        this.setState({ lang: value });
+        firebase.analytics().logEvent(`update_language`);
+      });
+  };
+
   updatePalette = value => {
-    AsyncStorage.setItem("@RSGChess:palette", value).then(ev => {
-      if (includes(supportedPalettes, value)) this.setState({ palette: value });
-      firebase.analytics().logEvent(`update_palette`);
-      firebase.analytics().logEvent(`set_${value}_palette`);
-    });
+    if (includes(supportedPalettes, value))
+      AsyncStorage.setItem("@RSGChess:palette", value).then(ev => {
+        this.setState({ palette: value });
+        firebase.analytics().logEvent(`update_palette`);
+        firebase.analytics().logEvent(`set_${value}_palette`);
+      });
   };
 
   componentDidMount = () => {
@@ -120,6 +130,23 @@ export default class App extends Component<Props> {
         .recordError(
           0,
           `Getting error: ${error.toString()}, when trying to get the lang from the storage.`
+        );
+    }
+
+    try {
+      AsyncStorage.getItem("@RSGChess:showValidMoves").then(value => {
+        if (value) {
+          if (typeof JSON.parse(value) === "boolean")
+            this.setState({ showValidMoves: JSON.parse(value) });
+        }
+      });
+    } catch (error) {
+      firebase.analytics().logEvent(`validMoves_error`);
+      firebase
+        .crashlytics()
+        .recordError(
+          0,
+          `Getting error: ${error.toString()}, when trying to get the 'showValidMoves' config from the storage.`
         );
     }
 
@@ -250,7 +277,8 @@ export default class App extends Component<Props> {
       NavigationComponent,
       updateLang,
       updatePalette,
-      setRotation
+      setRotation,
+      updateValidMovesConfig
     } = this;
 
     const {
@@ -261,7 +289,8 @@ export default class App extends Component<Props> {
       height,
       lang,
       palette,
-      rotated
+      rotated,
+      showValidMoves
     } = this.state;
 
     // <View style={styles.container}>
@@ -280,12 +309,13 @@ export default class App extends Component<Props> {
             selected: selected,
             checkmate: checkmate,
             rotated: rotated,
-            showValidMoves: true,
             handleReplay: handleReplay,
             updatePalette: updatePalette,
             handlePress: handlePress,
             updateLang: updateLang,
-            setRotation: setRotation
+            setRotation: setRotation,
+            showValidMoves: showValidMoves,
+            updateValidMovesConfig: updateValidMovesConfig
           }}
         >
           <NavigationComponent />

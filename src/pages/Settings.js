@@ -31,10 +31,6 @@ export default class HomePage extends Component<Props> {
     this.Banner = firebase.admob.Banner;
     const AdRequest = firebase.admob.AdRequest;
     this.request = new AdRequest();
-
-    this.state = {
-      showValidMoves: true
-    };
   }
 
   componentDidMount() {
@@ -49,7 +45,8 @@ export default class HomePage extends Component<Props> {
         style={{
           flex: 1,
           justifyContent: "flex-start",
-          alignItems: "flex-start"
+          alignItems: "flex-start",
+          backgroundColor: "white"
         }}
       >
         <NavigationContext.Consumer>
@@ -61,16 +58,16 @@ export default class HomePage extends Component<Props> {
               handleReplay,
               palette,
               setRotation,
-              rotated
+              rotated,
+              showValidMoves,
+              updateValidMovesConfig
             } = data;
             return (
               <React.Fragment>
                 <ScrollView
                   style={{ flex: 1 }}
                   contentContainerStyle={{
-                    // flex: 1,
-                    width: Dimensions.get("window").width,
-                    backgroundColor: "white"
+                    width: Dimensions.get("window").width
                   }}
                 >
                   <View style={{ height: 5 }} />
@@ -112,12 +109,8 @@ export default class HomePage extends Component<Props> {
 
                   <SettingsSwitch
                     title={"Show valid moves on the board."}
-                    onSaveValue={value => {
-                      this.setState({
-                        showValidMoves: value
-                      });
-                    }}
-                    value={this.state.showValidMoves}
+                    onSaveValue={updateValidMovesConfig}
+                    value={showValidMoves}
                   />
 
                   <SettingsDividerLong />
