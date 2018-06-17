@@ -5,7 +5,8 @@ import {
   Text,
   ScrollView,
   Dimensions,
-  Button
+  Button,
+  StyleSheet
 } from "react-native";
 import firebase from "react-native-firebase";
 import CheckmateSnackBar from "../components/CheckmateSnackBar";
@@ -45,14 +46,7 @@ export default class HomePage extends Component<Props> {
     const { Banner, request } = this;
 
     return (
-      <View
-        style={{
-          flex: 1,
-          justifyContent: "flex-start",
-          alignItems: "flex-start",
-          backgroundColor: "white"
-        }}
-      >
+      <View style={styles.container}>
         <NavigationContext.Consumer>
           {data => {
             const {
@@ -69,7 +63,7 @@ export default class HomePage extends Component<Props> {
             return (
               <React.Fragment>
                 <ScrollView
-                  style={{ flex: 1 }}
+                  style={styles.scrollView}
                   contentContainerStyle={{
                     width: Dimensions.get("window").width
                   }}
@@ -138,14 +132,7 @@ export default class HomePage extends Component<Props> {
                   <SettingsDividerLong />
                   <SettingsCategoryHeader title={"Fast actions"} />
 
-                  <View
-                    style={{
-                      padding: 16,
-                      paddingLeft: 16,
-                      paddingTop: 8,
-                      paddingBottom: 4
-                    }}
-                  >
+                  <View style={styles.newGameContainer}>
                     <Button
                       onPress={() => {
                         handleReplay();
@@ -155,15 +142,7 @@ export default class HomePage extends Component<Props> {
                     />
                   </View>
                   <View style={{ flexDirection: "row" }}>
-                    <View
-                      style={{
-                        padding: 16,
-                        paddingLeft: 16,
-                        paddingTop: 8,
-                        paddingBottom: 4,
-                        width: "50%"
-                      }}
-                    >
+                    <View style={styles.halfButtonContainer}>
                       <Button
                         onPress={() => {
                           this.props.navigation.navigate("About");
@@ -171,15 +150,7 @@ export default class HomePage extends Component<Props> {
                         title="About RSG Chess"
                       />
                     </View>
-                    <View
-                      style={{
-                        padding: 16,
-                        paddingLeft: 16,
-                        paddingTop: 8,
-                        paddingBottom: 4,
-                        width: "50%"
-                      }}
-                    >
+                    <View style={styles.halfButtonContainer}>
                       <Button
                         onPress={() => {
                           // firebase
@@ -215,3 +186,26 @@ export default class HomePage extends Component<Props> {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
+    backgroundColor: "white"
+  },
+  scrollView: { flex: 1 },
+  newGameContainer: {
+    padding: 16,
+    paddingLeft: 16,
+    paddingTop: 8,
+    paddingBottom: 4
+  },
+  halfButtonContainer: {
+    padding: 16,
+    paddingLeft: 16,
+    paddingTop: 8,
+    paddingBottom: 4,
+    width: "50%"
+  }
+});
