@@ -146,9 +146,24 @@ export const strings = {
     ru: "Показать действительные ходы на доске"
   },
   selectPalette: {
-    en: "Choose a color palette:",
-    bg: "Изберете цветова палитра:",
+    en: "Choose one of our chessboard color palettes",
+    bg: "Изберете цветова палитра за шах дъската",
     ru: "Выберите цветовую палитру:"
+  },
+  colorPalettes: {
+    en: "Color palettes",
+    bg: "Цветови палитри",
+    ru: "Цветовую палитру"
+  },
+  personalize: {
+    en: "personalize",
+    bg: "персонализиране",
+    ru: "предпочтения"
+  },
+  personalizeSettingsLabel: {
+    en: "Set your preferences which will be kept even after you restart the app",
+    bg: "Задайте предпочитанията си, които ще се запаметят дори след рестартиране",
+    ru: "Задайте настройки, которые будут сохранены даже после перезапуска приложения"
   },
   checkOutPalettes: {
     en:
@@ -157,10 +172,25 @@ export const strings = {
     ru:
       "Посмотрите все цветовые палитры, чтобы выбрать лучший для вас на нашем сайте!"
   },
-  selectLang: {
-    en: "Select a language: ",
-    bg: "Изберете език: ",
-    ru: "Выберите язык: "
+  lang: {
+    en: "Language",
+    bg: "Език",
+    ru: "Язык"
+  },
+  okaySettings: {
+    en: "Okay",
+    bg: "Готово",
+    ru: "Готовый"
+  },
+  okayNative: {
+    en: "Okay",
+    bg: "Добре",
+    ru: "Хорошо"
+  },
+  cancel: {
+    en: "Cancel",
+    bg: "Отказ",
+    ru: "Отмена"
   },
   rotateBlackPiecesSetting: {
     en:
@@ -244,6 +274,33 @@ export const strings = {
     bg: "Черният играч победи!",
     ru: "Победил черный игрок!"
   },
+  chooseLang: {
+    en: "Choose a language.\nAll game modals, dialogues and texts will be displayed on that language.",
+    bg: "Изберете език.\nВсички надписи в играта ще бъдат показвани на този език.",
+    ru: "Выберите язык.\nВсе титры в игре будут отображаться на этом языке."
+  },
+  palettes: {
+    default: {
+      en: "default",
+      bg: "основен",
+      ru: "умолчанию"
+    },
+    blue: {
+      en: "blue",
+      bg: "синьо",
+      ru: "синий"
+    },
+    green: {
+      en: "green",
+      bg: "зелено",
+      ru: "зеленый"
+    },
+    sweet: {
+      en: "sweety",
+      bg: "сладко",
+      ru: "сладкий розовый"
+    }
+  },
   languages: {
     en: {
       en: "English",
@@ -259,6 +316,11 @@ export const strings = {
       en: "Aнглийский",
       bg: "Болгарский",
       ru: "Русский"
+    },
+    native: {
+      en: "English",
+      bg: "Български",
+      ru: "Руский"
     }
   }
 };

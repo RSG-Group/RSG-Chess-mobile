@@ -20,7 +20,7 @@ import {
   SettingsTextLabel
 } from "react-native-settings-components";
 import NavigationContext from "../components/NavigationContext";
-import { possiblePalettes } from "../config";
+import { strings, possiblePalettes } from "../config";
 
 export default class HomePage extends Component<Props> {
   static navigationOptions = {
@@ -69,20 +69,20 @@ export default class HomePage extends Component<Props> {
                   }}
                 >
                   <View style={{ height: 5 }} />
-                  <SettingsCategoryHeader title={"Personalize"} />
-                  <SettingsTextLabel title="Set your preferences which will be kept even after you restart the app." />
+                  <SettingsCategoryHeader title={strings.personalize[lang]} />
+                  <SettingsTextLabel title={strings.personalizeSettingsLabel[lang]} />
                   <SettingsDividerShort containerStyle={{ height: 2 }} />
 
                   <SettingsPicker
-                    title="Language"
-                    dialogDescription="Choose which language do you prefer.."
+                    title={strings.lang[lang]}
+                    dialogDescription={strings.chooseLang[lang]}
                     possibleValues={[
                       { label: "English", value: "en" },
                       { label: "Български", value: "bg" },
                       { label: "Руский", value: "ru" }
                     ]}
-                    negativeButtonTitle={"Cancel"}
-                    positiveButtonTitle={"Okay"}
+                    negativeButtonTitle={strings.cancel[lang]}
+                    positiveButtonTitle={strings.okaySettings[lang]}
                     onSaveValue={value => {
                       updateLang(value);
                     }}
@@ -92,11 +92,11 @@ export default class HomePage extends Component<Props> {
                   <SettingsDividerShort />
 
                   <SettingsPicker
-                    title="Color palettes"
-                    dialogDescription="Choose one of our color palettes."
+                    title={strings.colorPalettes[lang]}
+                    dialogDescription={strings.selectPalette[lang]}
                     possibleValues={possiblePalettes()}
-                    negativeButtonTitle={"Cancel"}
-                    positiveButtonTitle={"Okay"}
+                    negativeButtonTitle={strings.cancel[lang]}
+                    positiveButtonTitle={strings.okaySettings[lang]}
                     onSaveValue={value => {
                       updatePalette(value);
                     }}
@@ -106,7 +106,7 @@ export default class HomePage extends Component<Props> {
                   <SettingsDividerShort />
 
                   <SettingsSwitch
-                    title={"Show valid moves on the board."}
+                    title={strings.showValidMoves[lang]}
                     onSaveValue={updateValidMovesConfig}
                     value={showValidMoves}
                   />
