@@ -26,6 +26,10 @@ export default class HomePage extends Component<Props> {
     title: "Settings"
   };
 
+  state = {
+    adLoaded: false
+  };
+
   constructor() {
     super();
     this.Banner = firebase.admob.Banner;
@@ -187,12 +191,19 @@ export default class HomePage extends Component<Props> {
                     </View>
                   </View>
                 </ScrollView>
-                <View style={{ height: 52 }}>
+                <View
+                  style={{
+                    height: 52,
+                    display: this.state.adLoaded ? "flex" : "none"
+                  }}
+                >
                   <Banner
                     size={"SMART_BANNER"}
                     request={request.build()}
                     unitId={"ca-app-pub-3522556458609123/4507746605"}
-                    onAdLoaded={() => {}}
+                    onAdLoaded={() => {
+                      this.setState({ adLoaded: true });
+                    }}
                   />
                 </View>
                 <CheckmateSnackBar navigate={this.props.navigation.navigate} />
