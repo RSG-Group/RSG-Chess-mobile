@@ -21,66 +21,58 @@ export default class Play extends React.Component<Props> {
 
   render() {
     return (
-      <View style={styles.container}>
-        <StatusBar hidden={true} />
-        <NavigationContext.Consumer>
-          {data => {
-            const {
-              width,
-              height,
-              self,
-              game,
-              selected,
-              showValidMoves,
-              handlePress,
-              checkmate,
-              lang,
-              handleReplay,
-              palette,
-              rotated
-            } = data;
-            // To be clear:
-            /// colorPalettes - array of all palettes
-            // // palette - the id/name of the palette which will be dispalyed
-            // // currentPaltte - object with params which will be used to configure the board
-            const currentPalette = colorPalettes[palette];
-            const {
-              validBG,
-              selectedBG,
-              whiteCells,
-              blackCells,
-              selectedColor
-            } = currentPalette.props;
-            let sizes = getSizes(data.width, data.height);
-            return (
-              <React.Fragment>
-                <View>
-                  <ChessBoard
-                    self={self}
-                    board={game.board}
-                    boardWidth={sizes.width}
-                    boardHeight={sizes.height}
-                    selected={selected}
-                    showValidMoves={showValidMoves}
-                    pieceSize={sizes.fontSize}
-                    onPress={handlePress}
-                    validBG={validBG}
-                    selectedBG={selectedBG}
-                    whiteCells={whiteCells}
-                    blackCells={blackCells}
-                    selectedColor={selectedColor}
-                    rotated={rotated}
-                  />
-                </View>
-                {checkmate &&
-                  renderCheckmateModal(checkmate, lang, handleReplay, () => {
-                    self.setState({ checkmate: null });
-                  })}
-              </React.Fragment>
-            );
-          }}
-        </NavigationContext.Consumer>
-      </View>
+      <NavigationContext.Consumer>
+        {data => {
+          const {
+            width,
+            height,
+            self,
+            game,
+            selected,
+            showValidMoves,
+            handlePress,
+            checkmate,
+            lang,
+            handleReplay,
+            palette,
+            rotated
+          } = data;
+          // To be clear:
+          /// colorPalettes - array of all palettes
+          // // palette - the id/name of the palette which will be dispalyed
+          // // currentPaltte - object with params which will be used to configure the board
+          const currentPalette = colorPalettes[palette];
+          let sizes = getSizes(data.width, data.height);
+          return (
+            <View
+              style={[
+                styles.container,
+                { backgroundColor: currentPalette.background }
+              ]}
+            >
+              <StatusBar hidden={true} backgroundColor={currentPalette.bar} />
+              <View>
+                <ChessBoard
+                  self={self}
+                  board={game.board}
+                  boardWidth={sizes.width}
+                  boardHeight={sizes.height}
+                  selected={selected}
+                  showValidMoves={showValidMoves}
+                  pieceSize={sizes.fontSize}
+                  onPress={handlePress}
+                  {...currentPalette.props}
+                  rotated={rotated}
+                />
+              </View>
+              {checkmate &&
+                renderCheckmateModal(checkmate, lang, handleReplay, () => {
+                  self.setState({ checkmate: null });
+                })}
+            </View>
+          );
+        }}
+      </NavigationContext.Consumer>
     );
   }
 }

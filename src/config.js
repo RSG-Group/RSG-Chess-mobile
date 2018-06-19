@@ -5,6 +5,7 @@ export const colorPalettes = {
   default: {
     name: "RSG Chess standard",
     background: "rgb(240, 220, 180)",
+    bar: "rgb(255, 120, 45)",
     props: {
       whiteCells: "rgb(255, 205, 160)",
       blackCells: "rgb(210, 140, 70)",
@@ -16,6 +17,7 @@ export const colorPalettes = {
   blue: {
     name: "Light blue ocean",
     background: "rgb(220, 255, 245)",
+    bar: "rgb(110, 130, 180)",
     props: {
       whiteCells: "rgb(225, 225, 225)",
       blackCells: "rgb(110, 130, 180)",
@@ -27,6 +29,7 @@ export const colorPalettes = {
   green: {
     name: "Chess.com green",
     background: "rgb(235, 255, 205)",
+    bar: "rgb(120, 150, 85)",
     props: {
       whiteCells: "rgb(240, 240, 210)",
       blackCells: "rgb(120, 150, 85)",
@@ -38,6 +41,7 @@ export const colorPalettes = {
   sweet: {
     name: "Sweety",
     background: "rgb(255, 245, 225)",
+    bar: "rgb(230, 110, 110)",
     props: {
       whiteCells: "rgb(255, 215, 215)",
       blackCells: "rgb(230, 110, 110)",
