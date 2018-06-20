@@ -1,7 +1,9 @@
 import React, { Component } from "react";
-import { Platform, View, Text } from "react-native";
+import { Platform, View, ScrollView, Text } from "react-native";
 import CheckmateSnackBar from "../components/CheckmateSnackBar";
 import firebase from "react-native-firebase";
+import { strings } from "../config";
+import NavigationContext from "../components/NavigationContext";
 
 export default class HomePage extends Component<Props> {
   static navigationOptions = {
@@ -29,9 +31,20 @@ export default class HomePage extends Component<Props> {
           alignItems: "center"
         }}
       >
-        <View style={{ flex: 1 }}>
-          <Text>About</Text>
-        </View>
+        <ScrollView style={{ flex: 1, padding: 7 }}>
+          <NavigationContext.Consumer>
+            {data => {
+              const { lang } = data;
+              if (lang === "bg") request.addKeyword("Bulgaria");
+              if (lang === "ru") request.addKeyword("Russia");
+              return (
+                <Text style={{ textAlign: "center" }}>
+                  {strings.about.initial[lang]}
+                </Text>
+              );
+            }}
+          </NavigationContext.Consumer>
+        </ScrollView>
         <View style={{ height: 52 }}>
           <Banner
             size={"SMART_BANNER"}

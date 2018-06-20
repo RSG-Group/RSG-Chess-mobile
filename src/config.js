@@ -165,9 +165,12 @@ export const strings = {
     ru: "предпочтения"
   },
   personalizeSettingsLabel: {
-    en: "Set your preferences which will be kept even after you restart the app",
-    bg: "Задайте предпочитанията си, които ще се запаметят дори след рестартиране",
-    ru: "Задайте настройки, которые будут сохранены даже после перезапуска приложения"
+    en:
+      "Set your preferences which will be kept even after you restart the app",
+    bg:
+      "Задайте предпочитанията си, които ще се запаметят дори след рестартиране",
+    ru:
+      "Задайте настройки, которые будут сохранены даже после перезапуска приложения"
   },
   checkOutPalettes: {
     en:
@@ -279,9 +282,20 @@ export const strings = {
     ru: "Победил черный игрок!"
   },
   chooseLang: {
-    en: "Choose a language.\nAll game modals, dialogues and texts will be displayed on that language.",
-    bg: "Изберете език.\nВсички надписи в играта ще бъдат показвани на този език.",
+    en:
+      "Choose a language.\nAll game modals, dialogues and texts will be displayed on that language.",
+    bg:
+      "Изберете език.\nВсички надписи в играта ще бъдат показвани на този език.",
     ru: "Выберите язык.\nВсе титры в игре будут отображаться на этом языке."
+  },
+  about: {
+    initial: {
+      en:
+        "RSG Chess is an open-source chess game which is appropriate for any age. The app is verified by Google Play Protect, labeled as PEGI 3 and distributed under the Apache 2.0 License. \n\nThe game can be fun in many aspects. You can play versus friends on your own device or vs AI in two levels - Easy or Medium... and all this - offline! New AI levels, multy-player mode, leaderboards and more will be rolled out in future releases. RSG Chess also has extra features for better experience. One of them are the custom color palettes - way to customize the chessboard with the colors you prefer! Go to the settings and see them in action! Also if you're using bigger device you can place it on the surface, rotate the black pieces from the settings and fell like you're on real chess board. \n\nFor more information select of these topics:",
+      ru:
+        "RSG Chess - это игра с открытым исходным кодом, которая подходит для любого возраста. Приложение проверено в Google Play Protect, обозначенное как PEGI 3, и распространяется под лицензией Apache 2.0. \n\nИгра может быть интересной во многих аспектах. Вы можете играть против друзей на своем собственном устройстве или против AI на двух уровнях - Easy или Medium ... и все это - офлайн! В будущих выпусках будут развернуты новые уровни AI, многопользовательский режим, списки лидеров и многое другое. RSG Chess также имеет дополнительные возможности для лучшего опыта. Одна из них - пользовательские цветовые палитры - способ настройки шахматной доски с цветами, которые вы предпочитаете! Перейдите в настройки и увидите их в действии! Также, если вы используете большее устройство, вы можете разместить его на поверхности, повернуть черные фигуры из настроек и упасть, как на реальной шахматной доске. \n\nДля получения дополнительной информации выберите эти темы",
+      bg: "RSG Chess е open-source шах игра, която е подходяща за всички възрастови групи. Проложението е проверено от Google Play Protect и лицензирано под Apache 2.0 лиценза. \n\nИграта е забавна по всяко време! Може да играете срещу вашите приятели на това устройство (single-player) или срещу нашия AI алгоритъм в две нива на трудност. RSG Chess също поддържа функция за завъртане на черните фигури за \"преживяване като на истинска шах дъска\". Всички тези начини за игра НЕ изискват връзка с интернет и могат да се използват офлайн. Цветовите палитри са нруга функция, която ви позволява да персонализирате шах дъската с цветовете, които харесвате. /n/nСъщо така повече AI нива, мултиплейър и др., може да очаквате в бъдещи версии. За повече информация прочетете една от тези теми:"
+    }
   },
   palettes: {
     default: {
