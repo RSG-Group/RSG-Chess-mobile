@@ -70,7 +70,9 @@ export default class HomePage extends Component<Props> {
                 >
                   <View style={{ height: 5 }} />
                   <SettingsCategoryHeader title={strings.personalize[lang]} />
-                  <SettingsTextLabel title={strings.personalizeSettingsLabel[lang]} />
+                  <SettingsTextLabel
+                    title={strings.personalizeSettingsLabel[lang]}
+                  />
                   <SettingsDividerShort containerStyle={{ height: 2 }} />
 
                   <SettingsPicker
@@ -153,9 +155,12 @@ export default class HomePage extends Component<Props> {
                     <View style={styles.halfButtonContainer}>
                       <Button
                         onPress={() => {
-                          // firebase
-                          //   .analytics()
-                          //   .logEvent(`toggle_how-to-play_action`);
+                          firebase
+                            .analytics()
+                            .logEvent(`toggle_howToPlay_action`);
+                          this.props.navigation.navigate("About", {
+                            howToPlay: true
+                          });
                         }}
                         title="How to play?"
                       />
