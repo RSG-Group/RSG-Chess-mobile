@@ -59,7 +59,8 @@ export default class App extends Component<Props> {
       lang: language,
       palette: "default",
       rotated: false,
-      showValidMoves: true
+      showValidMoves: true,
+      promotionParams: false
     };
 
     Dimensions.addEventListener("change", () => {
@@ -281,17 +282,16 @@ export default class App extends Component<Props> {
       updateValidMovesConfig
     } = this;
 
-    const {
-      selected,
-      showAds,
-      checkmate,
-      width,
-      height,
-      lang,
-      palette,
-      rotated,
-      showValidMoves
-    } = this.state;
+    // const {
+    //   selected,
+    //   checkmate,
+    //   width,
+    //   height,
+    //   lang,
+    //   palette,
+    //   rotated,
+    //   showValidMoves
+    // } = this.state;
 
     // <View style={styles.container}>
     // </View>
@@ -300,22 +300,23 @@ export default class App extends Component<Props> {
       <React.Fragment>
         <NavigationContext.Provider
           value={{
-            lang: lang,
-            palette: palette,
-            width: width,
-            height: height,
+            // lang: lang,
+            // palette: palette,
+            // width: width,
+            // height: height,
+            // selected: selected,
+            // checkmate: checkmate,
+            // rotated: rotated,
+            // showValidMoves: showValidMoves,
             self: this,
             game: game,
-            selected: selected,
-            checkmate: checkmate,
-            rotated: rotated,
             handleReplay: handleReplay,
             updatePalette: updatePalette,
             handlePress: handlePress,
             updateLang: updateLang,
             setRotation: setRotation,
-            showValidMoves: showValidMoves,
-            updateValidMovesConfig: updateValidMovesConfig
+            updateValidMovesConfig: updateValidMovesConfig,
+            ...this.state
           }}
         >
           <NavigationComponent />
