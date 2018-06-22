@@ -52,7 +52,7 @@ export default class App extends Component<Props> {
       width: Dimensions.get("window").width,
       height: Dimensions.get("window").height,
       selected: null,
-      // playAgainstAI: { depth: 4 },
+      // playAgainstAI: { depth: 3 },
       playAgainstAI: null,
       isAIThinking: false,
       checkmate: null,
@@ -60,7 +60,7 @@ export default class App extends Component<Props> {
       palette: "default",
       rotated: false,
       showValidMoves: true,
-      promotionParams: false
+      promotionParams: null
     };
 
     Dimensions.addEventListener("change", () => {
@@ -90,7 +90,10 @@ export default class App extends Component<Props> {
   };
 
   updateValidMovesConfig = value => {
-    AsyncStorage.setItem("@RSGChess:showValidMoves", JSON.stringify(value)).then(ev => {
+    AsyncStorage.setItem(
+      "@RSGChess:showValidMoves",
+      JSON.stringify(value)
+    ).then(ev => {
       this.setState({ showValidMoves: value });
       firebase.analytics().logEvent(`update_validMoves_configuration`);
     });
@@ -169,6 +172,27 @@ export default class App extends Component<Props> {
     }
   };
 
+  promoteSelectedPawn = piece => {
+    const { promotionParams } = this.state;
+    if (promotionParams) {
+      piece = piece ? piece : "knight";
+      const { x, y, color, pawn } = promotionParams;
+      game.promotePawn(pawn, x, y, color, piece);
+      this.setState({ promotionParams: null });
+      firebase.analytics().logEvent(`promote_pawn`);
+      firebase.analytics().logEvent(`promote_pawn_to_${piece}`);
+      ToastAndroid.show(
+        "Your piece was promoted successfully!",
+        ToastAndroid.LONG,
+        ToastAndroid.BOTTOM
+      );
+    } else {
+      firebase
+        .analytics()
+        .logEvent(`promotion_state_problem_type_${typeof promotionParams}`);
+    }
+  };
+
   handlePress = (x, y) => {
     let { selected, playAgainstAI, isAIThinking } = this.state;
 
@@ -186,7 +210,7 @@ export default class App extends Component<Props> {
       let moved = game.moveSelected(
         selected,
         { x: x, y: y },
-        this.__handlePromotion,
+        this.handlePromotion,
         this.handleCheckmate,
         false
       );
@@ -226,6 +250,17 @@ export default class App extends Component<Props> {
     }
   };
 
+  handlePromotion = (pawn, x, y, color) => {
+    this.setState({
+      promotionParams: {
+        x: x,
+        y: y,
+        color: color,
+        pawn: pawn
+      }
+    });
+  };
+
   handleReplay = () => {
     interstitial.show();
     interstitial.loadAd(new AdRequest().build());
@@ -251,12 +286,18 @@ export default class App extends Component<Props> {
     firebase.analytics().logEvent(`checkmate_event`);
   };
 
+  promoteAI = (pawn, x, y, color) => {
+    ToastAndroid.show(
+      "The AI promoted one of his pawns!",
+      ToastAndroid.LONG,
+      ToastAndroid.BOTTOM
+    );
+    game.promotePawn(pawn, x, y, color, "queen");
+  };
+
   handleMessage = msg => {
     msg = JSON.parse(msg.nativeEvent.data);
-
-    const promoteAI = (pawn, x, y, color) => {
-      game.promotePawn(pawn, x, y, color, "queen");
-    };
+    const { promoteAI } = this;
 
     if (msg !== null) {
       game.moveSelected(
@@ -279,35 +320,14 @@ export default class App extends Component<Props> {
       updateLang,
       updatePalette,
       setRotation,
-      updateValidMovesConfig
+      updateValidMovesConfig,
+      promoteSelectedPawn
     } = this;
-
-    // const {
-    //   selected,
-    //   checkmate,
-    //   width,
-    //   height,
-    //   lang,
-    //   palette,
-    //   rotated,
-    //   showValidMoves
-    // } = this.state;
-
-    // <View style={styles.container}>
-    // </View>
 
     return (
       <React.Fragment>
         <NavigationContext.Provider
           value={{
-            // lang: lang,
-            // palette: palette,
-            // width: width,
-            // height: height,
-            // selected: selected,
-            // checkmate: checkmate,
-            // rotated: rotated,
-            // showValidMoves: showValidMoves,
             self: this,
             game: game,
             handleReplay: handleReplay,
@@ -316,6 +336,7 @@ export default class App extends Component<Props> {
             updateLang: updateLang,
             setRotation: setRotation,
             updateValidMovesConfig: updateValidMovesConfig,
+            promoteSelectedPawn: promoteSelectedPawn,
             ...this.state
           }}
         >

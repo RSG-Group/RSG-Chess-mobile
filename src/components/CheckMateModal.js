@@ -14,7 +14,7 @@ const renderCheckmateModal = (checkmate, lang, exitCallback, hideCallback) => {
   return (
     <Modal
       isVisible={!!checkmate}
-      backdropColor={"rgba(0, 0, 0, 0.5)"}
+      backdropColor="rgba(0, 0, 0, 0.5)"
       backdropOpacity={1}
       animationIn="zoomInDown"
       animationOut="zoomOutUp"
@@ -38,7 +38,7 @@ const renderCheckmateModal = (checkmate, lang, exitCallback, hideCallback) => {
           <View style={{ flex: 1 }}>
             <Button title={strings.newGame[lang]} onPress={exitCallback} />
           </View>
-          <Text>{`   `}</Text>
+          <Text>{`  `}</Text>
           <View style={{ flex: 1 }}>
             <Button title={strings.hideThis[lang]} onPress={hideCallback} />
           </View>
