@@ -55,12 +55,6 @@ export default class HomePage extends Component<Props> {
                 <Text style={{ textAlign: "center" }}>
                   {strings.about.initial[lang]}
                 </Text>
-                <Button
-                  onPress={() => {
-                    this.setState({ howToPlay: true });
-                  }}
-                  title="How to play"
-                />
                 {renderHowToPlayModal(howToPlay, lang, () => {
                   this.setState({ howToPlay: false });
                   if (

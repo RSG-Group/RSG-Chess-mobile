@@ -143,28 +143,13 @@ export default class HomePage extends Component<Props> {
                       title="New Game"
                     />
                   </View>
-                  <View style={{ flexDirection: "row" }}>
-                    <View style={styles.halfButtonContainer}>
-                      <Button
-                        onPress={() => {
-                          this.props.navigation.navigate("About");
-                        }}
-                        title="About RSG Chess"
-                      />
-                    </View>
-                    <View style={styles.halfButtonContainer}>
-                      <Button
-                        onPress={() => {
-                          firebase
-                            .analytics()
-                            .logEvent(`toggle_howToPlay_action`);
-                          this.props.navigation.navigate("About", {
-                            howToPlay: true
-                          });
-                        }}
-                        title="How to play?"
-                      />
-                    </View>
+                  <View style={styles.buttonContainer}>
+                    <Button
+                      onPress={() => {
+                        this.props.navigation.navigate("About");
+                      }}
+                      title="About RSG Chess"
+                    />
                   </View>
                 </ScrollView>
                 <View
@@ -206,11 +191,10 @@ const styles = StyleSheet.create({
     paddingTop: 8,
     paddingBottom: 4
   },
-  halfButtonContainer: {
+  buttonContainer: {
     padding: 16,
     paddingLeft: 16,
     paddingTop: 8,
-    paddingBottom: 4,
-    width: "50%"
+    paddingBottom: 4
   }
 });
