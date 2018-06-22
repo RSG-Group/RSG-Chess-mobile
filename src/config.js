@@ -40,7 +40,7 @@ export const colorPalettes = {
   },
   sweet: {
     name: "Sweety",
-    background: "rgb(255, 245, 225)",
+    background: "rgb(255, 234, 248)",
     bar: "rgb(230, 110, 110)",
     props: {
       whiteCells: "rgb(255, 215, 215)",
