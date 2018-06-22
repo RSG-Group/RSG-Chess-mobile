@@ -115,12 +115,12 @@ export default class HomePage extends Component<Props> {
 
                   <SettingsDividerLong />
 
-                  <SettingsCategoryHeader title={"Game options"} />
-                  <SettingsTextLabel title="These settings are session-only. If you restart the app they won't be saved!" />
+                  <SettingsCategoryHeader title={strings.gameOptions[lang]} />
+                  <SettingsTextLabel title={strings.sessionOnlyLabel[lang]} />
                   <SettingsDividerShort containerStyle={{ height: 2 }} />
 
                   <SettingsSwitch
-                    title={"Rotate the black pieces."}
+                    title={strings.rotateBlackPiecesSetting[lang]}
                     onSaveValue={setRotation}
                     value={rotated}
                   />
@@ -128,11 +128,11 @@ export default class HomePage extends Component<Props> {
                   <SettingsTextLabel
                     containerStyle={{ width: "75%", marginTop: -10 }}
                     titleStyle={{ paddingTop: 0, fontSize: 12 }}
-                    title="Rotate the pieces for better experience, especially if you're two players on the device"
+                    title={strings.rotateBlackPiecesLabel[lang]}
                   />
 
                   <SettingsDividerLong />
-                  <SettingsCategoryHeader title={"Fast actions"} />
+                  <SettingsCategoryHeader title={strings.fastAction[lang]} />
 
                   <View style={styles.newGameContainer}>
                     <Button
@@ -140,7 +140,7 @@ export default class HomePage extends Component<Props> {
                         handleReplay();
                         this.props.navigation.navigate("Play");
                       }}
-                      title="New Game"
+                      title={strings.newGame[lang]}
                     />
                   </View>
                   <View style={styles.buttonContainer}>
@@ -148,7 +148,7 @@ export default class HomePage extends Component<Props> {
                       onPress={() => {
                         this.props.navigation.navigate("About");
                       }}
-                      title="About RSG Chess"
+                      title={strings.aboutRSGChess[lang]}
                     />
                   </View>
                 </ScrollView>
