@@ -176,7 +176,7 @@ export default class App extends Component<Props> {
 
   promoteAI = (pawn, x, y, color) => {
     ToastAndroid.show(
-      "The AI promoted one of his pawns!",
+      strings.AIPromoted[this.state.lang],
       ToastAndroid.LONG,
       ToastAndroid.BOTTOM
     );
@@ -192,11 +192,6 @@ export default class App extends Component<Props> {
       this.setState({ promotionParams: null });
       firebase.analytics().logEvent(`promote_pawn`);
       firebase.analytics().logEvent(`promote_pawn_to_${piece}`);
-      ToastAndroid.show(
-        "Your piece was promoted successfully!",
-        ToastAndroid.LONG,
-        ToastAndroid.BOTTOM
-      );
     } else {
       firebase
         .analytics()
@@ -213,11 +208,11 @@ export default class App extends Component<Props> {
 
   /// EVENTS ///
   handlePress = (x, y) => {
-    let { selected, playAgainstAI, isAIThinking } = this.state;
+    let { selected, playAgainstAI, isAIThinking, lang } = this.state;
 
     if (isAIThinking) {
       ToastAndroid.show(
-        "Plase wait while our AI is thinking...",
+        strings.AIThinking[lang],
         ToastAndroid.SHORT,
         ToastAndroid.BOTTOM
       );
@@ -261,7 +256,7 @@ export default class App extends Component<Props> {
       } else {
         game.board[y][x] &&
           ToastAndroid.show(
-            "Invalid move...",
+            strings.invalidMove[lang],
             ToastAndroid.SHORT,
             ToastAndroid.BOTTOM
           );
