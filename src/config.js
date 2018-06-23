@@ -5,7 +5,6 @@ export const colorPalettes = {
   default: {
     name: "RSG Chess standard",
     background: "rgb(240, 220, 180)",
-    bar: "rgb(255, 120, 45)",
     props: {
       whiteCells: "rgb(255, 205, 160)",
       blackCells: "rgb(210, 140, 70)",
@@ -17,7 +16,6 @@ export const colorPalettes = {
   blue: {
     name: "Light blue ocean",
     background: "rgb(220, 255, 245)",
-    bar: "rgb(110, 130, 180)",
     props: {
       whiteCells: "rgb(225, 225, 225)",
       blackCells: "rgb(110, 130, 180)",
@@ -29,7 +27,6 @@ export const colorPalettes = {
   green: {
     name: "Chess.com green",
     background: "rgb(235, 255, 205)",
-    bar: "rgb(120, 150, 85)",
     props: {
       whiteCells: "rgb(240, 240, 210)",
       blackCells: "rgb(120, 150, 85)",
@@ -41,7 +38,6 @@ export const colorPalettes = {
   sweet: {
     name: "Sweety",
     background: "rgb(255, 234, 248)",
-    bar: "rgb(230, 110, 110)",
     props: {
       whiteCells: "rgb(255, 215, 215)",
       blackCells: "rgb(230, 110, 110)",
@@ -69,12 +65,12 @@ export const strings = {
     ru: "Добро пожаловать!"
   },
   selectMode: {
-    en: "Select game mode:",
-    bg: "Изберете начин за игра:",
-    ru: "Выберите игровой режим:"
+    en: "Choose game mode",
+    bg: "Изберете начин за игра",
+    ru: "Выберите игровой режим"
   },
   playAgainstAI: {
-    en: "Play versus AI computer",
+    en: "Play versus AI",
     bg: "Игра срещу AI",
     ru: "Игра против AI"
   },
@@ -102,6 +98,19 @@ export const strings = {
     en: "start singleplayer",
     bg: "започнете singleplayer",
     ru: "пуск singleplayer"
+  },
+  singleplayerDescription: {
+    en: "singleplayer or game versus friend",
+    bg: "започнете singleplayer или игра срещу приятел",
+    ru: "пуск singleplayer"
+  },
+  hardModeWarning: {
+    en:
+      'Warning: The AI may require longer time to make its turn on the "hard" level!',
+    bg:
+      "Внимание: AI алгоритъма може да се нуждае от повече време, за да направи ход, ако изберете най-трудното ниво!",
+    ru:
+      "Предупреждение: алгоритму AI может потребоваться больше времени, чтобы сделать ход, если вы выберете самый сложный уровень!"
   },
   placeOnTheSurface: {
     en: "Place your device horizontally on the surface and",
@@ -200,9 +209,12 @@ export const strings = {
     ru: "Поверните черные фигуры"
   },
   rotateBlackPiecesLabel: {
-    en: "Rotate the pieces for better experience, especially if you're two players on the device.",
-    bg: "Завъртете фигурите за по-добър ефект, особено ако двама играчи играете на това устройство!",
-    ru: "Поверните шахматные фигуры для лучшего опыта, особенно если вы два игрока на устройстве."
+    en:
+      "Rotate the pieces for better experience, especially if you're two players on the device.",
+    bg:
+      "Завъртете фигурите за по-добър ефект, особено ако двама играчи играете на това устройство!",
+    ru:
+      "Поверните шахматные фигуры для лучшего опыта, особенно если вы два игрока на устройстве."
   },
   gameOver: {
     en: "The game is over",
@@ -307,7 +319,8 @@ export const strings = {
     ru: "Для RSG Chess"
   },
   sessionOnlyLabel: {
-    en: "These settings are session-only. If you restart the app they won't be saved!",
+    en:
+      "These settings are session-only. If you restart the app they won't be saved!",
     bg: "Тези настройки няма да бъдат запазени ако рестартирате приложението!",
     ru: "Если вы перезапустите приложение, эти настройки не будут сохранены!"
   },

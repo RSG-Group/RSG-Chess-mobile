@@ -4,9 +4,10 @@ import { Pieces } from "rsg-chess";
 import ChessBoard from "rsg-chess-rn-graphics";
 import firebase from "react-native-firebase";
 import getSizes from "../scripts/getSizes";
+import NavigationContext from "../components/NavigationContext";
 import renderCheckmateModal from "../components/CheckmateModal";
 import renderPromotionModal from "../components/PromotionModal";
-import NavigationContext from "../components/NavigationContext";
+import renderSelectModeModal from "../components/SelectModeModal";
 import { colorPalettes } from "../config";
 
 export default class Play extends React.Component<Props> {
@@ -38,7 +39,9 @@ export default class Play extends React.Component<Props> {
             handleReplay,
             palette,
             rotated,
-            promoteSelectedPawn
+            promoteSelectedPawn,
+            selectModeModal,
+            selectMode
           } = data;
           // To be clear:
           /// colorPalettes - array of all palettes
@@ -53,7 +56,7 @@ export default class Play extends React.Component<Props> {
                 { backgroundColor: currentPalette.background }
               ]}
             >
-              <StatusBar hidden={true} backgroundColor={currentPalette.bar} />
+              <StatusBar hidden={true}/>
               <View>
                 <ChessBoard
                   self={self}
@@ -72,7 +75,12 @@ export default class Play extends React.Component<Props> {
                 self.setState({ checkmate: null });
               })}
               {promotionParams &&
-                renderPromotionModal(promotionParams, lang, promoteSelectedPawn)}
+                renderPromotionModal(
+                  promotionParams,
+                  lang,
+                  promoteSelectedPawn
+                )}
+              {renderSelectModeModal(!!selectModeModal, selectMode, lang)}
             </View>
           );
         }}

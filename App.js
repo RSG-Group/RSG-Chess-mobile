@@ -61,7 +61,7 @@ export default class App extends Component<Props> {
       playAgainstAI: null,
       isAIThinking: false,
       promotionParams: null,
-      // selectModeModal: true
+      selectModeModal: true
       // playAgainstAI: { depth: 3 },
     };
 
@@ -204,6 +204,13 @@ export default class App extends Component<Props> {
     }
   };
 
+  selectMode = playAgainstAI => {
+    this.setState({
+      selectModeModal: false,
+      playAgainstAI: playAgainstAI
+    });
+  };
+
   /// EVENTS ///
   handlePress = (x, y) => {
     let { selected, playAgainstAI, isAIThinking } = this.state;
@@ -284,7 +291,8 @@ export default class App extends Component<Props> {
       promotionParams: null,
       checkmate: null,
       isAIThinking: false,
-      playAgainstAI: null
+      playAgainstAI: null,
+      selectModeModal: true
     });
 
     // Initialize new game
@@ -322,7 +330,8 @@ export default class App extends Component<Props> {
       updatePalette,
       setRotation,
       updateValidMovesConfig,
-      promoteSelectedPawn
+      promoteSelectedPawn,
+      selectMode
     } = this;
 
     return (
@@ -338,6 +347,7 @@ export default class App extends Component<Props> {
             setRotation: setRotation,
             updateValidMovesConfig: updateValidMovesConfig,
             promoteSelectedPawn: promoteSelectedPawn,
+            selectMode: selectMode,
             ...this.state
           }}
         >

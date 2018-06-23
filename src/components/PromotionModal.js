@@ -22,9 +22,6 @@ const renderPromotionModal = (promotionParams, lang, promotionCallback) => {
       animationOutTiming={1000}
       backdropTransitionInTiming={1000}
       backdropTransitionOutTiming={1000}
-      onBackdropPress={() => {
-        promotionCallback("queen");
-      }}
     >
       <View style={styles.mainContainer}>
         <Text style={styles.text}>{strings.promotePawn[lang]}</Text>

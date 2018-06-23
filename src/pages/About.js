@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { Platform, View, ScrollView, Text, Button } from "react-native";
+import {
+  Platform,
+  View,
+  ScrollView,
+  Text,
+  Button,
+  StyleSheet
+} from "react-native";
 import CheckmateSnackBar from "../components/CheckmateSnackBar";
 import firebase from "react-native-firebase";
 import { strings } from "../config";
@@ -62,5 +69,9 @@ export default class HomePage extends Component<Props> {
 }
 
 const styles = StyleSheet.create({
-  scrollView: { flex: 1, padding: 7 }
+  scrollView: {
+    flex: 1,
+    padding: 5,
+    paddingTop: 15
+  }
 });
