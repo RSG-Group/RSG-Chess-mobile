@@ -95,14 +95,14 @@ export const strings = {
     ru: "или"
   },
   singleplayer: {
-    en: "start singleplayer",
-    bg: "започнете singleplayer",
-    ru: "пуск singleplayer"
+    en: "Start singleplayer",
+    bg: "Започнете singleplayer",
+    ru: "Пуск singleplayer"
   },
   singleplayerDescription: {
-    en: "singleplayer or game versus friend",
-    bg: "започнете singleplayer или игра срещу приятел",
-    ru: "пуск singleplayer"
+    en: "Start singleplayer or game versus friend:",
+    bg: "Започнете singleplayer или игра срещу приятел:",
+    ru: "Пуск singleplayer:"
   },
   hardModeWarning: {
     en:

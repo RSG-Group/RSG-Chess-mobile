@@ -18,9 +18,7 @@ const renderSelectModeModal = (visible, selectModeMethod, lang) => {
       backdropOpacity={1}
     >
       <View style={styles.mainContainer}>
-        <Text style={[styles.text, { margin: 5 }]}>
-          {strings.selectMode[lang]}
-        </Text>
+        <Text style={styles.text}>{strings.selectMode[lang]}</Text>
         <Text style={{ margin: 4 }}>
           {strings.singleplayerDescription[lang]}
         </Text>
@@ -51,14 +49,6 @@ const renderSelectModeModal = (visible, selectModeMethod, lang) => {
             />
           </View>
         </View>
-        <View style={styles.buttonContainer}>
-          <Button
-            title={strings.hard[lang]}
-            onPress={() => {
-              selectModeMethod({ depth: 3 });
-            }}
-          />
-        </View>
         <View style={{ margin: 2 }}>
           <Button
             title={strings.hard[lang]}
@@ -67,7 +57,9 @@ const renderSelectModeModal = (visible, selectModeMethod, lang) => {
             }}
           />
         </View>
-        <Text style={{ margin: 4 }}>{strings.hardModeWarning[lang]}</Text>
+        <Text style={{ margin: 4, color: "red", fontStyle: "italic" }}>
+          {strings.hardModeWarning[lang]}
+        </Text>
       </View>
     </Modal>
   );
@@ -82,8 +74,9 @@ const styles = StyleSheet.create({
     borderColor: "rgba(0, 0, 0, 0.1)"
   },
   text: {
-    fontSize: 18,
-    textAlign: "center"
+    fontSize: 20,
+    textAlign: "center",
+    margin: 6
   },
   optionsRow: {
     flexDirection: "row",
