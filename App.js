@@ -46,21 +46,23 @@ if (!includes(supportedLangs, language)) language = "en";
 const supportedPalettes = Object.keys(colorPalettes);
 
 export default class App extends Component<Props> {
+  /// CLASS METHODS ///
   constructor() {
     super();
     this.state = {
       width: Dimensions.get("window").width,
       height: Dimensions.get("window").height,
-      selected: null,
-      // playAgainstAI: { depth: 3 },
-      playAgainstAI: null,
-      isAIThinking: false,
-      checkmate: null,
       lang: language,
       palette: "default",
       rotated: false,
       showValidMoves: true,
-      promotionParams: null
+      selected: null,
+      checkmate: null,
+      playAgainstAI: null,
+      isAIThinking: false,
+      promotionParams: null,
+      // selectModeModal: true
+      // playAgainstAI: { depth: 3 },
     };
 
     Dimensions.addEventListener("change", () => {
@@ -83,39 +85,6 @@ export default class App extends Component<Props> {
     });
   }
 
-  setRotation = value => {
-    this.setState({
-      rotated: value
-    });
-  };
-
-  updateValidMovesConfig = value => {
-    AsyncStorage.setItem(
-      "@RSGChess:showValidMoves",
-      JSON.stringify(value)
-    ).then(ev => {
-      this.setState({ showValidMoves: value });
-      firebase.analytics().logEvent(`update_validMoves_configuration`);
-    });
-  };
-
-  updateLang = value => {
-    if (includes(supportedLangs, value))
-      AsyncStorage.setItem("@RSGChess:lang", value).then(ev => {
-        this.setState({ lang: value });
-        firebase.analytics().logEvent(`update_language`);
-      });
-  };
-
-  updatePalette = value => {
-    if (includes(supportedPalettes, value))
-      AsyncStorage.setItem("@RSGChess:palette", value).then(ev => {
-        this.setState({ palette: value });
-        firebase.analytics().logEvent(`update_palette`);
-        firebase.analytics().logEvent(`set_${value}_palette`);
-      });
-  };
-
   componentDidMount = () => {
     // Make sure the splash screen is gone
     SplashScreen.hide();
@@ -136,7 +105,6 @@ export default class App extends Component<Props> {
           `Getting error: ${error.toString()}, when trying to get the lang from the storage.`
         );
     }
-
     try {
       AsyncStorage.getItem("@RSGChess:showValidMoves").then(value => {
         if (value) {
@@ -172,6 +140,49 @@ export default class App extends Component<Props> {
     }
   };
 
+  /// HELPERS ///
+  setRotation = value => {
+    this.setState({
+      rotated: value
+    });
+  };
+
+  updateValidMovesConfig = value => {
+    AsyncStorage.setItem(
+      "@RSGChess:showValidMoves",
+      JSON.stringify(value)
+    ).then(ev => {
+      this.setState({ showValidMoves: value });
+      firebase.analytics().logEvent(`update_validMoves_configuration`);
+    });
+  };
+
+  updateLang = value => {
+    if (includes(supportedLangs, value))
+      AsyncStorage.setItem("@RSGChess:lang", value).then(ev => {
+        this.setState({ lang: value });
+        firebase.analytics().logEvent(`update_language`);
+      });
+  };
+
+  updatePalette = value => {
+    if (includes(supportedPalettes, value))
+      AsyncStorage.setItem("@RSGChess:palette", value).then(ev => {
+        this.setState({ palette: value });
+        firebase.analytics().logEvent(`update_palette`);
+        firebase.analytics().logEvent(`set_${value}_palette`);
+      });
+  };
+
+  promoteAI = (pawn, x, y, color) => {
+    ToastAndroid.show(
+      "The AI promoted one of his pawns!",
+      ToastAndroid.LONG,
+      ToastAndroid.BOTTOM
+    );
+    game.promotePawn(pawn, x, y, color, "queen");
+  };
+
   promoteSelectedPawn = piece => {
     const { promotionParams } = this.state;
     if (promotionParams) {
@@ -193,6 +204,7 @@ export default class App extends Component<Props> {
     }
   };
 
+  /// EVENTS ///
   handlePress = (x, y) => {
     let { selected, playAgainstAI, isAIThinking } = this.state;
 
@@ -269,10 +281,8 @@ export default class App extends Component<Props> {
     // Set state to null and false, to reset all params
     this.setState({
       selected: null,
-      // promotionParams: null,
-      // welcomeDialog: true,
+      promotionParams: null,
       checkmate: null,
-      // settingsDialog: false,
       isAIThinking: false,
       playAgainstAI: null
     });
@@ -284,15 +294,6 @@ export default class App extends Component<Props> {
   handleCheckmate = color => {
     this.setState({ checkmate: color });
     firebase.analytics().logEvent(`checkmate_event`);
-  };
-
-  promoteAI = (pawn, x, y, color) => {
-    ToastAndroid.show(
-      "The AI promoted one of his pawns!",
-      ToastAndroid.LONG,
-      ToastAndroid.BOTTOM
-    );
-    game.promotePawn(pawn, x, y, color, "queen");
   };
 
   handleMessage = msg => {

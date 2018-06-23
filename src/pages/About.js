@@ -39,7 +39,7 @@ export default class HomePage extends Component<Props> {
             if (lang === "ru") request.addKeyword("Russia");
 
             return (
-              <ScrollView style={{ flex: 1, padding: 7 }}>
+              <ScrollView style={styles.scrollView}>
                 <Text style={{ textAlign: "center" }}>
                   {strings.about.initial[lang]}
                 </Text>
@@ -60,3 +60,7 @@ export default class HomePage extends Component<Props> {
     );
   }
 }
+
+const styles = StyleSheet.create({
+  scrollView: { flex: 1, padding: 7 }
+});
