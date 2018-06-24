@@ -357,7 +357,7 @@ export const strings = {
   pieces: {
     rook: {
       en: "rook",
-      bg: "пешка",
+      bg: "топ",
       ru: "ладья"
     },
     queen: {

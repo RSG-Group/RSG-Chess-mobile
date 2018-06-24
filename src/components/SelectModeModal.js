@@ -5,7 +5,8 @@ import {
   View,
   TouchableOpacity,
   Button,
-  StyleSheet
+  StyleSheet,
+  ScrollView
 } from "react-native";
 import Modal from "react-native-modal";
 import { strings } from "../config";
@@ -18,48 +19,50 @@ const renderSelectModeModal = (visible, selectModeMethod, lang) => {
       backdropOpacity={1}
     >
       <View style={styles.mainContainer}>
-        <Text style={styles.text}>{strings.selectMode[lang]}</Text>
-        <Text style={{ margin: 4 }}>
-          {strings.singleplayerDescription[lang]}
-        </Text>
-        <View style={{ margin: 4 }}>
-          <Button
-            title={strings.singleplayer[lang]}
-            onPress={() => {
-              selectModeMethod(null);
-            }}
-          />
-        </View>
-        <Text style={{ margin: 4 }}>{strings.playAgainstAI[lang]}</Text>
-        <View style={styles.optionsRow}>
-          <View style={styles.buttonContainer}>
+        <ScrollView>
+          <Text style={styles.text}>{strings.selectMode[lang]}</Text>
+          <Text style={{ margin: 4 }}>
+            {strings.singleplayerDescription[lang]}
+          </Text>
+          <View style={{ margin: 4 }}>
             <Button
-              title={strings.easy[lang]}
+              title={strings.singleplayer[lang]}
               onPress={() => {
-                selectModeMethod({ depth: 2 });
+                selectModeMethod(null);
               }}
             />
           </View>
-          <View style={styles.buttonContainer}>
+          <Text style={{ margin: 4 }}>{strings.playAgainstAI[lang]}</Text>
+          <View style={styles.optionsRow}>
+            <View style={styles.buttonContainer}>
+              <Button
+                title={strings.easy[lang]}
+                onPress={() => {
+                  selectModeMethod({ depth: 2 });
+                }}
+              />
+            </View>
+            <View style={styles.buttonContainer}>
+              <Button
+                title={strings.medium[lang]}
+                onPress={() => {
+                  selectModeMethod({ depth: 3 });
+                }}
+              />
+            </View>
+          </View>
+          <View style={{ margin: 2 }}>
             <Button
-              title={strings.medium[lang]}
+              title={strings.hard[lang]}
               onPress={() => {
-                selectModeMethod({ depth: 3 });
+                selectModeMethod({ depth: 4 });
               }}
             />
           </View>
-        </View>
-        <View style={{ margin: 2 }}>
-          <Button
-            title={strings.hard[lang]}
-            onPress={() => {
-              selectModeMethod({ depth: 4 });
-            }}
-          />
-        </View>
-        <Text style={{ margin: 4, color: "red", fontStyle: "italic" }}>
-          {strings.hardModeWarning[lang]}
-        </Text>
+          <Text style={{ margin: 4, color: "red", fontStyle: "italic" }}>
+            {strings.hardModeWarning[lang]}
+          </Text>
+        </ScrollView>
       </View>
     </Modal>
   );

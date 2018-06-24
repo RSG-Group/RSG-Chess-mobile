@@ -5,7 +5,8 @@ import {
   View,
   TouchableOpacity,
   Button,
-  StyleSheet
+  StyleSheet,
+  ScrollView
 } from "react-native";
 import Modal from "react-native-modal";
 import { strings } from "../config";
@@ -24,44 +25,46 @@ const renderPromotionModal = (promotionParams, lang, promotionCallback) => {
       backdropTransitionOutTiming={1000}
     >
       <View style={styles.mainContainer}>
-        <Text style={styles.text}>{strings.promotePawn[lang]}</Text>
-        <Text>{`\n`}</Text>
-        <View style={styles.optionsRow}>
-          <View style={styles.buttonContainer}>
-            <Button
-              title={strings.pieces.knight[lang]}
-              onPress={() => {
-                promotionCallback("knight");
-              }}
-            />
+        <ScrollView>
+          <Text style={styles.text}>{strings.promotePawn[lang]}</Text>
+          <Text>{`\n`}</Text>
+          <View style={styles.optionsRow}>
+            <View style={styles.buttonContainer}>
+              <Button
+                title={strings.pieces.knight[lang]}
+                onPress={() => {
+                  promotionCallback("knight");
+                }}
+              />
+            </View>
+            <View style={styles.buttonContainer}>
+              <Button
+                title={strings.pieces.rook[lang]}
+                onPress={() => {
+                  promotionCallback("rook");
+                }}
+              />
+            </View>
           </View>
-          <View style={styles.buttonContainer}>
-            <Button
-              title={strings.pieces.rook[lang]}
-              onPress={() => {
-                promotionCallback("rook");
-              }}
-            />
+          <View style={styles.optionsRow}>
+            <View style={styles.buttonContainer}>
+              <Button
+                title={strings.pieces.bishop[lang]}
+                onPress={() => {
+                  promotionCallback("bishop");
+                }}
+              />
+            </View>
+            <View style={styles.buttonContainer}>
+              <Button
+                title={strings.pieces.queen[lang]}
+                onPress={() => {
+                  promotionCallback("queen");
+                }}
+              />
+            </View>
           </View>
-        </View>
-        <View style={styles.optionsRow}>
-          <View style={styles.buttonContainer}>
-            <Button
-              title={strings.pieces.bishop[lang]}
-              onPress={() => {
-                promotionCallback("bishop");
-              }}
-            />
-          </View>
-          <View style={styles.buttonContainer}>
-            <Button
-              title={strings.pieces.queen[lang]}
-              onPress={() => {
-                promotionCallback("queen");
-              }}
-            />
-          </View>
-        </View>
+        </ScrollView>
       </View>
     </Modal>
   );
