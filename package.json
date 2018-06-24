@@ -1,13 +1,35 @@
 {
-  "dependencies": {
-    "cordova-plugin-globalization": "^1.11.0",
-    "nb-blob-worker": "^1.7.3",
-    "rsg-chess": "^1.0.3"
+  "name": "RSG_Chess_mobile_native",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
   },
-  "cordova": {
-    "plugins": {
-      "cordova-plugin-x-toast": {},
-      "cordova-plugin-globalization": {}
-    }
+  "dependencies": {
+    "babel-plugin-transform-remove-console": "^6.9.4",
+    "lodash": "^4.17.10",
+    "react": "16.3.1",
+    "react-native": "0.55.4",
+    "react-native-firebase": "^4.2.0",
+    "react-native-modal": "^6.1.0",
+    "react-native-settings-components": "https://github.com/radi-cho/react-native-settings-components",
+    "react-native-snackbar": "^0.4.7",
+    "react-native-splash-screen": "3.0.6",
+    "react-navigation": "^2.1.0",
+    "rsg-chess": "1.1.0-alpha.1",
+    "rsg-chess-rn-graphics": "^1.1.0-alpha.3"
+  },
+  "devDependencies": {
+    "babel-jest": "22.4.3",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react-native": "4.0.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "jest": "22.4.3",
+    "react-test-renderer": "16.3.1"
+  },
+  "jest": {
+    "preset": "react-native"
   }
 }
