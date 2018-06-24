@@ -1,5 +1,5 @@
 import React from "react";
-import { View, StatusBar, StyleSheet } from "react-native";
+import { View, Text, StatusBar, StyleSheet } from "react-native";
 import { Pieces } from "rsg-chess";
 import ChessBoard from "rsg-chess-rn-graphics";
 import firebase from "react-native-firebase";
@@ -8,13 +8,29 @@ import NavigationContext from "../components/NavigationContext";
 import renderCheckmateModal from "../components/CheckmateModal";
 import renderPromotionModal from "../components/PromotionModal";
 import renderSelectModeModal from "../components/SelectModeModal";
-import { colorPalettes } from "../config";
+import { strings, colorPalettes } from "../config";
 
 export default class Play extends React.Component<Props> {
   static navigationOptions = {
     title: "Play",
     header: null,
-    drawerLabel: "Play"
+    drawerLabel: () => (
+      <NavigationContext.Consumer>
+        {data => {
+          return (
+            <Text
+              style={{
+                margin: 16,
+                fontWeight: "bold",
+                color: "black"
+              }}
+            >
+              {strings.play[data.lang]}
+            </Text>
+          );
+        }}
+      </NavigationContext.Consumer>
+    )
   };
 
   componentDidMount() {

@@ -24,7 +24,25 @@ import { strings, possiblePalettes } from "../config";
 
 export default class HomePage extends Component<Props> {
   static navigationOptions = {
-    title: "Settings"
+    title: "Settings",
+    header: null,
+    drawerLabel: () => (
+      <NavigationContext.Consumer>
+        {data => {
+          return (
+            <Text
+              style={{
+                margin: 16,
+                fontWeight: "bold",
+                color: "black"
+              }}
+            >
+              {strings.settings[data.lang]}
+            </Text>
+          );
+        }}
+      </NavigationContext.Consumer>
+    )
   };
 
   state = {

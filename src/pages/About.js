@@ -14,8 +14,27 @@ import NavigationContext from "../components/NavigationContext";
 
 export default class HomePage extends Component<Props> {
   static navigationOptions = {
-    title: "About"
+    title: "About",
+    header: null,
+    drawerLabel: () => (
+      <NavigationContext.Consumer>
+        {data => {
+          return (
+            <Text
+              style={{
+                margin: 16,
+                fontWeight: "bold",
+                color: "black"
+              }}
+            >
+              {strings.about.label[data.lang]}
+            </Text>
+          );
+        }}
+      </NavigationContext.Consumer>
+    )
   };
+
 
   constructor() {
     super();
