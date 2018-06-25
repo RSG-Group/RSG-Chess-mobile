@@ -172,7 +172,7 @@ export default class HomePage extends Component<Props> {
                 </ScrollView>
                 <View
                   style={{
-                    height: 52,
+                    height: Dimensions.get("window").height < 720 ? 52 : 90,
                     display: this.state.adLoaded ? "flex" : "none"
                   }}
                 >

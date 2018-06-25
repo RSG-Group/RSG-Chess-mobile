@@ -5,7 +5,7 @@ import ChessBoard from "rsg-chess-rn-graphics";
 import firebase from "react-native-firebase";
 import getSizes from "../scripts/getSizes";
 import NavigationContext from "../components/NavigationContext";
-import renderCheckmateModal from "../components/CheckmateModal";
+import renderCheckmateModal from "../components/CheckMateModal";
 import renderPromotionModal from "../components/PromotionModal";
 import renderSelectModeModal from "../components/SelectModeModal";
 import { strings, colorPalettes } from "../config";

@@ -35,7 +35,6 @@ export default class HomePage extends Component<Props> {
     )
   };
 
-
   constructor() {
     super();
     this.Banner = firebase.admob.Banner;
@@ -73,7 +72,11 @@ export default class HomePage extends Component<Props> {
             );
           }}
         </NavigationContext.Consumer>
-        <View style={{ height: 52 }}>
+        <View
+          style={{
+            height: Dimensions.get("window").height < 720 ? 52 : 90
+          }}
+        >
           <Banner
             size={"SMART_BANNER"}
             request={request.build()}
