@@ -21,6 +21,7 @@ import {
 } from "react-native-settings-components";
 import NavigationContext from "../components/NavigationContext";
 import { strings, possiblePalettes } from "../config";
+import { adsHeight } from "../scripts/getSizes";
 
 export default class HomePage extends Component<Props> {
   static navigationOptions = {
@@ -172,7 +173,8 @@ export default class HomePage extends Component<Props> {
                 </ScrollView>
                 <View
                   style={{
-                    height: Dimensions.get("window").height < 720 ? 52 : 90,
+                    height: adsHeight(Dimensions.get("window").height),
+                    backgroundColor: "#dfdfdf",
                     display: this.state.adLoaded ? "flex" : "none"
                   }}
                 >

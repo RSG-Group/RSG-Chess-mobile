@@ -16,3 +16,13 @@ const getSizes = (width, height) => {
 };
 
 export default getSizes;
+
+export const adsHeight = height => {
+  if (height < 400) {
+    return 30;
+  } else if (height < 720) {
+    return 52;
+  } else {
+    return 90;
+  }
+};

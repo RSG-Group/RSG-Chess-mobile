@@ -5,11 +5,13 @@ import {
   ScrollView,
   Text,
   Button,
-  StyleSheet
+  StyleSheet,
+  Dimensions
 } from "react-native";
 import CheckmateSnackBar from "../components/CheckmateSnackBar";
 import firebase from "react-native-firebase";
 import { strings } from "../config";
+import { adsHeight } from "../scripts/getSizes";
 import NavigationContext from "../components/NavigationContext";
 
 export default class HomePage extends Component<Props> {
@@ -74,7 +76,8 @@ export default class HomePage extends Component<Props> {
         </NavigationContext.Consumer>
         <View
           style={{
-            height: Dimensions.get("window").height < 720 ? 52 : 90
+            height: adsHeight(Dimensions.get("window").height),
+            backgroundColor: "#dfdfdf"
           }}
         >
           <Banner
