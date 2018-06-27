@@ -363,7 +363,7 @@ export const strings = {
     queen: {
       en: "queen",
       bg: "царица",
-      en: "Ферзь"
+      ru: "Ферзь"
     },
     knight: {
       en: "knight",
