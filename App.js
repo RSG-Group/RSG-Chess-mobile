@@ -208,7 +208,7 @@ export default class App extends Component<Props> {
 
   /// EVENTS ///
   handlePress = (x, y) => {
-    let { selected, playAgainstAI, isAIThinking, lang } = this.state;
+    let { selected, playAgainstAI, isAIThinking, lang, checkmate } = this.state;
 
     if (isAIThinking) {
       ToastAndroid.show(
@@ -237,7 +237,8 @@ export default class App extends Component<Props> {
         moved &&
         playAgainstAI &&
         last >= 0 &&
-        game.turn[last].color === "W"
+        game.turn[last].color === "W" &&
+        !checkmate
       ) {
         this.webView.injectJavaScript(
           `AI(${combineParams(game, playAgainstAI)})`
@@ -300,10 +301,27 @@ export default class App extends Component<Props> {
   };
 
   handleMessage = msg => {
-    msg = JSON.parse(msg.nativeEvent.data);
-    const { promoteAI } = this;
+    if (msg && msg.nativeEvent.data) {
+      // Track issues if any
+      if (typeof msg.nativeEvent.data === "string") {
+        firebase
+          .crashlytics()
+          .setStringValue("handleMessageData", msg.nativeEvent.data);
+      } else if (!JSON.stringify(msg.nativeEvent.data)) {
+        firebase.crashlytics().setStringValue("handleMessageData", "cannot stringify data");
+      } else {
+        firebase
+          .crashlytics()
+          .setStringValue(
+            "handleMessageData",
+            JSON.stringify(msg.nativeEvent.data)
+          );
+      }
+      // // //
 
-    if (msg !== null) {
+      msg = JSON.parse(msg.nativeEvent.data);
+      const { promoteAI } = this;
+
       game.moveSelected(
         game.board[msg.from.y][msg.from.x],
         msg.to,
@@ -313,6 +331,8 @@ export default class App extends Component<Props> {
       );
 
       this.setState({ isAIThinking: false });
+    } else {
+      firebase.crashlytics().setStringValue("handleMessageData", "undefined");      
     }
   };
 

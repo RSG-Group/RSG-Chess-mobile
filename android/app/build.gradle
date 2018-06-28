@@ -106,8 +106,8 @@ android {
         minSdkVersion 16
         targetSdkVersion 27
         // next time use versionCode - 20018, because of the seperate APKs:
-        versionCode 20100
-        versionName "2.0.0"
+        versionCode 20102
+        versionName "2.0.1"
         // ndk {
         //     abiFilters "armeabi-v7a", "x86"
         // }

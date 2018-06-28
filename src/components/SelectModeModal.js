@@ -9,6 +9,7 @@ import {
   ScrollView
 } from "react-native";
 import Modal from "react-native-modal";
+import firebase from "react-native-firebase";
 import { strings } from "../config";
 
 const renderSelectModeModal = (visible, selectModeMethod, lang) => {
@@ -29,6 +30,7 @@ const renderSelectModeModal = (visible, selectModeMethod, lang) => {
               title={strings.singleplayer[lang]}
               onPress={() => {
                 selectModeMethod(null);
+                firebase.analytics().logEvent(`start_singleplayer`);
               }}
             />
           </View>
@@ -39,6 +41,7 @@ const renderSelectModeModal = (visible, selectModeMethod, lang) => {
                 title={strings.easy[lang]}
                 onPress={() => {
                   selectModeMethod({ depth: 2 });
+                  firebase.analytics().logEvent(`start_easy_AI`);
                 }}
               />
             </View>
@@ -47,6 +50,7 @@ const renderSelectModeModal = (visible, selectModeMethod, lang) => {
                 title={strings.medium[lang]}
                 onPress={() => {
                   selectModeMethod({ depth: 3 });
+                  firebase.analytics().logEvent(`start_medium_AI`);
                 }}
               />
             </View>
@@ -56,6 +60,7 @@ const renderSelectModeModal = (visible, selectModeMethod, lang) => {
               title={strings.hard[lang]}
               onPress={() => {
                 selectModeMethod({ depth: 4 });
+                firebase.analytics().logEvent(`start_hard_AI`);
               }}
             />
           </View>
