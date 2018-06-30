@@ -263,6 +263,8 @@ export default class App extends Component<Props> {
           );
       }
     }
+
+    firebase.crashlytics().setStringValue("FEN", game.FEN);    
   };
 
   handlePromotion = (pawn, x, y, color) => {
