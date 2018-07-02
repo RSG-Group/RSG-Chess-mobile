@@ -40,6 +40,8 @@ interstitial.on("onAdClosed", () => {
 });
 
 let language = NativeModules.I18nManager.localeIdentifier.split(`_`)[0];
+firebase.crashlytics().setStringValue("initial_language", language);
+
 const supportedLangs = Object.keys(strings.languages);
 if (!includes(supportedLangs, language)) language = "en";
 
@@ -181,10 +183,11 @@ export default class App extends Component<Props> {
       ToastAndroid.BOTTOM
     );
     game.promotePawn(pawn, x, y, color, "queen");
+    firebase.analytics().logEvent(`AI_promotion`);
   };
 
   promoteSelectedPawn = piece => {
-    const { promotionParams } = this.state;
+    const { promotionParams, playAgainstAI, checkmate } = this.state;
     if (promotionParams) {
       piece = piece ? piece : "knight";
       const { x, y, color, pawn } = promotionParams;
@@ -192,6 +195,11 @@ export default class App extends Component<Props> {
       this.setState({ promotionParams: null });
       firebase.analytics().logEvent(`promote_pawn`);
       firebase.analytics().logEvent(`promote_pawn_to_${piece}`);
+
+      // Start the AI if there is playAgainstAI mode
+      if (playAgainstAI && !checkmate) {
+        this.startAI();
+      }
     } else {
       firebase
         .analytics()
@@ -206,9 +214,17 @@ export default class App extends Component<Props> {
     });
   };
 
+  startAI = () => {
+    this.webView.injectJavaScript(
+      `AI(${combineParams(game, this.state.playAgainstAI)})`
+    );
+
+    this.setState({ isAIThinking: true });
+  };
+
   /// EVENTS ///
   handlePress = (x, y) => {
-    let { selected, playAgainstAI, isAIThinking, lang, checkmate } = this.state;
+    let { selected, playAgainstAI, isAIThinking, lang, checkmate, promotionParams } = this.state;
 
     if (isAIThinking) {
       ToastAndroid.show(
@@ -221,7 +237,7 @@ export default class App extends Component<Props> {
 
     if (selected) {
       // move the selected piece
-      let moved = game.moveSelected(
+      let move = game.moveSelected(
         selected,
         { x: x, y: y },
         this.handlePromotion,
@@ -234,16 +250,14 @@ export default class App extends Component<Props> {
 
       let last = game.turn.length - 1;
       if (
-        moved &&
+        move &&
         playAgainstAI &&
         last >= 0 &&
         game.turn[last].color === "W" &&
-        !checkmate
+        !checkmate &&
+        !move.promotion
       ) {
-        this.webView.injectJavaScript(
-          `AI(${combineParams(game, playAgainstAI)})`
-        );
-        this.setState({ isAIThinking: true });
+        this.startAI();
       }
     } else {
       let last = game.turn.length - 1;
@@ -264,7 +278,10 @@ export default class App extends Component<Props> {
       }
     }
 
-    firebase.crashlytics().setStringValue("FEN", game.FEN);    
+    firebase.crashlytics().setStringValue("FEN", game.FEN);
+    firebase
+      .crashlytics()
+      .setIntValue("threefold_length", game.threefold.length);
   };
 
   handlePromotion = (pawn, x, y, color) => {
@@ -300,6 +317,18 @@ export default class App extends Component<Props> {
   handleCheckmate = color => {
     this.setState({ checkmate: color });
     firebase.analytics().logEvent(`checkmate_event`);
+    if (color === "D") {
+      firebase.analytics().logEvent(`draw`);
+    } else if (color === "W") {
+      firebase.analytics().logEvent(`black_player_won`);
+      if (this.state.playAgainstAI) {
+        firebase.analytics().logEvent(`AI_won`);
+      }
+    } else if (color === "B") {
+      firebase.analytics().logEvent(`white_player_won`);
+    } else {
+      firebase.analytics().logEvent(`unknown_checkmate_event`);
+    }
   };
 
   handleMessage = msg => {
@@ -308,14 +337,20 @@ export default class App extends Component<Props> {
       if (typeof msg.nativeEvent.data === "string") {
         firebase
           .crashlytics()
-          .setStringValue("handleMessageData", msg.nativeEvent.data);
+          .setStringValue("handleMessage_data", msg.nativeEvent.data);
       } else if (!JSON.stringify(msg.nativeEvent.data)) {
-        firebase.crashlytics().setStringValue("handleMessageData", "cannot stringify data");
+        firebase
+          .crashlytics()
+          .setStringValue("webView_message_type", typeof msg.nativeEvent.data);
+
+        firebase
+          .crashlytics()
+          .recordError(1, "Cannot stringify message from WebView.");
       } else {
         firebase
           .crashlytics()
           .setStringValue(
-            "handleMessageData",
+            "handleMessage_data",
             JSON.stringify(msg.nativeEvent.data)
           );
       }
@@ -334,7 +369,7 @@ export default class App extends Component<Props> {
 
       this.setState({ isAIThinking: false });
     } else {
-      firebase.crashlytics().setStringValue("handleMessageData", "undefined");      
+      firebase.crashlytics().setStringValue("handleMessage_data", "undefined");
     }
   };
 
