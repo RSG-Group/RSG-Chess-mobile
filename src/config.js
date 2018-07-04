@@ -426,7 +426,7 @@ export const globalStyles = {
   drawerItemLabel: {
     margin: 12,
     marginLeft: 20,
-    fontSize: 19,
+    fontSize: 18,
     fontWeight: "bold",
     color: "black"
   }

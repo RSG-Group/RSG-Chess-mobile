@@ -8,6 +8,7 @@ import NavigationContext from "../components/NavigationContext";
 import renderCheckmateModal from "../components/CheckMateModal";
 import renderPromotionModal from "../components/PromotionModal";
 import renderSelectModeModal from "../components/SelectModeModal";
+import MenuIcon from "../components/MenuIcon";
 import { strings, colorPalettes, globalStyles } from "../config";
 
 export default class Play extends React.Component<Props> {
@@ -67,6 +68,10 @@ export default class Play extends React.Component<Props> {
               ]}
             >
               <StatusBar hidden={true} />
+              <MenuIcon
+                navigation={this.props.navigation}
+                palette={currentPalette}
+              />
               <View>
                 <ChessBoard
                   self={self}
