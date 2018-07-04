@@ -8,7 +8,7 @@ import NavigationContext from "../components/NavigationContext";
 import renderCheckmateModal from "../components/CheckMateModal";
 import renderPromotionModal from "../components/PromotionModal";
 import renderSelectModeModal from "../components/SelectModeModal";
-import { strings, colorPalettes } from "../config";
+import { strings, colorPalettes, globalStyles } from "../config";
 
 export default class Play extends React.Component<Props> {
   static navigationOptions = {
@@ -18,13 +18,7 @@ export default class Play extends React.Component<Props> {
       <NavigationContext.Consumer>
         {data => {
           return (
-            <Text
-              style={{
-                margin: 16,
-                fontWeight: "bold",
-                color: "black"
-              }}
-            >
+            <Text style={globalStyles.drawerItemLabel}>
               {strings.play[data.lang]}
             </Text>
           );
@@ -72,7 +66,7 @@ export default class Play extends React.Component<Props> {
                 { backgroundColor: currentPalette.background }
               ]}
             >
-              <StatusBar hidden={true}/>
+              <StatusBar hidden={true} />
               <View>
                 <ChessBoard
                   self={self}

@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import CheckmateSnackBar from "../components/CheckmateSnackBar";
 import firebase from "react-native-firebase";
-import { strings } from "../config";
+import { strings, globalStyles } from "../config";
 import { adsHeight } from "../scripts/getSizes";
 import NavigationContext from "../components/NavigationContext";
 
@@ -22,13 +22,7 @@ export default class HomePage extends Component<Props> {
       <NavigationContext.Consumer>
         {data => {
           return (
-            <Text
-              style={{
-                margin: 16,
-                fontWeight: "bold",
-                color: "black"
-              }}
-            >
+            <Text style={globalStyles.drawerItemLabel}>
               {strings.about.label[data.lang]}
             </Text>
           );

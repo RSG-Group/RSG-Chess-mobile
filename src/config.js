@@ -326,7 +326,7 @@ export const strings = {
       en: "About",
       bg: "За нас",
       ru: "О нас"
-    },
+    }
   },
   gameOptions: {
     en: "Game options",
@@ -419,6 +419,16 @@ export const strings = {
       bg: "Български",
       ru: "Руский"
     }
+  }
+};
+
+export const globalStyles = {
+  drawerItemLabel: {
+    margin: 12,
+    marginLeft: 20,
+    fontSize: 19,
+    fontWeight: "bold",
+    color: "black"
   }
 };
 

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, Button } from "react-native";
 import firebase from "react-native-firebase";
-import { strings } from "../config";
+import { strings, globalStyles } from "../config";
 import NavigationContext from "../components/NavigationContext";
 
 export default class HomePage extends Component<Props> {
@@ -12,13 +12,7 @@ export default class HomePage extends Component<Props> {
       <NavigationContext.Consumer>
         {data => {
           return (
-            <Text
-              style={{
-                margin: 16,
-                fontWeight: "bold",
-                color: "#b70"
-              }}
-            >
+            <Text style={[globalStyles.drawerItemLabel, { color: "#b70" }]}>
               {strings.newGame[data.lang]}
             </Text>
           );

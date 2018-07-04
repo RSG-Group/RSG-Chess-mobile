@@ -20,7 +20,7 @@ import {
   SettingsTextLabel
 } from "react-native-settings-components";
 import NavigationContext from "../components/NavigationContext";
-import { strings, possiblePalettes } from "../config";
+import { strings, possiblePalettes, globalStyles } from "../config";
 import { adsHeight } from "../scripts/getSizes";
 
 export default class HomePage extends Component<Props> {
@@ -31,13 +31,7 @@ export default class HomePage extends Component<Props> {
       <NavigationContext.Consumer>
         {data => {
           return (
-            <Text
-              style={{
-                margin: 16,
-                fontWeight: "bold",
-                color: "black"
-              }}
-            >
+            <Text style={globalStyles.drawerItemLabel}>
               {strings.settings[data.lang]}
             </Text>
           );
