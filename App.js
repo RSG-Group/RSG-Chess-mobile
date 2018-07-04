@@ -12,7 +12,8 @@ import includes from "lodash/includes";
 import { createDrawerNavigator } from "react-navigation";
 
 import { Game } from "rsg-chess";
-import { html, combineParams } from "./src/scripts/AI";
+import { html } from "./src/scripts/AI";
+import { combineParams, stringifyTurnsReport } from "./src/scripts/utils";
 import { strings, colorPalettes } from "./src/config";
 import NavigationContext from "./src/components/NavigationContext";
 
@@ -187,6 +188,7 @@ export default class App extends Component<Props> {
   };
 
   promoteSelectedPawn = piece => {
+    qwerty
     const { promotionParams, playAgainstAI, checkmate } = this.state;
     if (promotionParams) {
       piece = piece ? piece : "knight";
@@ -224,7 +226,14 @@ export default class App extends Component<Props> {
 
   /// EVENTS ///
   handlePress = (x, y) => {
-    let { selected, playAgainstAI, isAIThinking, lang, checkmate, promotionParams } = this.state;
+    let {
+      selected,
+      playAgainstAI,
+      isAIThinking,
+      lang,
+      checkmate,
+      promotionParams
+    } = this.state;
 
     if (isAIThinking) {
       ToastAndroid.show(
@@ -249,6 +258,7 @@ export default class App extends Component<Props> {
       // use the worker for generating AI movement
 
       let last = game.turn.length - 1;
+
       if (
         move &&
         playAgainstAI &&
@@ -259,6 +269,8 @@ export default class App extends Component<Props> {
       ) {
         this.startAI();
       }
+
+      firebase.crashlytics().setStringValue("turns", stringifyTurnsReport(game.turn));
     } else {
       let last = game.turn.length - 1;
       if (
@@ -368,6 +380,7 @@ export default class App extends Component<Props> {
       );
 
       this.setState({ isAIThinking: false });
+      firebase.crashlytics().setStringValue("turns", stringifyTurnsReport(game.turn));      
     } else {
       firebase.crashlytics().setStringValue("handleMessage_data", "undefined");
     }
