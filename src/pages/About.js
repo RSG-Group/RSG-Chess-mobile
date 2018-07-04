@@ -55,14 +55,10 @@ export default class HomePage extends Component<Props> {
       >
         <NavigationContext.Consumer>
           {data => {
-            const { lang } = data;
-            if (lang === "bg") request.addKeyword("Bulgaria");
-            if (lang === "ru") request.addKeyword("Russia");
-
             return (
               <ScrollView style={styles.scrollView}>
                 <Text style={{ textAlign: "center" }}>
-                  {strings.about.initial[lang]}
+                  {strings.about.initial[data.lang]}
                 </Text>
               </ScrollView>
             );
