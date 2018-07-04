@@ -24,6 +24,7 @@ import SplashScreen from "react-native-splash-screen";
 
 type Props = {};
 let game = Game.prototype.initializeGame();
+const blankFEN = game.FEN;
 
 // Set up Firebase
 firebase.perf().setPerformanceCollectionEnabled(true);
@@ -64,8 +65,7 @@ export default class App extends Component<Props> {
       playAgainstAI: null,
       isAIThinking: false,
       promotionParams: null,
-      selectModeModal: true
-      // playAgainstAI: { depth: 3 },
+      selectModeModal: game.FEN === blankFEN
     };
 
     Dimensions.addEventListener("change", () => {
