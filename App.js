@@ -20,6 +20,7 @@ import NavigationContext from "./src/components/NavigationContext";
 import Play from "./src/pages/Play";
 import Settings from "./src/pages/Settings";
 import About from "./src/pages/About";
+import NewGame from "./src/pages/NewGame";
 import SplashScreen from "react-native-splash-screen";
 
 type Props = {};
@@ -84,6 +85,9 @@ export default class App extends Component<Props> {
       },
       About: {
         screen: About
+      },
+      NewGame: {
+        screen: NewGame
       }
     });
   }
