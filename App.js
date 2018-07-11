@@ -192,7 +192,6 @@ export default class App extends Component<Props> {
   };
 
   promoteSelectedPawn = piece => {
-    qwerty
     const { promotionParams, playAgainstAI, checkmate } = this.state;
     if (promotionParams) {
       piece = piece ? piece : "knight";

@@ -105,9 +105,8 @@ android {
         applicationId "com.rsg.chess"
         minSdkVersion 16
         targetSdkVersion 27
-        // next time use versionCode - 20018, because of the seperate APKs:
-        versionCode 20102
-        versionName "2.0.1"
+        versionCode 20200
+        versionName "2.1"
         // ndk {
         //     abiFilters "armeabi-v7a", "x86"
         // }
@@ -169,7 +168,7 @@ dependencies {
     implementation "com.google.firebase:firebase-core:15.0.2"
     implementation "com.google.firebase:firebase-ads:15.0.0"
     implementation "com.google.firebase:firebase-analytics:15.0.2"
-    implementation "com.google.firebase:firebase-perf:15.1.0"
+    implementation "com.google.firebase:firebase-perf:16.0.0"
     implementation('com.crashlytics.sdk.android:crashlytics:2.9.1@aar') {
         transitive = true
     }
