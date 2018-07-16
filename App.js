@@ -256,6 +256,7 @@ export default class App extends Component<Props> {
         this.handleCheckmate,
         false
       );
+
       this.setState({ selected: null });
 
       // use the worker for generating AI movement
@@ -273,7 +274,9 @@ export default class App extends Component<Props> {
         this.startAI();
       }
 
-      firebase.crashlytics().setStringValue("turns", stringifyTurnsReport(game.turn));
+      firebase
+        .crashlytics()
+        .setStringValue("turns", stringifyTurnsReport(game.turn));
     } else {
       let last = game.turn.length - 1;
       if (
@@ -383,7 +386,9 @@ export default class App extends Component<Props> {
       );
 
       this.setState({ isAIThinking: false });
-      firebase.crashlytics().setStringValue("turns", stringifyTurnsReport(game.turn));      
+      firebase
+        .crashlytics()
+        .setStringValue("turns", stringifyTurnsReport(game.turn));
     } else {
       firebase.crashlytics().setStringValue("handleMessage_data", "undefined");
     }
