@@ -64,3 +64,5 @@ iOS
 gradle.properties
 google-services.json
 fabric.properties
+crashlytics-build.properties
+com_crashlytics_export_strings.xml
