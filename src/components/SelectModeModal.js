@@ -64,7 +64,7 @@ const renderSelectModeModal = (visible, selectModeMethod, lang) => {
               }}
             />
           </View>
-          <Text style={{ margin: 4, color: "red", fontStyle: "italic" }}>
+          <Text style={styles.warningText}>
             {strings.hardModeWarning[lang]}
           </Text>
         </ScrollView>
@@ -93,6 +93,11 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flex: 1,
     margin: 2
+  },
+  warningText: {
+    margin: 4,
+    color: "orange",
+    fontStyle: "italic"
   }
 });
 
