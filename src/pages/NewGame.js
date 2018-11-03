@@ -4,7 +4,7 @@ import firebase from "react-native-firebase";
 import { strings, globalStyles } from "../config";
 import NavigationContext from "../components/NavigationContext";
 
-export default class HomePage extends Component<Props> {
+export default class NewGame extends Component<Props> {
   static navigationOptions = {
     title: "Replay",
     header: null,

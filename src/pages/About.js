@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import {
-  Platform,
   View,
   ScrollView,
   Text,
-  Button,
   StyleSheet,
   Dimensions
 } from "react-native";
@@ -14,7 +12,7 @@ import { strings, globalStyles } from "../config";
 import { adsHeight } from "../scripts/getSizes";
 import NavigationContext from "../components/NavigationContext";
 
-export default class HomePage extends Component<Props> {
+export default class About extends Component<Props> {
   static navigationOptions = {
     title: "About",
     header: null,

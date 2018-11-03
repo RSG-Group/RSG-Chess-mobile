@@ -20,6 +20,7 @@ import NavigationContext from "./src/components/NavigationContext";
 import Play from "./src/pages/Play";
 import Settings from "./src/pages/Settings";
 import About from "./src/pages/About";
+import Privacy from "./src/pages/Privacy";
 import NewGame from "./src/pages/NewGame";
 import SplashScreen from "react-native-splash-screen";
 
@@ -88,6 +89,9 @@ export default class App extends Component<Props> {
       },
       NewGame: {
         screen: NewGame
+      },
+      Privacy: {
+        screen: Privacy
       }
     });
   }

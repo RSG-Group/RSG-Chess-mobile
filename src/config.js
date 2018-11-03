@@ -328,6 +328,11 @@ export const strings = {
       ru: "О нас"
     }
   },
+  privacy: {
+    en: "Privacy Policy",
+    bg: "Поверителност",
+    ru: "Конфиденциальность"
+  },
   gameOptions: {
     en: "Game options",
     bg: "Опции за игра",
