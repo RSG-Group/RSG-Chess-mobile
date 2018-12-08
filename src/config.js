@@ -45,6 +45,28 @@ export const colorPalettes = {
       selectedBG: "rgb(185, 75, 0)",
       selectedColor: "rgb(135, 255, 235)"
     }
+  },
+  gray: {
+    name: "Grayscale",
+    background: "rgb(255, 255, 255)",
+    props: {
+      whiteCells: "rgb(255, 255, 255)",
+      blackCells: "rgb(100, 100, 100)",
+      validBG: "rgb(205, 205, 205)",
+      selectedBG: "rgb(5, 5, 5)",
+      selectedColor: "rgb(250, 250, 250)"
+    }
+  },
+  cyan: {
+    name: "Cyan",
+    background: "rgb(235, 255, 255)",
+    props: {
+      whiteCells: "rgb(200, 225, 225)",
+      blackCells: "rgb(8,164,167)",
+      validBG: "rgb(250, 200, 200)",
+      selectedBG: "rgb(80, 0, 40)",
+      selectedColor: "rgb(135, 255, 210)"
+    }
   }
 };
 
@@ -401,6 +423,16 @@ export const strings = {
       en: "sweety",
       bg: "сладко",
       ru: "сладкий розовый"
+    },
+    gray: {
+      en: "grayscale",
+      bg: "черно-бяло",
+      ru: "серый"
+    },
+    cyan: {
+      en: "cyan",
+      bg: "синьо-зелен",
+      ru: "циан"
     }
   },
   languages: {
