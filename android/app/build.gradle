@@ -164,7 +164,7 @@ dependencies {
 
     // Firebase dependencies
     implementation project(':react-native-firebase')
-    implementation "com.google.android.gms:play-services-base:15.0.0"
+    implementation "com.google.android.gms:play-services-base:16.0.1"
     implementation "com.google.firebase:firebase-core:15.0.2"
     implementation "com.google.firebase:firebase-ads:15.0.0"
     implementation "com.google.firebase:firebase-analytics:15.0.2"
