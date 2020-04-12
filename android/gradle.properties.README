@@ -15,3 +15,6 @@ MYAPP_RELEASE_STORE_PASSWORD=***
 MYAPP_RELEASE_KEY_PASSWORD=***
 
 android.enableAapt2=false
+
+# Specify sdk path if needed in local.properties
+# Download the google-services.json in the 'app' directory
