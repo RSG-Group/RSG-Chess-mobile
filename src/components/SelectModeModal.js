@@ -1,9 +1,7 @@
-import React, { Component } from "react";
+import React from "react";
 import {
-  Platform,
   Text,
   View,
-  TouchableOpacity,
   Button,
   StyleSheet,
   ScrollView

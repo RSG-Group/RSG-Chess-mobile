@@ -1,6 +1,5 @@
 import React from "react";
 import { View, Text, StatusBar, StyleSheet } from "react-native";
-import { Pieces } from "rsg-chess";
 import ChessBoard from "rsg-chess-rn-graphics";
 import firebase from "react-native-firebase";
 import getSizes from "../scripts/getSizes";
