@@ -22,6 +22,7 @@ import Settings from "./src/pages/Settings";
 import About from "./src/pages/About";
 import Privacy from "./src/pages/Privacy";
 import NewGame from "./src/pages/NewGame";
+import Menu from "./src/pages/Menu";
 import SplashScreen from "react-native-splash-screen";
 
 type Props = {};
@@ -92,6 +93,9 @@ export default class App extends Component<Props> {
       },
       Privacy: {
         screen: Privacy
+      },
+      Menu: {
+        screen: Menu,
       }
     });
   }
