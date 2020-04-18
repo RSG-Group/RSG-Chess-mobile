@@ -435,6 +435,7 @@ export default class App extends Component<Props> {
           }}
         >
           <NavigationComponent />
+          {/* TODO: Add header, footer and another content in the drawer. */}
         </NavigationContext.Provider>
         <View>
           <WebView

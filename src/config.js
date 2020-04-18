@@ -122,9 +122,9 @@ export const strings = {
     ru: "Пуск singleplayer"
   },
   singleplayerDescription: {
-    en: "Start singleplayer or game versus friend:",
-    bg: "Започнете singleplayer или игра срещу приятел:",
-    ru: "Пуск singleplayer:"
+    en: "Start singleplayer",
+    bg: "Започнете singleplayer",
+    ru: "Пуск singleplayer"
   },
   hardModeWarning: {
     en:
