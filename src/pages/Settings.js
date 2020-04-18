@@ -156,12 +156,6 @@ export default class HomePage extends Component<Props> {
                       title={strings.newGame[lang]}
                     />
                   </View>
-                  <View style={styles.buttonContainer}>
-                    <Button
-                      onPress={() => {
-                        this.props.navigation.navigate("About");
-                      }}
-                      title={strings.aboutRSGChess[lang]}
                     />
                   </View>
                 </ScrollView>

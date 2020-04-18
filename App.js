@@ -19,7 +19,6 @@ import NavigationContext from "./src/components/NavigationContext";
 
 import Play from "./src/pages/Play";
 import Settings from "./src/pages/Settings";
-import About from "./src/pages/About";
 import Privacy from "./src/pages/Privacy";
 import NewGame from "./src/pages/NewGame";
 import Menu from "./src/pages/Menu";
@@ -79,23 +78,20 @@ export default class App extends Component<Props> {
     });
 
     this.NavigationComponent = createDrawerNavigator({
+      Menu: {
+        screen: Menu,
+      },
       Play: {
         screen: Play
       },
       Settings: {
         screen: Settings
       },
-      About: {
-        screen: About
-      },
       NewGame: {
         screen: NewGame
       },
       Privacy: {
         screen: Privacy
-      },
-      Menu: {
-        screen: Menu,
       }
     });
   }
