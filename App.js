@@ -325,7 +325,10 @@ export default class App extends Component<Props> {
     interstitial.show();
     interstitial.loadAd(new AdRequest().build());
     firebase.analytics().logEvent(`handle_replay`);
+    this.restartGame();
+  }
 
+  restartGame = () => {
     // Set state to null and false, to reset all params
     this.setState({
       selected: null,
@@ -412,7 +415,8 @@ export default class App extends Component<Props> {
       setRotation,
       updateValidMovesConfig,
       promoteSelectedPawn,
-      selectMode
+      selectMode,
+      restartGame
     } = this;
 
     return (
@@ -421,6 +425,7 @@ export default class App extends Component<Props> {
           value={{
             self: this,
             game: game,
+            restartGame: restartGame,
             handleReplay: handleReplay,
             updatePalette: updatePalette,
             handlePress: handlePress,

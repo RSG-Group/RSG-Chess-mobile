@@ -33,16 +33,41 @@ export default class Menu extends React.Component<Props> {
     firebase.analytics().logEvent(`open_menu_page`);
   }
 
+  switchGameMode(mode, selectModeMethod, restartGame) {
+    restartGame();
+
+    switch (mode) {
+      case 'start_singleplayer':
+        selectModeMethod(null);
+        firebase.analytics().logEvent('start_singleplayer');
+        break;
+      case 'start_easy_AI':
+        selectModeMethod({ depth: 2 });
+        firebase.analytics().logEvent('start_easy_AI');
+        break;
+      case 'start_medium_AI':
+        selectModeMethod({ depth: 3 });
+        firebase.analytics().logEvent('start_medium_AI');
+        break;
+      case 'start_hard_AI':
+        selectModeMethod({ depth: 4 });
+        firebase.analytics().logEvent('start_hard_AI');
+        break;
+    }
+
+    this.props.navigation.navigate("Play");
+  }
+
   render() {
     return (
       <NavigationContext.Consumer>
         {data => {
           const {
             lang,
-            selectMode: selectModeMethod
+            selectMode,
+            restartGame
           } = data;
-          console.log('selectModeMethod');
-          console.log(selectModeMethod);
+
           return (
             <View>
               <StatusBar hidden={true} />
@@ -55,10 +80,7 @@ export default class Menu extends React.Component<Props> {
                   <View style={{ margin: 4 }}>
                     <Button
                       title={strings.singleplayer[lang]}
-                      onPress={() => {
-                        selectModeMethod(null);
-                        firebase.analytics().logEvent(`start_singleplayer`);
-                      }}
+                      onPress={() => this.switchGameMode('start_singleplayer', selectMode, restartGame)}
                     />
                   </View>
                   <Text style={{ margin: 4 }}>{strings.playAgainstAI[lang]}</Text>
@@ -66,29 +88,20 @@ export default class Menu extends React.Component<Props> {
                     <View style={styles.buttonContainer}>
                       <Button
                         title={strings.easy[lang]}
-                        onPress={() => {
-                          selectModeMethod({ depth: 2 });
-                          firebase.analytics().logEvent(`start_easy_AI`);
-                        }}
+                        onPress={() => this.switchGameMode('start_easy_AI', selectMode, restartGame)}
                       />
                     </View>
                     <View style={styles.buttonContainer}>
                       <Button
                         title={strings.medium[lang]}
-                        onPress={() => {
-                          selectModeMethod({ depth: 3 });
-                          firebase.analytics().logEvent(`start_medium_AI`);
-                        }}
+                        onPress={() => this.switchGameMode('start_easy_AI', selectMode, restartGame)}
                       />
                     </View>
                   </View>
                   <View style={{ margin: 2 }}>
                     <Button
                       title={strings.hard[lang]}
-                      onPress={() => {
-                        selectModeMethod({ depth: 4 });
-                        firebase.analytics().logEvent(`start_hard_AI`);
-                      }}
+                      onPress={() => this.switchGameMode('start_easy_AI', selectMode, restartGame)}
                     />
                   </View>
                   <Text style={styles.warningText}>
