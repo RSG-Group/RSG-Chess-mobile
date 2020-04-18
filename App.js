@@ -321,11 +321,12 @@ export default class App extends Component<Props> {
     });
   };
 
-  handleReplay = () => {
+  handleReplay = (ctx) => {
     interstitial.show();
     interstitial.loadAd(new AdRequest().build());
     firebase.analytics().logEvent(`handle_replay`);
-    this.restartGame();
+    ctx.props.navigation.navigate("Menu");
+    // this.restartGame();
   }
 
   restartGame = () => {

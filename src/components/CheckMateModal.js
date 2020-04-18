@@ -36,7 +36,7 @@ const renderCheckmateModal = (checkmate, lang, exitCallback, hideCallback) => {
         <Text>{`\n`}</Text>
         <View style={styles.buttonContainer}>
           <View style={{ flex: 1 }}>
-            <Button title={strings.newGame[lang]} onPress={exitCallback} />
+            <Button title={strings.newGame[lang]} onPress={() => exitCallback(this)} />
           </View>
           <Text>{`  `}</Text>
           <View style={{ flex: 1 }}>

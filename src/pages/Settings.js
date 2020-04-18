@@ -150,7 +150,7 @@ export default class HomePage extends Component<Props> {
                   <View style={styles.newGameContainer}>
                     <Button
                       onPress={() => {
-                        handleReplay();
+                        handleReplay(this);
                         this.props.navigation.navigate("Play");
                       }}
                       title={strings.newGame[lang]}

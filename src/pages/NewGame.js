@@ -26,14 +26,12 @@ export default class NewGame extends Component<Props> {
   }
 
   render() {
-    this.props.navigation.navigate("Play");
-
     return (
       <View>
         <Text>...</Text>
         <NavigationContext.Consumer>
           {data => {
-            data.handleReplay();
+            data.handleReplay(this);
           }}
         </NavigationContext.Consumer>
       </View>
