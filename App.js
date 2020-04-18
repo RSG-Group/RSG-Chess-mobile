@@ -68,7 +68,7 @@ export default class App extends Component<Props> {
       playAgainstAI: null,
       isAIThinking: false,
       promotionParams: null,
-      selectModeModal: game.FEN === blankFEN
+      selectModeModal: game.FEN === blankFEN // TODO: Navigate here if necessary.
     };
 
     Dimensions.addEventListener("change", () => {

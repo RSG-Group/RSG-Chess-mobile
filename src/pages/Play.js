@@ -36,8 +36,8 @@ export default class Play extends React.Component<Props> {
       <NavigationContext.Consumer>
         {data => {
           const {
-            width,
-            height,
+            // width,
+            // height,
             self,
             game,
             selected,
@@ -50,8 +50,6 @@ export default class Play extends React.Component<Props> {
             palette,
             rotated,
             promoteSelectedPawn,
-            selectModeModal,
-            selectMode
           } = data;
           // To be clear:
           /// colorPalettes - array of all palettes
@@ -94,7 +92,6 @@ export default class Play extends React.Component<Props> {
                   lang,
                   promoteSelectedPawn
                 )}
-              {renderSelectModeModal(!!selectModeModal, selectMode, lang)}
             </View>
           );
         }}
