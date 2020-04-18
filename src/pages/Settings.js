@@ -27,17 +27,7 @@ export default class HomePage extends Component<Props> {
   static navigationOptions = {
     title: "Settings",
     header: null,
-    drawerLabel: () => (
-      <NavigationContext.Consumer>
-        {data => {
-          return (
-            <Text style={globalStyles.drawerItemLabel}>
-              {strings.settings[data.lang]}
-            </Text>
-          );
-        }}
-      </NavigationContext.Consumer>
-    )
+    drawerLabel: () => <View></View>
   };
 
   state = {
@@ -151,11 +141,8 @@ export default class HomePage extends Component<Props> {
                     <Button
                       onPress={() => {
                         handleReplay(this);
-                        this.props.navigation.navigate("Play");
                       }}
-                      title={strings.newGame[lang]}
-                    />
-                  </View>
+                      title={strings.newGameMenu[lang]}
                     />
                   </View>
                 </ScrollView>

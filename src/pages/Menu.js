@@ -15,18 +15,8 @@ export default class Menu extends React.Component<Props> {
   static navigationOptions = {
     title: "Menu",
     header: null,
-    drawerLabel: () => (
-      <NavigationContext.Consumer>
-        {data => {
-          return (
-            <Text style={globalStyles.drawerItemLabel}>
-              {"Menu"}
-              {/* TODO: Update the strings (internationalization) */}
-            </Text>
-          );
-        }}
-      </NavigationContext.Consumer>
-    )
+    drawerLabel: () => <View></View>,
+    drawerLockMode: 'locked-closed'
   };
 
   componentDidMount() {

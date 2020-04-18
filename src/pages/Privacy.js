@@ -10,17 +10,7 @@ export default class Privacy extends Component<Props> {
   static navigationOptions = {
     title: "Privacy Policy",
     header: null,
-    drawerLabel: () => (
-      <NavigationContext.Consumer>
-        {data => {
-          return (
-            <Text style={globalStyles.drawerItemLabel}>
-              {strings.privacy[data.lang]}
-            </Text>
-          );
-        }}
-      </NavigationContext.Consumer>
-    )
+    drawerLabel: () => <View></View>
   };
 
   componentDidMount() {
@@ -28,7 +18,7 @@ export default class Privacy extends Component<Props> {
   }
 
   backButtonHandler = () => {
-    this.props.navigation.navigate("Play");
+    this.props.navigation.navigate("Menu");
   };
 
   render() {
