@@ -6,7 +6,6 @@ import getSizes from "../scripts/getSizes";
 import NavigationContext from "../components/NavigationContext";
 import renderCheckmateModal from "../components/CheckMateModal";
 import renderPromotionModal from "../components/PromotionModal";
-import renderSelectModeModal from "../components/SelectModeModal";
 import { strings, colorPalettes, globalStyles } from "../config";
 import MenuIcon from "../components/MenuIcon";
 
@@ -14,17 +13,7 @@ export default class Play extends React.Component<Props> {
   static navigationOptions = {
     title: "Play",
     header: null,
-    drawerLabel: () => (
-      <NavigationContext.Consumer>
-        {data => {
-          return (
-            <Text style={globalStyles.drawerItemLabel}>
-              {strings.play[data.lang]}
-            </Text>
-          );
-        }}
-      </NavigationContext.Consumer>
-    )
+    drawerLabel: () => <View></View>
   };
 
   componentDidMount() {
