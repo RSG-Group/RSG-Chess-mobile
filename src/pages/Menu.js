@@ -11,6 +11,7 @@ import {
 } from "react-native";
 import firebase from "react-native-firebase";
 import { strings } from "../config";
+import URL from "../components/Link";
 
 const Button = (props) => (
   <TouchableOpacity style={{ height: 50 }} {...props}>
@@ -118,10 +119,28 @@ export default class Menu extends React.Component<Props> {
                   </View>
                   <View style={styles.buttonContainer}>
                     <Button
-                      style={styles.button}
                       title={strings.hard[lang]}
                       onPress={() => this.switchGameMode('start_easy_AI', selectMode, restartGame)}
                     />
+                  </View>
+                  <Text style={styles.desc}>{strings.settings[lang]}</Text>
+                  <View style={styles.buttonContainer}>
+                    <Button
+                      title={strings.settings[lang]}
+                      onPress={() => this.props.navigation.navigate("Settings")}
+                    />
+                  </View>
+                  <View style={styles.buttonContainer}>
+                    <Button
+                      title={strings.privacy[lang]}
+                      onPress={() => this.props.navigation.navigate("Privacy")}
+                    />
+                  </View>
+                  <View style={{ flexDirection: 'row', margin: 8, marginTop: 4 }}>
+                    <Text>
+                      Project by Radostin Cholakov.{' '}
+                    </Text>
+                    <URL title='Donate' url='https://paypal.me/RSGChess' />
                   </View>
                 </ScrollView>
               </View>
@@ -148,10 +167,11 @@ const styles = StyleSheet.create({
     borderColor: "rgba(0, 0, 0, 0.1)"
   },
   text: {
-    fontSize: 24,
+    fontSize: 26,
+    color: "black",
     marginLeft: 8,
     marginTop: 12,
-    marginBottom: 2
+    marginBottom: 10
   },
   buttonContainer: {
     marginLeft: 8,

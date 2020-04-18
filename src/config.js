@@ -165,9 +165,9 @@ export const strings = {
     ru: "Новая игра"
   },
   newGameMenu: {
-    en: "New Game / Back to menu",
-    bg: "Нова игра / Обратно към меню",
-    ru: "Новая игра / Меню"
+    en: "Back to menu",
+    bg: "Обратно към началното меню",
+    ru: "Меню"
   },
   startGameAndSelectMode: {
     en: "(Start a new game first and then select game mode)",
