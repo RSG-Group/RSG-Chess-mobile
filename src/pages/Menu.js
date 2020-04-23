@@ -3,7 +3,7 @@ import NavigationContext from "../components/NavigationContext";
 import {
   Text,
   View,
-  // Button,
+  Button as ReactButton,
   ScrollView,
   StatusBar,
   StyleSheet,
@@ -136,6 +136,14 @@ export default class Menu extends React.Component<Props> {
                       onPress={() => this.props.navigation.navigate("Privacy")}
                     />
                   </View>
+                  {/* TEST */}
+                  <View style={{ padding: 8 }}>
+                    <ReactButton title='Test reward' onPress={() => {
+                      /// NEO
+                      /// REWARD
+                    }}/>
+                  </View>
+                  {/* TEST */}
                   <View style={{ flexDirection: 'row', margin: 8, marginTop: 4 }}>
                     <Text>
                       Project by Radostin Cholakov.{' '}
