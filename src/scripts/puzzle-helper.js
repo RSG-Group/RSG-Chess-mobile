@@ -1,4 +1,4 @@
-const simpleSEN = (givenTurn) => {
+const simpleSEN = function (givenTurn) {
   /// VARIABLES
   // type - String | the piece which performed the given turn (e.g 'pawn')
   // piece - Object | the piece (if any) which is under attack and is removed from the board after the given turn
@@ -32,8 +32,19 @@ const simpleSEN = (givenTurn) => {
   return str;
 }
 
-const initGameFEN = (game, FEN /* string */) => {
-  let { board } = game;
+const piecesListFEN = {
+  p: 'pawn',
+  n: 'knight',
+  b: 'bishop',
+  r: 'rook',
+  q: 'queen',
+  k: 'king'
+}
+
+// Note: Castling availability is not really considered in this
+// puzzle helper since the move won't even be possible in the most moves
+const initGameFEN = function (FEN /* string */) {
+  let { board } = this;
 
   // clear the board
   for (i = 0; i < 8; i++) {
@@ -42,11 +53,48 @@ const initGameFEN = (game, FEN /* string */) => {
     }
   }
 
-  /// * COMPLETE THE FEN TO BOARD INTEGRATION
-  // e.g. rnbqkbnr/pp1ppppp/8/2p5/4P3/5N2/PPPP1PPP/RNBQKB1R b KQkq - 1 2
+  let partsFEN = FEN.split(' ');
+  let boardFEN = partsFEN[0].split('/');
+  let x = 0, y = 0;
+
+  boardFEN.forEach(row => {
+    x = 0;
+    row.split('').forEach(pieceFEN => {
+      if (!isNaN(pieceFEN)) {
+        for (let i = 0; i < parseInt(pieceFEN); i++) {
+          this.board[y][x] = null;
+          x++;
+        }
+      } else {
+        this.piece(
+          piecesListFEN[pieceFEN.toLowerCase()],
+          x,
+          y,
+          pieceFEN === pieceFEN.toUpperCase() ? 'W' : 'B'
+        )
+        x++;
+      }
+    })
+    y++;
+  });
+
+  for (let i = 0; i < partsFEN[5] * 2; i++) this.turn.push({});
+  if (partsFEN[1] === 'b') this.turn.push({});
+
+  // Halfmove, en-passant and other FEN features are worked around for the puzzles to work
+  // (or) aren't even implemented
 }
 
-const installHelper = (game) => {
-  game.prototype.simpleSEN = simpleSEN;
-  game.prototype.initGameFEN = FEN => simpleSEN(game, FEN);
+const installPuzzleHelper = (Game) => {
+  Game.prototype.simpleSEN = simpleSEN;
+  Game.prototype.initGameFEN = initGameFEN;
 }
+
+let halfmoveClockMethod;
+export const installPuzzleWorkarounds = (Game) => {
+  /* workaround issues */
+  halfmoveClockMethod = game.prototype.halfmoveClock;
+  Game.prototype.halfmoveClock = () => { return 0; };
+}
+
+export default installPuzzleHelper;
