@@ -24,7 +24,10 @@ import NewGame from "./src/pages/NewGame";
 import Menu from "./src/pages/Menu";
 import SplashScreen from "react-native-splash-screen";
 
+import installPuzzleHelper from "./src/scripts/puzzleHelper";
+
 type Props = {};
+installPuzzleHelper(Game);
 let game = Game.prototype.initializeGame();
 const blankFEN = game.FEN;
 
