@@ -111,6 +111,11 @@ export const strings = {
     bg: "Трудно",
     ru: "Жесткий"
   },
+  puzzles: {
+    en: "Puzzles",
+    bg: "Puzzles",
+    ru: "Puzzles"
+  },
   or: {
     en: "or",
     bg: "или",
