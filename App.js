@@ -5,7 +5,8 @@ import {
   WebView,
   ToastAndroid,
   NativeModules,
-  AsyncStorage
+  AsyncStorage,
+  BackHandler
 } from "react-native";
 import firebase from "react-native-firebase";
 import includes from "lodash/includes";
@@ -70,7 +71,6 @@ export default class App extends Component<Props> {
       playAgainstAI: null,
       isAIThinking: false,
       promotionParams: null,
-      // const blankFEN = game.FEN;
       // selectModal | game.FEN === blankFEN // TODO: Navigate here if necessary.
     };
 
@@ -104,6 +104,16 @@ export default class App extends Component<Props> {
   }
 
   componentDidMount = () => {
+    const backAction = () => {
+      BackHandler.exitApp();
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+
     // Make sure the splash screen is gone
     SplashScreen.hide();
 
@@ -324,11 +334,11 @@ export default class App extends Component<Props> {
   };
 
   handleReplay = (ctx) => {
+    this.restartGame();
     interstitial.show();
     interstitial.loadAd(new AdRequest().build());
     firebase.analytics().logEvent(`handle_replay`);
     ctx.props.navigation.navigate("Menu");
-    // this.restartGame();
   }
 
   restartGame = () => {
