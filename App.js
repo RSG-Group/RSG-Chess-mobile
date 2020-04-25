@@ -70,7 +70,7 @@ export default class App extends Component<Props> {
       playAgainstAI: null,
       isAIThinking: false,
       promotionParams: null,
-      selectModeModal: game.FEN === blankFEN // TODO: Navigate here if necessary.
+      // selectModal | game.FEN === blankFEN // TODO: Navigate here if necessary.
     };
 
     Dimensions.addEventListener("change", () => {
@@ -221,7 +221,6 @@ export default class App extends Component<Props> {
 
   selectMode = playAgainstAI => {
     this.setState({
-      selectModeModal: false,
       playAgainstAI: playAgainstAI
     });
   };
@@ -336,7 +335,6 @@ export default class App extends Component<Props> {
       checkmate: null,
       isAIThinking: false,
       playAgainstAI: null,
-      selectModeModal: true
     });
 
     // Initialize new game
