@@ -25,11 +25,11 @@ import Menu from "./src/pages/Menu";
 import SplashScreen from "react-native-splash-screen";
 
 import installPuzzleHelper from "./src/scripts/puzzleHelper";
+import Puzzles from "./src/pages/Puzzles";
 
 type Props = {};
 installPuzzleHelper(Game);
 let game = Game.prototype.initializeGame();
-const blankFEN = game.FEN;
 
 // Set up Firebase
 firebase.perf().setPerformanceCollectionEnabled(true);
@@ -70,6 +70,7 @@ export default class App extends Component<Props> {
       playAgainstAI: null,
       isAIThinking: false,
       promotionParams: null,
+      // const blankFEN = game.FEN;
       // selectModal | game.FEN === blankFEN // TODO: Navigate here if necessary.
     };
 
@@ -86,6 +87,9 @@ export default class App extends Component<Props> {
       },
       Play: {
         screen: Play
+      },
+      Puzzles: {
+        screen: Puzzles
       },
       Settings: {
         screen: Settings

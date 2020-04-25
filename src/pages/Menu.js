@@ -74,9 +74,16 @@ export default class Menu extends React.Component<Props> {
         selectModeMethod({ depth: 4 });
         firebase.analytics().logEvent('start_hard_AI');
         break;
+      case 'puzzles':
+        this.props.navigation.navigate("Puzzles");
+        break;
+      default:
+        selectModeMethod(null);
+        firebase.analytics().logEvent('start_singleplayer');
+        break;
     }
 
-    this.props.navigation.navigate("Play");
+    if (mode !== 'puzzles') this.props.navigation.navigate("Play");
   }
 
   render() {
@@ -102,6 +109,12 @@ export default class Menu extends React.Component<Props> {
                     <Button
                       title={strings.singleplayer[lang]}
                       onPress={() => this.switchGameMode('start_singleplayer', selectMode, restartGame)}
+                    />
+                  </View>
+                  <View style={styles.buttonContainer}>
+                    <Button
+                      title={strings.puzzles[lang]}
+                      onPress={() => this.switchGameMode('puzzles', selectMode, restartGame)}
                     />
                   </View>
                   <Text style={styles.desc}>{strings.playAgainstAI[lang]}</Text>
