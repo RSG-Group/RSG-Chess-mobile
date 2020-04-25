@@ -13,6 +13,8 @@ import firebase from "react-native-firebase";
 import { strings } from "../config";
 import URL from "../components/Link";
 
+const blankFEN = "rnbqkbnr/pppppppp/8/8/8/8/PPPPPPPP/RNBQKBNR w KQkq - 0 1";
+
 const Button = (props) => (
   <TouchableOpacity style={{ height: 50 }} {...props}>
     <View style={{
@@ -55,7 +57,7 @@ export default class Menu extends React.Component<Props> {
   }
 
   switchGameMode(mode, selectModeMethod, restartGame) {
-    restartGame();
+    if (mode !== 'resume' && mode !== 'puzzles') restartGame();
 
     switch (mode) {
       case 'start_singleplayer':
@@ -77,6 +79,9 @@ export default class Menu extends React.Component<Props> {
       case 'puzzles':
         this.props.navigation.navigate("Puzzles");
         break;
+      case 'resume':
+        firebase.analytics().logEvent('menu_resume');
+        break;
       default:
         selectModeMethod(null);
         firebase.analytics().logEvent('start_singleplayer');
@@ -93,7 +98,9 @@ export default class Menu extends React.Component<Props> {
           const {
             lang,
             selectMode,
-            restartGame
+            restartGame,
+            game,
+            self: appCtx
           } = data;
 
           return (
@@ -105,6 +112,15 @@ export default class Menu extends React.Component<Props> {
                   <Text style={styles.desc}>
                     {strings.singleplayerDescription[lang]}
                   </Text>
+                  {
+                    ((game.FEN != blankFEN || !!appCtx.state.playAgainstAI) && !appCtx.state.checkmate) &&
+                    <View style={styles.buttonContainer}>
+                      <Button
+                        title={strings.resume[lang]}
+                        onPress={() => this.switchGameMode('resume', selectMode, restartGame)}
+                      />
+                    </View>
+                  }
                   <View style={styles.buttonContainer}>
                     <Button
                       title={strings.singleplayer[lang]}
