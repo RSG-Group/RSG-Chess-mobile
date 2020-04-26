@@ -56,7 +56,7 @@ export default class Puzzles extends Component<Props> {
                   alignSelf: "flex-start"
                 }}>
                   {/* TODO: STRINGS */}
-                  <Text style={{ textAlign: "center", fontSize: 20, color: "black" }}>{puzzle.players}</Text>
+                  <Text style={{ textAlign: "center", fontSize: 20, color: "black" }}>{puzzle.pls}</Text>
                   <Text style={{ textAlign: "center", fontSize: 18 }}>Price: 8 RSG. Reward: 10 RSG</Text>
                   <Text style={{ textAlign: "center", fontSize: 18, fontStyle: "italic" }}>Black to win. Year: {puzzle.date}</Text>
                 </View>

@@ -1,4 +1,4 @@
-const simpleSEN = function (givenTurn) {
+export const simpleSEN = function (givenTurn) {
   /// VARIABLES
   // type - String | the piece which performed the given turn (e.g 'pawn')
   // piece - Object | the piece (if any) which is under attack and is removed from the board after the given turn
@@ -87,7 +87,6 @@ const initGameFEN = function (FEN /* string */) {
 }
 
 const installPuzzleHelper = (Game) => {
-  Game.prototype.simpleSEN = simpleSEN;
   Game.prototype.initGameFEN = initGameFEN;
 }
 
