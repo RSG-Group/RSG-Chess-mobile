@@ -25,8 +25,8 @@ export default class Play extends React.Component<Props> {
       <NavigationContext.Consumer>
         {data => {
           const {
-            // width,
-            // height,
+            width,
+            height,
             self,
             game,
             selected,
@@ -45,7 +45,7 @@ export default class Play extends React.Component<Props> {
           // // palette - the id/name of the palette which will be dispalyed
           // // currentPaltte - object with params which will be used to configure the board
           const currentPalette = colorPalettes[palette];
-          let sizes = getSizes(data.width, data.height);
+          let sizes = getSizes(width, height);
           return (
             <View
               style={[

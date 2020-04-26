@@ -33,7 +33,7 @@ export default class Puzzles extends Component<Props> {
     return (
       <NavigationContext.Consumer>
         {data => {
-          const { width, height } = data;
+          const { width, height, selectMode, restartGame } = data;
           let sizes = getSizes(width, height);
           let puzzle = puzzles[0];
           let localGame = Game.prototype.initializeGame();
@@ -50,13 +50,15 @@ export default class Puzzles extends Component<Props> {
               <StatusBar hidden={true} />
               <View>
                 <View style={{
-                  top: 75,
+                  top: 65,
                   width: sizes.width * 6,
                   position: "absolute",
                   alignSelf: "flex-start"
                 }}>
+                  {/* TODO: STRINGS */}
                   <Text style={{ textAlign: "center", fontSize: 20, color: "black" }}>{puzzle.players}</Text>
-                  <Text style={{ textAlign: "center", fontSize: 18 }}>Year played: {puzzle.date}</Text>
+                  <Text style={{ textAlign: "center", fontSize: 18 }}>Price: 8 RSG. Reward: 10 RSG</Text>
+                  <Text style={{ textAlign: "center", fontSize: 18, fontStyle: "italic" }}>Black to win. Year: {puzzle.date}</Text>
                 </View>
                 <ChessBoard
                   board={localGame.board}
@@ -72,7 +74,17 @@ export default class Puzzles extends Component<Props> {
                   alignSelf: "flex-start"
                 }}>
                   <View style={{ flex: 1, margin: 3 }}><Button disabled title={"<"} /></View>
-                  <View style={{ flex: 5, margin: 3 }}><Button title={"Play"} /></View>
+                  <View style={{ flex: 5, margin: 3 }}>
+                    <Button
+                      title={"Play"}
+                      onPress={() => {
+                        restartGame();
+                        selectMode({ puzzle: puzzle });
+                        firebase.analytics().logEvent(`puzzles_play`, { puzzle: puzzle.fen });
+                        this.props.navigation.navigate("Play");
+                      }}
+                    />
+                  </View>
                   <View style={{ flex: 1, margin: 3 }}><Button title={">"} /></View>
                 </View>
               </View>

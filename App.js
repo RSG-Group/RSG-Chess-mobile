@@ -69,6 +69,7 @@ export default class App extends Component<Props> {
       selected: null,
       checkmate: null,
       playAgainstAI: null,
+      puzzle: null,
       isAIThinking: false,
       promotionParams: null,
       // selectModal | game.FEN === blankFEN // TODO: Navigate here if necessary.
@@ -234,6 +235,17 @@ export default class App extends Component<Props> {
   };
 
   selectMode = playAgainstAI => {
+    if (playAgainstAI) {
+      const { puzzle } = playAgainstAI;
+
+      if (puzzle) {
+        this.setState({ playAgainstAI: null, puzzle: puzzle });
+        console.log(puzzle);
+        game.initGameFEN(puzzle.fen);
+        return;
+      }
+    }
+
     this.setState({
       playAgainstAI: playAgainstAI
     });
@@ -255,7 +267,6 @@ export default class App extends Component<Props> {
       isAIThinking,
       lang,
       checkmate,
-      promotionParams
     } = this.state;
 
     if (isAIThinking) {
@@ -349,6 +360,7 @@ export default class App extends Component<Props> {
       checkmate: null,
       isAIThinking: false,
       playAgainstAI: null,
+      puzzle: null,
     });
 
     // Initialize new game

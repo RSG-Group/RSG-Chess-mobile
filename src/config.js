@@ -116,6 +116,11 @@ export const strings = {
     bg: "Puzzles",
     ru: "Puzzles"
   },
+  resume: {
+    en: 'Resume',
+    bg: 'Продължи игра',
+    ru: 'Продолжить игру'
+  },
   or: {
     en: "or",
     bg: "или",
