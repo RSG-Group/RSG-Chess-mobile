@@ -78,8 +78,9 @@ const initGameFEN = function (FEN /* string */) {
     y++;
   });
 
-  for (let i = 0; i < partsFEN[5] * 2; i++) this.turn.push({});
-  if (partsFEN[1] === 'b') this.turn.push({});
+  for (let i = 0; i < partsFEN[5] * 2 - 1; i++) this.turn.push({});
+  this.turn.push({ color: 'W' });
+  if (partsFEN[1] === 'b') this.turn.push({ color: "B" });
 
   // Halfmove, en-passant and other FEN features are worked around for the puzzles to work
   // (or) aren't even implemented

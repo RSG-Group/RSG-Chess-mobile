@@ -3,8 +3,8 @@ const pieceToAN = Game.prototype.pieceToAN;
 
 export const generateCoordinatesChar = cell => {
   const startingCharCode = 33;
-  const char = String.fromCharCode(startingCharCode + (10 * cell.y + cell.x));
-  return char;
+  if (!cell) return String.fromCharCode(122);
+  return String.fromCharCode(startingCharCode + (10 * cell.y + cell.x));
 };
 
 export const stringifyTurnsReport = turns => {
@@ -13,10 +13,10 @@ export const stringifyTurnsReport = turns => {
 
   if (turns && turns.length) {
     turns.slice(-maxTurns).forEach((move, count) => {
-      let fromChar = generateCoordinatesChar(move.from);
-      string += fromChar;
-      let toChar = generateCoordinatesChar(move.to);
-      string += toChar;
+        let fromChar = generateCoordinatesChar(move.from);
+        string += fromChar;
+        let toChar = generateCoordinatesChar(move.to);
+        string += toChar;
     });
   }
 
