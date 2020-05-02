@@ -25,6 +25,10 @@ export default class Puzzles extends Component<Props> {
     headerLeft: null
   };
 
+  state = {
+    pid: 0
+  }
+
   componentDidMount() {
     firebase.analytics().logEvent(`puzzles_page`);
   }
@@ -33,9 +37,10 @@ export default class Puzzles extends Component<Props> {
     return (
       <NavigationContext.Consumer>
         {data => {
+          const { pid } = this.state;
           const { width, height, selectMode, restartGame } = data;
           let sizes = getSizes(width, height);
-          let puzzle = puzzles[0];
+          let puzzle = puzzles[pid];
           let localGame = Game.prototype.initializeGame();
           localGame.initGameFEN(puzzle.fen);
 
@@ -56,9 +61,9 @@ export default class Puzzles extends Component<Props> {
                   alignSelf: "flex-start"
                 }}>
                   {/* TODO: STRINGS */}
-                  <Text style={{ textAlign: "center", fontSize: 20, color: "black" }}>{puzzle.pls}</Text>
-                  <Text style={{ textAlign: "center", fontSize: 18 }}>Price: 8 RSG. Reward: 10 RSG</Text>
-                  <Text style={{ textAlign: "center", fontSize: 18, fontStyle: "italic" }}>Black to win. Year: {puzzle.date}</Text>
+                  <Text style={{ textAlign: "center", fontSize: 20, color: "black" }}>#{pid + 1}{` `}{puzzle.pls}</Text>
+                  <Text style={{ textAlign: "center", fontSize: 18 }}>Price: 8 RSG; Reward: 10 RSG; Year: {puzzle.date}</Text>
+                  {/* <Text style={{ textAlign: "center", fontSize: 18, fontStyle: "italic" }}>Puzzle details</Text> */}
                 </View>
                 <ChessBoard
                   board={localGame.board}
@@ -73,7 +78,14 @@ export default class Puzzles extends Component<Props> {
                   position: "absolute",
                   alignSelf: "flex-start"
                 }}>
-                  <View style={{ flex: 1, margin: 3 }}><Button disabled title={"<"} /></View>
+                  <View style={{ flex: 1, margin: 3 }}>
+                    <Button
+                      title={"<"}
+                      disabled={pid < 1}
+                      onPress={() => {
+                        this.setState({ pid: pid - 1 });
+                      }} />
+                  </View>
                   <View style={{ flex: 5, margin: 3 }}>
                     <Button
                       title={"Play"}
@@ -85,7 +97,14 @@ export default class Puzzles extends Component<Props> {
                       }}
                     />
                   </View>
-                  <View style={{ flex: 1, margin: 3 }}><Button title={">"} /></View>
+                  <View style={{ flex: 1, margin: 3 }}>
+                    <Button
+                      title={">"}
+                      disabled={pid >= puzzles.length - 1}
+                      onPress={() => {
+                        this.setState({ pid: pid + 1 });
+                      }} />
+                  </View>
                 </View>
               </View>
             </View>

@@ -6,7 +6,7 @@ import getSizes from "../scripts/getSizes";
 import NavigationContext from "../components/NavigationContext";
 import renderCheckmateModal from "../components/CheckMateModal";
 import renderPromotionModal from "../components/PromotionModal";
-import { strings, colorPalettes, globalStyles } from "../config";
+import { colorPalettes } from "../config";
 import MenuIcon from "../components/MenuIcon";
 
 export default class Play extends React.Component<Props> {

@@ -309,7 +309,12 @@ export default class App extends Component<Props> {
           Alert.alert(
             "DONE!",
             "You did it!",
-            [{ text: "OK", onPress: () => console.log("OK Pressed") }],
+            [{
+              text: "OK", onPress: () => {
+                this.restartGame();
+                ctx.props.navigation.navigate('Puzzles');
+              }
+            }],
             { cancelable: false }
           );
         } else {
@@ -336,7 +341,7 @@ export default class App extends Component<Props> {
         game.board[y][x] &&
         (last >= 0
           ? game.board[y][x].color !== game.turn[last].color
-          : game.board[y][x].color === (!!puzzle.fen ? "B" : "W"))
+          : game.board[y][x].color === "W")
       ) {
         this.setState({ selected: game.board[y][x] });
       } else {
