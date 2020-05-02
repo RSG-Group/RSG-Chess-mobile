@@ -98,13 +98,13 @@ def enableSeparateBuildPerCPUArchitecture = true
 def enableProguardInReleaseBuilds = true
 
 android {
-    compileSdkVersion 27
+    compileSdkVersion 28
     buildToolsVersion "27.0.3"
 
     defaultConfig {
         applicationId "com.rsg.chess"
         minSdkVersion 16
-        targetSdkVersion 27
+        targetSdkVersion 28
         versionCode 30001
         // Round to +1000 for major update (e.g. 1.0, 2.O, 3.0.0)
         // Round to +100 for incremental & feature updates (e.g. v1.1, v2.1)
