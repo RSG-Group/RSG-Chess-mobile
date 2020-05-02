@@ -1,3 +1,124 @@
+import { Pieces } from "rsg-chess";
+
+JSON.safeStringify = (obj, indent = 2) => {
+  let cache = [];
+  const retVal = JSON.stringify(
+    obj,
+    (key, value) =>
+      typeof value === "object" && value !== null
+        ? cache.includes(value)
+          ? undefined // Duplicate reference found, discard key
+          : cache.push(value) && value // Store value in our collection
+        : value,
+    indent
+  );
+  cache = null;
+  return retVal;
+};
+
+Pieces.King.prototype.getValidMoves = function (simulate) {
+  var moves = [];
+  var coordinates = [
+    [0, 1],
+    [0, -1],
+    [1, 1],
+    [-1, -1],
+    [1, -1],
+    [-1, 1],
+    [-1, 0],
+    [1, 0]
+  ];
+  var x = this.x;
+  var y = this.y;
+  var game = this.game;
+  var turn = game.turn;
+  var self = this;
+
+  coordinates.forEach(function (coord) {
+    var piece;
+    var xx = x + coord[0];
+    var yy = y + coord[1];
+
+    if (xx < 8 && xx >= 0 && yy < 8 && yy >= 0) {
+      piece = game.board[yy][xx];
+      if (!piece || piece.color !== self.color) {
+        moves.push({ x: xx, y: yy });
+      }
+    }
+  });
+
+  // Check king hasn't moved
+  var kingMoved = turn.some(function (turn) {
+    return turn.type === "king" && turn.color === self.color;
+  });
+
+  if (!kingMoved) {
+    [[0, 2, -1], [7, 6, +1]].forEach(function (props) {
+      var rookX = props[0];
+      var newKingX = props[1];
+      var dir = props[2];
+      var rook = game.board[y][rookX];
+
+      // Check rook on position
+      if (!rook || !rook.type === "rook") return;
+
+      // Check rook hasn't moved
+      if (
+        turn.some(function (ev) {
+          return ev.from.x === rookX && ev.from.y === y;
+        })
+      )
+        return;
+
+      // Check squares empty and safe
+      for (var xx = x + dir; /* HELPER CHECK */ xx < 8 && /**/ xx !== rookX; xx += dir) {
+        if (game.board[y][xx]) return;
+        var safe = true;
+        game.board.forEach(function (ev) {
+          ev.forEach(function (evv) {
+            if (evv && evv.type !== "king" && evv.color !== self.color) {
+              evv.getValidMoves().forEach(function (evMove) {
+                if (evMove && evMove.y === y && evMove.x === xx) safe = false;
+              });
+            }
+          });
+        });
+        if (!safe) return;
+      }
+
+      /// HELPER CHECK
+      if (x + dir > 7 || xx > 7) return;
+
+      var rochade = {
+        x: newKingX,
+        y: y,
+        movePiece: {
+          piece: self.game.board[y][rookX],
+          from: {
+            x: rookX,
+            y: y
+          },
+          to: {
+            y: y,
+            x: x + dir
+          }
+        }
+      };
+
+      moves.push(rochade);
+    });
+  }
+
+  var validMoves = [];
+  if (simulate) {
+    validMoves = game.simulateAndFilter(moves, self);
+  } else {
+    validMoves = moves;
+  }
+
+  return validMoves;
+};
+
 export const simpleSEN = function (givenTurn) {
   /// VARIABLES
   // type - String | the piece which performed the given turn (e.g 'pawn')
@@ -55,6 +176,9 @@ const initGameFEN = function (FEN /* string */) {
 
   let partsFEN = FEN.split(' ');
   let boardFEN = partsFEN[0].split('/');
+  this.FEN = FEN;
+  this.FENboard = partsFEN[0];
+
   let x = 0, y = 0;
 
   boardFEN.forEach(row => {
@@ -78,9 +202,9 @@ const initGameFEN = function (FEN /* string */) {
     y++;
   });
 
-  for (let i = 0; i < partsFEN[5] * 2 - 1; i++) this.turn.push({});
-  this.turn.push({ color: 'W' });
-  if (partsFEN[1] === 'b') this.turn.push({ color: "B" });
+  // for (let i = 0; i < partsFEN[5] * 2 - 1; i++) this.turn.push({});
+  // this.turn.push({ color: 'W' });
+  // if (partsFEN[1] === 'b') this.turn.push({ color: "B" });
 
   // Halfmove, en-passant and other FEN features are worked around for the puzzles to work
   // (or) aren't even implemented
