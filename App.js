@@ -6,7 +6,8 @@ import {
   ToastAndroid,
   NativeModules,
   AsyncStorage,
-  BackHandler
+  BackHandler,
+  Alert
 } from "react-native";
 import firebase from "react-native-firebase";
 import includes from "lodash/includes";
@@ -25,7 +26,7 @@ import NewGame from "./src/pages/NewGame";
 import Menu from "./src/pages/Menu";
 import SplashScreen from "react-native-splash-screen";
 
-import installPuzzleHelper from "./src/scripts/puzzleHelper";
+import installPuzzleHelper, { simpleSEN } from "./src/scripts/puzzleHelper";
 import Puzzles from "./src/pages/Puzzles";
 
 type Props = {};
@@ -260,13 +261,14 @@ export default class App extends Component<Props> {
   };
 
   /// EVENTS ///
-  handlePress = (x, y) => {
+  handlePress = (x, y, ctx) => {
     let {
       selected,
       playAgainstAI,
       isAIThinking,
       lang,
       checkmate,
+      puzzle,
     } = this.state;
 
     if (isAIThinking) {
@@ -314,7 +316,7 @@ export default class App extends Component<Props> {
         game.board[y][x] &&
         (last >= 0
           ? game.board[y][x].color !== game.turn[last].color
-          : game.board[y][x].color === "W")
+          : game.board[y][x].color === (!!puzzle.fen ? "B" : "W"))
       ) {
         this.setState({ selected: game.board[y][x] });
       } else {

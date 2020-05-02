@@ -67,7 +67,7 @@ export default class Play extends React.Component<Props> {
                   selected={selected}
                   showValidMoves={showValidMoves}
                   pieceSize={sizes.fontSize}
-                  onPress={handlePress}
+                  onPress={(x, y) => handlePress(x, y, this)}
                   {...currentPalette.props}
                   rotated={rotated}
                 />
