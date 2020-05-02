@@ -58,6 +58,12 @@ export default class Play extends React.Component<Props> {
                 navigation={this.props.navigation}
                 palette={currentPalette}
               />
+              {
+                self.state.puzzle &&
+                <Text style={{ top: 25, fontSize: 18 }}>
+                  Puzzle solution for testing: {self.state.puzzle.sln}
+                </Text>
+              }
               <View>
                 <ChessBoard
                   self={self}

@@ -38,15 +38,16 @@ firebase.perf().setPerformanceCollectionEnabled(true);
 
 // Set up AdMob
 firebase.admob().initialize("ca-app-pub-3522556458609123~4498098193");
-let interstitial = firebase
-  .admob()
-  .interstitial("ca-app-pub-3522556458609123/5974831399");
+// TODO: RE-ENABLE ADS
+// let interstitial = firebase
+//   .admob()
+//   .interstitial("ca-app-pub-3522556458609123/5974831399");
 let AdRequest = firebase.admob.AdRequest;
-// request.addKeyword('foo').addKeyword('bar');
-interstitial.loadAd(new AdRequest().build());
-interstitial.on("onAdClosed", () => {
-  interstitial.loadAd(new AdRequest().build());
-});
+// [TESTING] request.addKeyword('foo').addKeyword('bar');
+// interstitial.loadAd(new AdRequest().build());
+// interstitial.on("onAdClosed", () => {
+//   interstitial.loadAd(new AdRequest().build());
+// });
 
 let language = NativeModules.I18nManager.localeIdentifier.split(`_`)[0];
 firebase.crashlytics().setStringValue("initial_language", language);
@@ -241,7 +242,6 @@ export default class App extends Component<Props> {
 
       if (puzzle) {
         this.setState({ playAgainstAI: null, puzzle: puzzle });
-        console.log(puzzle);
         game.initGameFEN(puzzle.fen);
         return;
       }
@@ -293,7 +293,6 @@ export default class App extends Component<Props> {
       this.setState({ selected: null });
 
       // use the worker for generating AI movement
-
       let last = game.turn.length - 1;
 
       if (
@@ -305,6 +304,27 @@ export default class App extends Component<Props> {
         !move.promotion
       ) {
         this.startAI();
+      } else if (!!move && game.turn[last] && puzzle) {
+        if (simpleSEN(game.turn[last]) === puzzle.sln) {
+          Alert.alert(
+            "DONE!",
+            "You did it!",
+            [{ text: "OK", onPress: () => console.log("OK Pressed") }],
+            { cancelable: false }
+          );
+        } else {
+          Alert.alert(
+            "NOT DONE!",
+            "If this is a mistake, or a bug with the app screenshot it and send to Radi\n\n" + puzzle.fen + "\n\n" + simpleSEN(game.turn[last]),
+            [{
+              text: "OK", onPress: () => {
+                this.restartGame();
+                ctx.props.navigation.navigate('Puzzles');
+              }
+            }],
+            { cancelable: false }
+          );
+        }
       }
 
       firebase
@@ -348,8 +368,9 @@ export default class App extends Component<Props> {
 
   handleReplay = (ctx) => {
     this.restartGame();
-    interstitial.show();
-    interstitial.loadAd(new AdRequest().build());
+    // TODO: RE-ENABLE ADS
+    // interstitial.show();
+    // interstitial.loadAd(new AdRequest().build());
     firebase.analytics().logEvent(`handle_replay`);
     ctx.props.navigation.navigate("Menu");
   }
