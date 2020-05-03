@@ -16,7 +16,7 @@ JSON.safeStringify = (obj, indent = 2) => {
   return retVal;
 };
 
-Pieces.King.prototype.getValidMoves = function (simulate) {
+const validKingMoves = function (simulate) {
   var moves = [];
   var coordinates = [
     [0, 1],
@@ -60,7 +60,7 @@ Pieces.King.prototype.getValidMoves = function (simulate) {
       var rook = game.board[y][rookX];
 
       // Check rook on position
-      if (!rook || !rook.type === "rook") return;
+      if (!rook || rook.type !== "rook") return;
 
       // Check rook hasn't moved
       if (
@@ -212,6 +212,7 @@ const initGameFEN = function (FEN /* string */) {
 
 const installPuzzleHelper = (Game) => {
   Game.prototype.initGameFEN = initGameFEN;
+  Pieces.King.prototype.getValidMoves = validKingMoves;
 }
 
 let halfmoveClockMethod;
