@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, StatusBar, Button } from "react-native";
-import firebase from "react-native-firebase";
+import firebase from '@react-native-firebase/app';
+import '@react-native-firebase/analytics';
 import NavigationContext from "../components/NavigationContext";
 import { puzzles } from "../config";
 import { Game } from "rsg-chess";

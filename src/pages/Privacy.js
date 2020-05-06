@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import { View, ScrollView, Text, Button, StyleSheet } from "react-native";
 import CheckmateSnackBar from "../components/CheckmateSnackBar";
-import firebase from "react-native-firebase";
-import { strings, globalStyles } from "../config";
+import firebase from '@react-native-firebase/app';
+import '@react-native-firebase/analytics';
+// import { strings, globalStyles } from "../config";
 import NavigationContext from "../components/NavigationContext";
 import URL from "../components/Link";
 

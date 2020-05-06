@@ -9,7 +9,10 @@ import {
   BackHandler,
   Alert
 } from "react-native";
-import firebase from "react-native-firebase";
+import firebase from '@react-native-firebase/app';
+import '@react-native-firebase/admob';
+import '@react-native-firebase/analytics';
+import '@react-native-firebase/crashlytics';
 import includes from "lodash/includes";
 import { createDrawerNavigator } from "react-navigation";
 
@@ -34,7 +37,9 @@ installPuzzleHelper(Game);
 let game = Game.prototype.initializeGame();
 
 // Set up Firebase
-firebase.perf().setPerformanceCollectionEnabled(true);
+
+// PERFORMANCE MONITORING REMOVED (TODO: CHECK IT OUT)
+// firebase.perf().setPerformanceCollectionEnabled(true);
 
 // Set up AdMob
 firebase.admob().initialize("ca-app-pub-3522556458609123~4498098193");

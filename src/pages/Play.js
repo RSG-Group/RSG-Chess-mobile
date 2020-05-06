@@ -1,7 +1,8 @@
 import React from "react";
 import { View, Text, StatusBar, StyleSheet } from "react-native";
 import ChessBoard from "rsg-chess-rn-graphics";
-import firebase from "react-native-firebase";
+import firebase from '@react-native-firebase/app';
+import '@react-native-firebase/analytics';
 import getSizes from "../scripts/getSizes";
 import NavigationContext from "../components/NavigationContext";
 import renderCheckmateModal from "../components/CheckMateModal";

@@ -8,12 +8,14 @@ import {
   Button,
   StyleSheet
 } from "react-native";
-import firebase from "react-native-firebase";
+import firebase from '@react-native-firebase/app';
+import '@react-native-firebase/analytics';
+import '@react-native-firebase/admob';
+
 import CheckmateSnackBar from "../components/CheckmateSnackBar";
 import {
   SettingsDividerShort,
   SettingsDividerLong,
-  SettingsEditText,
   SettingsCategoryHeader,
   SettingsSwitch,
   SettingsPicker,

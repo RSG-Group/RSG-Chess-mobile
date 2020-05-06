@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { View, Text, Button } from "react-native";
-import firebase from "react-native-firebase";
+import firebase from '@react-native-firebase/app';
+import '@react-native-firebase/analytics';
 import { strings, globalStyles } from "../config";
 import NavigationContext from "../components/NavigationContext";
 

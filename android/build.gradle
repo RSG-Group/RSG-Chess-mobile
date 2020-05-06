@@ -19,11 +19,13 @@ buildscript {
             url 'https://maven.google.com/'
             name 'Google'
         }
+
+        maven {
+            url("$rootDir/../node_modules/jsc-android/dist")
+        }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.5.2'
-        classpath 'com.google.gms:google-services:3.2.1'
-        classpath 'com.google.firebase:firebase-plugins:1.1.1'
         classpath 'com.google.gms:google-services:3.2.1'
         classpath 'io.fabric.tools:gradle:1.25.4'
 

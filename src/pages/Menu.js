@@ -9,7 +9,8 @@ import {
   StyleSheet,
   TouchableOpacity
 } from "react-native";
-import firebase from "react-native-firebase";
+import firebase from '@react-native-firebase/app';
+import '@react-native-firebase/analytics';
 import { strings } from "../config";
 import URL from "../components/Link";
 

@@ -16,7 +16,8 @@
       android:icon="@mipmap/ic_launcher"
       android:allowBackup="false"
       android:theme="@style/AppTheme"
-        tools:replace="android:allowBackup">
+      android:networkSecurityConfig="@xml/network_security_config"
+      tools:replace="android:allowBackup">
 
     <activity
         android:name=".SplashActivity"
@@ -39,6 +40,11 @@
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="c346e85f8a843da964b72451b8890c2972ca8857" />
+        <!-- TODO: Check and update the AdMob integration acoording to RNF -->
+        <meta-data
+            tools:replace="android:value"
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="ca-app-pub-3522556458609123~4498098193"/>
     </application>
 
 </manifest>
