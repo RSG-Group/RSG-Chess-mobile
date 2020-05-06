@@ -11,7 +11,7 @@ import {
 import firebase from '@react-native-firebase/app';
 import '@react-native-firebase/admob';
 import '@react-native-firebase/analytics';
-import '@react-native-firebase/crashlytics';
+// import '@react-native-firebase/crashlytics';
 import includes from "lodash/includes";
 import { createDrawerNavigator } from "react-navigation";
 import { WebView } from 'react-native-webview';
@@ -36,7 +36,17 @@ type Props = {};
 installPuzzleHelper(Game);
 let game = Game.prototype.initializeGame();
 
-firebase.initializeApp();
+var firebaseConfig = {
+  apiKey: "AIzaSyA4dS_6DKyDELz4cGTMUL9vQiOKt67Gdf0",
+  authDomain: "rsg-chess-18836937.firebaseapp.com",
+  databaseURL: "https://rsg-chess-18836937.firebaseio.com",
+  projectId: "rsg-chess-18836937",
+  storageBucket: "rsg-chess-18836937.appspot.com",
+  messagingSenderId: "987275651510",
+  appId: "1:987275651510:web:0875c8d8fd525ec14bb917"
+};
+
+firebase.initializeApp(firebaseConfig);
 
 // TODO: Ensure React navigation works
 // https://stackoverflow.com/a/61029650/5223654
@@ -48,7 +58,7 @@ firebase.initializeApp();
 // firebase.perf().setPerformanceCollectionEnabled(true);
 
 // Set up AdMob
-firebase.admob().initialize("ca-app-pub-3522556458609123~4498098193");
+// firebase.admob().initialize("ca-app-pub-3522556458609123~4498098193");
 // TODO: RE-ENABLE ADS
 // let interstitial = firebase
 //   .admob()
@@ -61,7 +71,7 @@ let AdRequest = firebase.admob.AdRequest;
 // });
 
 let language = NativeModules.I18nManager.localeIdentifier.split(`_`)[0];
-firebase.crashlytics().setStringValue("initial_language", language);
+// firebase.crashlytics().setStringValue("initial_language", language);
 
 const supportedLangs = Object.keys(strings.languages);
 if (!includes(supportedLangs, language)) language = "en";
@@ -140,12 +150,12 @@ export default class App extends Component<Props> {
       });
     } catch (error) {
       firebase.analytics().logEvent(`language_error`);
-      firebase
-        .crashlytics()
-        .recordError(
-          0,
-          `Getting error: ${error.toString()}, when trying to get the lang from the storage.`
-        );
+      // firebase
+      //   .crashlytics()
+      //   .recordError(
+      //     0,
+      //     `Getting error: ${error.toString()}, when trying to get the lang from the storage.`
+      //   );
     }
     try {
       AsyncStorage.getItem("@RSGChess:showValidMoves").then(value => {
@@ -156,12 +166,12 @@ export default class App extends Component<Props> {
       });
     } catch (error) {
       firebase.analytics().logEvent(`validMoves_error`);
-      firebase
-        .crashlytics()
-        .recordError(
-          0,
-          `Getting error: ${error.toString()}, when trying to get the 'showValidMoves' config from the storage.`
-        );
+      // firebase
+      //   .crashlytics()
+      //   .recordError(
+      //     0,
+      //     `Getting error: ${error.toString()}, when trying to get the 'showValidMoves' config from the storage.`
+      //   );
     }
 
     try {
@@ -173,12 +183,12 @@ export default class App extends Component<Props> {
       });
     } catch (error) {
       firebase.analytics().logEvent(`palette_error`);
-      firebase
-        .crashlytics()
-        .recordError(
-          0,
-          `Getting error: ${error.toString()}, when trying to get the current pallete from the storage.`
-        );
+      // firebase
+      //   .crashlytics()
+      //   .recordError(
+      //     0,
+      //     `Getting error: ${error.toString()}, when trying to get the current pallete from the storage.`
+      //   );
     }
   };
 
@@ -343,9 +353,9 @@ export default class App extends Component<Props> {
         }
       }
 
-      firebase
-        .crashlytics()
-        .setStringValue("turns", stringifyTurnsReport(game.turn));
+      // firebase
+      //   .crashlytics()
+      //   .setStringValue("turns", stringifyTurnsReport(game.turn));
     } else {
       let last = game.turn.length - 1;
       if (
@@ -365,10 +375,10 @@ export default class App extends Component<Props> {
       }
     }
 
-    firebase.crashlytics().setStringValue("FEN", game.FEN);
-    firebase
-      .crashlytics()
-      .setIntValue("threefold_length", game.threefold.length);
+    // firebase.crashlytics().setStringValue("FEN", game.FEN);
+    // firebase
+    //   .crashlytics()
+    //   .setIntValue("threefold_length", game.threefold.length);
   };
 
   handlePromotion = (pawn, x, y, color) => {
@@ -426,26 +436,26 @@ export default class App extends Component<Props> {
   handleMessage = msg => {
     if (msg && msg.nativeEvent.data) {
       // Track issues if any
-      if (typeof msg.nativeEvent.data === "string") {
-        firebase
-          .crashlytics()
-          .setStringValue("handleMessage_data", msg.nativeEvent.data);
-      } else if (!JSON.stringify(msg.nativeEvent.data)) {
-        firebase
-          .crashlytics()
-          .setStringValue("webView_message_type", typeof msg.nativeEvent.data);
+      // if (typeof msg.nativeEvent.data === "string") {
+      //   firebase
+      //     .crashlytics()
+      //     .setStringValue("handleMessage_data", msg.nativeEvent.data);
+      // } else if (!JSON.stringify(msg.nativeEvent.data)) {
+      //   firebase
+      //     .crashlytics()
+      //     .setStringValue("webView_message_type", typeof msg.nativeEvent.data);
 
-        firebase
-          .crashlytics()
-          .recordError(1, "Cannot stringify message from WebView.");
-      } else {
-        firebase
-          .crashlytics()
-          .setStringValue(
-            "handleMessage_data",
-            JSON.stringify(msg.nativeEvent.data)
-          );
-      }
+      //   firebase
+      //     .crashlytics()
+      //     .recordError(1, "Cannot stringify message from WebView.");
+      // } else {
+      //   firebase
+      //     .crashlytics()
+      //     .setStringValue(
+      //       "handleMessage_data",
+      //       JSON.stringify(msg.nativeEvent.data)
+      //     );
+      // }
       // // //
 
       msg = JSON.parse(msg.nativeEvent.data);
@@ -460,11 +470,11 @@ export default class App extends Component<Props> {
       );
 
       this.setState({ isAIThinking: false });
-      firebase
-        .crashlytics()
-        .setStringValue("turns", stringifyTurnsReport(game.turn));
+      // firebase
+      //   .crashlytics()
+      //   .setStringValue("turns", stringifyTurnsReport(game.turn));
     } else {
-      firebase.crashlytics().setStringValue("handleMessage_data", "undefined");
+      // firebase.crashlytics().setStringValue("handleMessage_data", "undefined");
     }
   };
 
