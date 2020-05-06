@@ -4,6 +4,10 @@ import android.app.Application;
 import androidx.multidex.MultiDexApplication;
 
 import com.facebook.react.ReactApplication;
+import io.invertase.firebase.crashlytics.ReactNativeFirebaseCrashlyticsPackage;
+import io.invertase.firebase.admob.ReactNativeFirebaseAdmobPackage;
+import io.invertase.firebase.analytics.ReactNativeFirebaseAnalyticsPackage;
+import io.invertase.firebase.app.ReactNativeFirebaseAppPackage;
 import com.reactnativecommunity.webview.RNCWebViewPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.azendoo.reactnativesnackbar.SnackbarPackage;
@@ -28,6 +32,10 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
         new MainReactPackage(),
+            new ReactNativeFirebaseCrashlyticsPackage(),
+            new ReactNativeFirebaseAdmobPackage(),
+            new ReactNativeFirebaseAnalyticsPackage(),
+            new ReactNativeFirebaseAppPackage(),
             new RNCWebViewPackage(),
         new SplashScreenReactPackage(),
         new SnackbarPackage()

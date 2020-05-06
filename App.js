@@ -8,14 +8,13 @@ import {
   BackHandler,
   Alert
 } from "react-native";
-import { WebView } from 'react-native-webview';
-
 import firebase from '@react-native-firebase/app';
 import '@react-native-firebase/admob';
 import '@react-native-firebase/analytics';
 import '@react-native-firebase/crashlytics';
 import includes from "lodash/includes";
 import { createDrawerNavigator } from "react-navigation";
+import { WebView } from 'react-native-webview';
 
 import { Game } from "rsg-chess";
 import { html } from "./src/scripts/AI";
@@ -36,6 +35,12 @@ import Puzzles from "./src/pages/Puzzles";
 type Props = {};
 installPuzzleHelper(Game);
 let game = Game.prototype.initializeGame();
+
+firebase.initializeApp();
+
+// TODO: Ensure React navigation works
+// https://stackoverflow.com/a/61029650/5223654
+///
 
 // Set up Firebase
 
