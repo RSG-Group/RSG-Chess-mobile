@@ -4,6 +4,7 @@ import android.app.Application;
 import androidx.multidex.MultiDexApplication;
 
 import com.facebook.react.ReactApplication;
+import com.reactnativecommunity.webview.RNCWebViewPackage;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.azendoo.reactnativesnackbar.SnackbarPackage;
 import com.azendoo.reactnativesnackbar.SnackbarPackage;
@@ -27,6 +28,7 @@ public class MainApplication extends MultiDexApplication implements ReactApplica
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
         new MainReactPackage(),
+            new RNCWebViewPackage(),
         new SplashScreenReactPackage(),
         new SnackbarPackage()
       );

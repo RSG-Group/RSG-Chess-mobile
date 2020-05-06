@@ -2,13 +2,14 @@ import React, { Component } from "react";
 import {
   View,
   Dimensions,
-  WebView,
   ToastAndroid,
   NativeModules,
   AsyncStorage,
   BackHandler,
   Alert
 } from "react-native";
+import { WebView } from 'react-native-webview';
+
 import firebase from '@react-native-firebase/app';
 import '@react-native-firebase/admob';
 import '@react-native-firebase/analytics';

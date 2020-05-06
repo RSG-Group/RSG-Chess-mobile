@@ -22,6 +22,7 @@
     "react-native-settings-components": "git+https://github.com/radi-cho/react-native-settings-components.git",
     "react-native-snackbar": "^0.4.7",
     "react-native-splash-screen": "3.0.6",
+    "react-native-webview": "^9.4.0",
     "react-navigation": "^2.18.3",
     "rsg-chess": "^1.1.0-alpha.2",
     "rsg-chess-rn-graphics": "^1.1.0-alpha.3"
