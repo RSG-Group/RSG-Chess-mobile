@@ -36,17 +36,17 @@ type Props = {};
 installPuzzleHelper(Game);
 let game = Game.prototype.initializeGame();
 
-var firebaseConfig = {
-  apiKey: "AIzaSyA4dS_6DKyDELz4cGTMUL9vQiOKt67Gdf0",
-  authDomain: "rsg-chess-18836937.firebaseapp.com",
-  databaseURL: "https://rsg-chess-18836937.firebaseio.com",
-  projectId: "rsg-chess-18836937",
-  storageBucket: "rsg-chess-18836937.appspot.com",
-  messagingSenderId: "987275651510",
-  appId: "1:987275651510:web:0875c8d8fd525ec14bb917"
+var androidConfig = {
+  clientId: 'x',
+  appId: 'x',
+  apiKey: 'x',
+  databaseURL: 'x',
+  storageBucket: 'x',
+  messagingSenderId: 'x',
+  projectId: 'x'
 };
 
-firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(androidConfig);
 
 // TODO: Ensure React navigation works
 // https://stackoverflow.com/a/61029650/5223654
