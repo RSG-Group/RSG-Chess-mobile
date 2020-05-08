@@ -10,9 +10,15 @@ import {
 } from "react-native";
 
 import firebase from '@react-native-firebase/app';
-import '@react-native-firebase/admob';
 import '@react-native-firebase/analytics';
 import '@react-native-firebase/crashlytics';
+
+import admob, {
+  MaxAdContentRating,
+  InterstitialAd,
+  AdEventType
+} from '@react-native-firebase/admob';
+
 import includes from "lodash/includes";
 import { createDrawerNavigator } from "react-navigation";
 import { WebView } from 'react-native-webview';
@@ -41,17 +47,22 @@ let game = Game.prototype.initializeGame();
 // Set up Firebase
 
 // Set up AdMob
-// firebase.admob().initialize("ca-app-pub-3522556458609123~4498098193");
-// TODO: RE-ENABLE ADS
-// let interstitial = firebase
-//   .admob()
-//   .interstitial("ca-app-pub-3522556458609123/5974831399");
-// let AdRequest = firebase.admob.AdRequest;
-// [TESTING] request.addKeyword('foo').addKeyword('bar');
-// interstitial.loadAd(new AdRequest().build());
-// interstitial.on("onAdClosed", () => {
-//   interstitial.loadAd(new AdRequest().build());
-// });
+admob()
+  .setRequestConfiguration({
+    maxAdContentRating: MaxAdContentRating.PG,
+    tagForChildDirectedTreatment: true,
+    tagForUnderAgeOfConsent: false,
+  })
+  .then(() => { /* Request config successfully set! */ });
+
+let interstitial = InterstitialAd.createForAdRequest("ca-app-pub-3522556458609123/5974831399", {});
+interstitial.load();
+
+interstitial.onAdEvent(type => {
+  if (type === AdEventType.CLOSED) {
+    interstitial.load();
+  }
+});
 
 let language = NativeModules.I18nManager.localeIdentifier.split(`_`)[0];
 firebase.crashlytics().setAttribute("initial_language", language);
@@ -335,7 +346,7 @@ export default class App extends Component<Props> {
         }
       }
 
-      
+
       firebase
         .crashlytics()
         .setAttribute("turns", stringifyTurnsReport(game.turn));
@@ -377,9 +388,10 @@ export default class App extends Component<Props> {
 
   handleReplay = (ctx) => {
     this.restartGame();
-    // TODO: RE-ENABLE ADS
-    // interstitial.show();
-    // interstitial.loadAd(new AdRequest().build());
+    if (Math.floor(Math.random() * 3) !== 2) {
+      interstitial.show();
+      interstitial.load();
+    }
     firebase.analytics().logEvent(`handle_replay`);
     ctx.props.navigation.navigate("Menu");
   }

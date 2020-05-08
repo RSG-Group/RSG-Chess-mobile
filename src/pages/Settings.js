@@ -10,7 +10,7 @@ import {
 } from "react-native";
 import firebase from '@react-native-firebase/app';
 import '@react-native-firebase/analytics';
-import '@react-native-firebase/admob';
+import { BannerAd, BannerAdSize } from '@react-native-firebase/admob';
 
 import CheckmateSnackBar from "../components/CheckmateSnackBar";
 import {
@@ -32,24 +32,11 @@ export default class HomePage extends Component<Props> {
     drawerLabel: () => <View></View>
   };
 
-  state = {
-    adLoaded: false
-  };
-
-  constructor() {
-    super();
-    this.Banner = firebase.admob.Banner;
-    const AdRequest = firebase.admob.AdRequest;
-    this.request = new AdRequest();
-  }
-
   componentDidMount() {
     firebase.analytics().logEvent(`open_settings`);
   }
 
   render() {
-    const { Banner, request } = this;
-
     return (
       <View style={styles.container}>
         <NavigationContext.Consumer>
@@ -152,16 +139,12 @@ export default class HomePage extends Component<Props> {
                   style={{
                     height: adsHeight(Dimensions.get("window").height),
                     backgroundColor: "#dfdfdf",
-                    display: this.state.adLoaded ? "flex" : "none"
+                    display: "flex"
                   }}
                 >
-                  <Banner
-                    size={"SMART_BANNER"}
-                    request={request.build()}
+                  <BannerAd
+                    size={BannerAdSize.SMART_BANNER}
                     unitId={"ca-app-pub-3522556458609123/4507746605"}
-                    onAdLoaded={() => {
-                      this.setState({ adLoaded: true });
-                    }}
                   />
                 </View>
                 <CheckmateSnackBar navigate={this.props.navigation.navigate} />
