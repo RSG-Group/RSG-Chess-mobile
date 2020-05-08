@@ -8,7 +8,7 @@ export const html = `
       window.AI = function (params) {
         var bestMove = RSGChess.AI(params.playAgainstAI.depth, {board: params.board, turn: JSON.parse(params.turn)}, true);
         if (bestMove.to.movePiece) bestMove.to.movePiece = RSGChess.tools.uncycleMovePiece(bestMove.to.movePiece);
-        window.postMessage(JSON.stringify(bestMove));
+        window.ReactNativeWebView.postMessage(JSON.stringify(bestMove));
       }
     </script>
   </body>
