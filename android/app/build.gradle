@@ -1,4 +1,5 @@
 apply plugin: "com.android.application"
+apply plugin: 'com.google.gms.google-services'
 apply plugin: 'io.fabric'
 
 import com.android.build.OutputFile
@@ -106,6 +107,8 @@ dependencies {
     debugImplementation("com.facebook.flipper:flipper-fresco-plugin:${FLIPPER_VERSION}") {
         exclude group:'com.facebook.flipper'
     }
+
+    implementation project(path: ":@react-native-firebase_app")
 
     if (enableHermes) {
         def hermesPath = "../../node_modules/hermes-engine/android/";

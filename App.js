@@ -8,6 +8,7 @@ import {
   BackHandler,
   Alert
 } from "react-native";
+
 import firebase from '@react-native-firebase/app';
 import '@react-native-firebase/admob';
 import '@react-native-firebase/analytics';
@@ -36,26 +37,11 @@ type Props = {};
 installPuzzleHelper(Game);
 let game = Game.prototype.initializeGame();
 
-var androidConfig = {
-  clientId: 'x',
-  appId: 'x',
-  apiKey: 'x',
-  databaseURL: 'x',
-  storageBucket: 'x',
-  messagingSenderId: 'x',
-  projectId: 'x'
-};
-
-firebase.initializeApp(androidConfig);
-
 // TODO: Ensure React navigation works
 // https://stackoverflow.com/a/61029650/5223654
 ///
 
 // Set up Firebase
-
-// PERFORMANCE MONITORING REMOVED (TODO: CHECK IT OUT)
-// firebase.perf().setPerformanceCollectionEnabled(true);
 
 // Set up AdMob
 // firebase.admob().initialize("ca-app-pub-3522556458609123~4498098193");
@@ -63,7 +49,7 @@ firebase.initializeApp(androidConfig);
 // let interstitial = firebase
 //   .admob()
 //   .interstitial("ca-app-pub-3522556458609123/5974831399");
-let AdRequest = firebase.admob.AdRequest;
+// let AdRequest = firebase.admob.AdRequest;
 // [TESTING] request.addKeyword('foo').addKeyword('bar');
 // interstitial.loadAd(new AdRequest().build());
 // interstitial.on("onAdClosed", () => {
