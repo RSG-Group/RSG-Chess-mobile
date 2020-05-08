@@ -15,7 +15,6 @@ import getSizes from "../scripts/getSizes";
 /// UPDATE THE PAGE FOR INTERNATIONALIZATION
 /// ADD PUZZLE BACK AND FORTH FUNCTIONALITY
 /// INTEGRATE WITH SAVEDPREFERENCES AND INDICATE ALREADY PLAYED PUZZLES
-/// TODO
 /// /// ///
 
 export default class Puzzles extends Component<Props> {

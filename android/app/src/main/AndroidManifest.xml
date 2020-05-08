@@ -45,7 +45,6 @@
         <meta-data
             android:name="io.fabric.ApiKey"
             android:value="c346e85f8a843da964b72451b8890c2972ca8857" />
-        <!-- TODO: Check and update the AdMob integration acoording to RNF -->
         <meta-data
             tools:replace="android:value"
             android:name="com.google.android.gms.ads.APPLICATION_ID"
