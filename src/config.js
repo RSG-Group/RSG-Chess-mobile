@@ -112,9 +112,9 @@ export const strings = {
     ru: "Жесткий"
   },
   puzzles: {
-    en: "Puzzles",
-    bg: "Puzzles",
-    ru: "Puzzles"
+    en: "Puzzles (coming soon)",
+    bg: "Puzzles (coming soon)",
+    ru: "Puzzles (coming soon)"
   },
   resume: {
     en: 'Resume',

@@ -131,7 +131,7 @@ export default class Menu extends React.Component<Props> {
                   <View style={styles.buttonContainer}>
                     <Button
                       title={strings.puzzles[lang]}
-                      onPress={() => this.switchGameMode('puzzles', selectMode, restartGame)}
+                      // onPress={() => this.switchGameMode('puzzles', selectMode, restartGame)}
                     />
                   </View>
                   <Text style={styles.desc}>{strings.playAgainstAI[lang]}</Text>
