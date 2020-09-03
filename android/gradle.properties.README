@@ -9,10 +9,10 @@
 # http://www.gradle.org/docs/current/userguide/build_environment.html
 
 android.useDeprecatedNdk=true
-MYAPP_RELEASE_STORE_FILE=***PATH-TO-RSG-Chess.keystore
-MYAPP_RELEASE_KEY_ALIAS=***
-MYAPP_RELEASE_STORE_PASSWORD=***
-MYAPP_RELEASE_KEY_PASSWORD=***
+RELEASE_STORE_FILE=***PATH-TO-RSG-Chess.keystore
+RELEASE_KEY_ALIAS=***
+RELEASE_STORE_PASSWORD=***
+RELEASE_KEY_PASSWORD=***
 
 android.enableAapt2=false
 

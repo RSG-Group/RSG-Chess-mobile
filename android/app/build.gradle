@@ -52,6 +52,15 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        release {
+            def Properties localProps = new Properties()
+            localProps.load(new FileInputStream(file('../gradle.properties')))
+
+            storeFile file(localProps["RELEASE_STORE_FILE"])
+            keyAlias localProps["RELEASE_KEY_ALIAS"]
+            storePassword localProps["RELEASE_STORE_PASSWORD"]
+            keyPassword localProps["RELEASE_KEY_PASSWORD"]
+        }
     }
     buildTypes {
         debug {
@@ -60,7 +69,7 @@ android {
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://facebook.github.io/react-native/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
