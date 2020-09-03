@@ -29,7 +29,7 @@
         android:layout_alignParentBottom="true"
         android:fontFamily="sans-serif-smallcaps"
         android:gravity="center"
-        android:text="Made by Radi Cho. Published by RSG."
+        android:text="The cool chess game... By Radi Cho."
         android:textColor="@android:color/holo_green_light"
         android:textSize="12sp"
         android:visibility="visible" />
