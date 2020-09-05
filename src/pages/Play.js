@@ -79,7 +79,7 @@ export default class Play extends React.Component<Props> {
                   rotated={rotated}
                 />
               </View>
-              {renderCheckmateModal(checkmate, lang, handleReplay, () => {
+              {renderCheckmateModal(checkmate, lang, () => {handleReplay(this)}, () => {
                 self.setState({ checkmate: null });
               })}
               {promotionParams &&
