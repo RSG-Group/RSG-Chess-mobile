@@ -17,7 +17,7 @@
     "babel-plugin-transform-remove-console": "^6.9.4",
     "lodash": "^4.17.11",
     "react": "16.11.0",
-    "react-native": "0.62.2",
+    "react-native": "0.62.3",
     "react-native-modal": "^6.5.0",
     "react-native-settings-components": "git+https://github.com/radi-cho/react-native-settings-components.git",
     "react-native-snackbar": "^0.4.7",
